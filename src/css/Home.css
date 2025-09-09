@@ -1,0 +1,71 @@
+html {
+  background-color: black;
+}
+
+body {
+  animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 0.1s; /* don't forget to set a duration! */
+
+  color: var(--body_text_color);
+  background: var(--body_background_color);
+  display: block !important;
+}
+
+#side-menu {
+  animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 0.1s; /* don't forget to set a duration! */
+}
+
+.default-nav {
+  display: none !important;
+}
+
+.history-game-title-container {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.history-game-title-container > img {
+  max-width: 25px;
+  margin-right: 5px;
+}
+
+.icon {
+  display: block;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.icon > img {
+  max-width: 25px;
+}
+
+.home {
+  min-height: 300px !important;
+}
+
+.fade-in {
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.5s;
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.nav-link-wrapper {
+  height: 60px;
+}
+
+.visibility-hidden {
+  visibility: hidden;
+}

@@ -1,0 +1,288 @@
+html #search-form {
+    margin-left: 24px;
+    margin-right: 1.6rem;
+}
+html .balance-wrapper {
+    display: flex;
+    justify-content: end;
+    font-size: 2rem;
+    font-weight: 300;
+    padding-left: 14px;
+    margin-left: 7px;
+    min-width: 120px;
+}
+html .balance-wrapper .gray-loading {
+    top: 0;
+    bottom: 0;
+}
+html .header .balance {
+    display: inline-block;
+}
+html .header-left .logo img {
+    max-height: 80px;
+}
+.header-right {
+    gap: 1rem;
+}
+.burger {
+    width: 46px;
+    height: 46px;
+}
+.news-icon {
+    width: 27px;
+    height: 27px;
+}
+html .small-button-addon {
+    height: 2.5rem;
+    line-height: 2.3rem;
+}
+html .provider-card img {
+    max-height: 60px;
+}
+nav.main-nav {
+    height: 8rem;
+    margin-top: 1rem;
+}
+nav.providers-nav-text .nav-link-wrapper-parent {
+    min-height: 4rem;
+}
+nav.providers-nav-icons .nav-link-wrapper-parent {
+    height: 8rem;
+}
+nav .casino-tags .nav-link-wrapper-parent {
+    height: 8rem;
+}
+html .providers-nav-icons .nav-link-wrapper {
+    height: 8rem;
+}
+html nav .nav-link-wrapper {
+    height: 8rem;
+}
+nav.main-nav .nav-link-wrapper {
+    background: transparent;
+    flex: 1 0 16rem;
+    border: 0;
+    height: 8rem;
+}
+nav.providers-nav-icons .nav-link-wrapper {
+    flex: 0 0 20rem;
+}
+nav.providers-nav-icons .nav-link-wrapper img.provider-img {
+    max-height: 65%;
+}
+nav .casino-tags .nav-link-wrapper.active, nav.providers-nav-icons .nav-link-wrapper.active {
+    box-shadow: 0px 0px 16px var(--navigation_border_color) inset;
+}
+html nav.main-nav .text {
+    margin-top: 10px;
+}
+html nav .text {
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    overflow: visible;
+    padding: 0 1rem;
+}
+html nav .icon {
+    /* font-size: 2.2rem; */
+    /* ldpfdev */
+    max-width: 2.2rem;
+
+}
+html nav.main-nav .icon {
+    font-size: 3rem;
+}
+html nav .search-nav-column {
+    height: 8rem;
+    padding: 0 .4rem;
+}
+html .inner-footer {
+    flex-direction: row;
+    gap: 20px;
+}
+html .footer-text, html .footer-links, html .social-icons {
+    flex-basis: 33%;
+    width: 33%;
+}
+html .footer-links {
+    flex-direction: row;
+    margin-top: 0;
+    padding: 2rem 0;
+}
+html .footer-link {
+    margin-right: 2rem;
+}
+html .casino-games-loading .flex-child {
+    display: block;
+}
+html .casino-games-loading .flex-child, .games-list .game {
+    flex-basis: 16.6%;
+    max-width: 16.6%;
+}
+html .casino-gray-loading {
+    top: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+}
+html .games-list .game-card {
+    top: 1rem;
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+}
+html .games-list .game-card:hover .card-overlay {
+    opacity: .8;
+}
+html .games-list .game-card:hover .buttons-wrapper {
+    opacity: 1;
+}
+html .games-list .game-card:hover img {
+    transform: scale(1.2);
+    filter: blur(3px);
+}
+html .games-list .card-overlay {
+    visibility: visible;
+    box-shadow: inset 0 -40px 10px #000;
+}
+html .games-list .buttons-wrapper {
+    visibility: visible;
+}
+html .games-list .demo-and-name .demo-button {
+    margin-top: 4rem;
+}
+html .game-name {
+    font-size: 1em;
+}
+html .game-name-animated {
+    animation: backAndForth 3s linear infinite;
+}
+html .button-play {
+    width: 40% !important;
+    height: 40% !important;
+}
+html .button-play-icon {
+    width: 30% !important;
+    height: 30% !important;
+}
+html .button-favorite {
+    font-size: 2.4rem;
+}
+#video_wrap, #slider_wrap {
+    aspect-ratio: 4 / 1 !important;
+    margin-bottom: 2rem;
+}
+.product-home #slider_wrap {
+    margin-bottom: 1rem;
+}
+.product-home #video_wrap {
+    margin-bottom: 1rem;
+}
+html nav.search-nav {
+    margin-top: 2rem;
+}
+html .nav-link-wrapper img.tag-img {
+    width: 30px;
+    height: 30px;
+}
+html .main-nav .nav-link-wrapper img {
+    width: 37px;
+    height: 37px;
+}
+html nav.providers-with-icons-nav {
+    margin-top: 6rem;
+}
+html nav.providers-with-icons-nav.minimal {
+    margin-top: 0;
+}
+html .providers-with-icons .provider {
+    flex-basis: 12.5%;
+    max-width: 12.5%;
+}
+html .providers-with-icons .provider.minimal {
+    flex-basis: 25%;
+    max-width: 25%;
+}
+.provider.minimal .provider-card img {
+    max-height: 90px;
+}
+html .providers-with-icons .provider-card {
+    top: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+}
+.languages a {
+    padding: 10px;
+}
+html .languages img {
+    width: 30px;
+}
+html .providers-with-icons .provider-card .text {
+    font-size: 1.6rem;
+}
+html .games-group-wrapper {
+    margin-top: 5rem;
+}
+html .games-group-emoji {
+    margin-top: -10px;
+    width: 90px;
+}
+.emoji4gif .games-group-emoji, .emoji5gif .games-group-emoji {
+    width: 80px;
+    margin-top: -2px;
+}
+html .games-group-title {
+    font-size: 2.5vw;
+    margin-left: -8px;
+}
+.games-group-title-line {
+    height: 2px;
+    top: 3px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+html .games-group-view-all {
+    margin-top: 10px;
+    font-size: 16px;
+}
+html hr.big {
+    margin: 6rem auto;
+    height: 2px;
+    margin-top: 5rem;
+}
+html .banner-wrapper .button-wrapper {
+    bottom: 2rem;
+}
+html .banner-wrapper .button-wrapper .button {
+    padding: 0 3rem;
+    font-size: 1.1rem;
+    height: 3.8rem;
+    line-height: 3.8rem;
+}
+html .product-home .games-list {
+    aspect-ratio: 3 / 1;
+}
+html .product-home .games-list .game {
+    width: 16.6%;
+    min-width: 16.6%;
+}
+.product-home .games-group-wrapper:nth-child(2n) .games-list .game:nth-child(5n+2) {
+    width: 16.6%;
+    min-width: 16.6%;
+}
+.product-home .games-group-wrapper:nth-child(2n+1) .games-list .game:nth-child(5n+1) {
+    width: 16.6%;
+    min-width: 16.6%;
+}
+html .banners-wrapper {
+    gap: 5rem;
+    margin-bottom: 5rem;
+}
+html .banner-wrapper {
+    width: 25%;
+    flex-basis: 25%;
+}
+html .chat-with-us.app-mode-chat {
+    right: 20px;
+    bottom: 20px;
+}

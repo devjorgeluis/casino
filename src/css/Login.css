@@ -1,0 +1,156 @@
+#root {
+    height: 100%;
+    background: var(--body_background_color);
+    background-color: black;
+    color: var(--body_text_color);
+    font-family: var(--font), 'Helvetica', 'Arial', sans-serif;
+}
+
+.container {
+    max-width: 1000px;
+}
+
+.card {
+    font-family: var(--font), 'Helvetica', 'Arial', sans-serif;
+    color: var(--body_text_color) !important;
+    font-weight: 100 !important;
+}
+
+.login {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+img {
+    max-width: 100%;
+}
+.navbar-brand {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+.languages {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+.languages img {
+    width: 30px;
+    margin: 10px;
+}
+.logo {
+    text-align: center;
+}
+html, body {
+    height: 100%;
+}
+#app {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+html .card {
+    background: var(--card_background_color);
+    border-radius: var(--border_radius);
+    border: 1px solid var(--border_color);
+}
+.btn-primary {
+    background: var(--button_background_color) !important;
+    border: 0.1rem solid var(--button_background_color) !important;
+    border-radius: var(--border_radius) !important;
+    color: var(--button_text_color) !important;
+}
+.btn-primary:hover {
+    background: var(--button_background_color);
+    border: 0.1rem solid var(--button_background_color);
+    opacity: 0.7;
+}
+.btn-link {
+    color: var(--button_background_color);
+}
+.btn-link:hover {
+    color: var(--button_background_color);
+    opacity: 0.7;
+}
+input {
+    border: 0.1rem solid var(--button_background_color);
+    border-radius: var(--border_radius);
+    color: var(--body_text_color);
+}
+.form-group {
+    justify-content: center;
+}
+.form-check {
+    padding: .375rem .75rem;
+    padding-left: 1.25rem;
+}
+.forget.btn {
+    padding: .375rem .75rem;
+    padding-left: 1.25rem;
+}
+.user-login-button-wrapper {
+    text-align: center;
+}
+.user-login-button-wrapper button {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.chat-with-us {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 2;
+    height: 40px;
+}
+.chat-with-us > a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+}
+html .card-body {
+    padding-top: 50px;
+}
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: .8;
+}
+html input[type='password'] {
+    padding-right: 36px;
+}
+html .form-control {
+    font-size: 1.2rem;
+}
+
+:root {
+    --font: 'Lato' !important;
+    --body_background_color: #222     !important;
+    --body_text_color: #00c5ff     !important;
+    --card_background_color: #222     !important;
+    --card_highlight_text_color: #f53dce     !important;
+    --button_background_color: #00c5ff     !important;
+    --button_text_color: #f53dce     !important;
+    --border_radius: 10px     !important;
+    --border_color: #8279ed     !important;
+    --header_text_color: #00c5ff     !important;
+    --main_navigation_text_color: #f53dce     !important;
+    --main_navigation_active_text_color: #8279ed     !important;
+    --navigation_text_color: #f53dce     !important;
+    --navigation_active_text_color: #8279ed     !important;
+    --navigation_border_color: #f53dce     !important;
+    --card_divider_color: #8279ed     !important;
+}
