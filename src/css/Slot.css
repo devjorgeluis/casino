@@ -132,19 +132,21 @@
     padding-bottom: .313rem
 }
 
-.slots-provider-filter-list-desktop::-webkit-scrollbar {
-    margin-top: .625rem;
-    width: .4rem;
-    height: .4rem
-}
+@media (min-width: 768px) {
+    .slots-provider-filter-list-desktop::-webkit-scrollbar {
+        margin-top: .625rem;
+        width: .4rem;
+        height: .4rem
+    }
 
-.slots-provider-filter-list-desktop::-webkit-scrollbar-track {
-    border-radius: .313rem
-}
+    .slots-provider-filter-list-desktop::-webkit-scrollbar-track {
+        border-radius: .313rem
+    }
 
-.slots-provider-filter-list-desktop::-webkit-scrollbar-thumb {
-    background-color: #8b00c9;
-    border-radius: .375rem
+    .slots-provider-filter-list-desktop::-webkit-scrollbar-thumb {
+        background-color: #8b00c9;
+        border-radius: .375rem
+    }
 }
 
 .slots-provider-filter-list-desktop__item {
@@ -158,6 +160,7 @@
     -ms-flex-pack: center;
     justify-content: center;
     height: 2.375rem;
+    min-width: fit-content;
     padding: 0 1.25rem 0 .938rem;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -196,7 +199,8 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    position: relative
+    position: relative;
+    margin-bottom: 0;
 }
 
 .search-filter-slots-desktop__input-wrapper {
@@ -609,6 +613,12 @@
     text-transform: capitalize
 }
 
+@media (max-width: 768px) {
+    .provider-section-desktop__header-provider-text {
+        padding: 0;
+    }
+}
+
 .provider-section-desktop__header-info {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -692,6 +702,14 @@
     grid-template-columns: repeat(8, 1fr);
 }
 
+@media (max-width: 768px) {
+    .provider-section-desktop__games-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        row-gap: .625rem;
+        column-gap: .625rem;
+    }
+}
+
 .slots-main-desktop__provider-section:not(:last-of-type) {
     margin-bottom: 1.25rem
 }
@@ -702,6 +720,12 @@
 
 .slots-main-desktop__filter-container {
     margin: 1.25rem
+}
+
+@media (max-width: 768px) {
+    .slots-main-desktop__filter-container {
+        margin: .625rem
+    }
 }
 
 .slots-main-desktop__filters {
@@ -715,10 +739,35 @@
     height: 2.375rem
 }
 
+@media (max-width: 768px) {
+    .slots-main-desktop__search-category-filters .slots-main-desktop__search-filter {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .slots-main-mobile__search-category-filters {
+        display: none;
+    }
+    .search-filter-slots-mobile__button {
+        display: none;
+    }
+}
+
 .slots-main-desktop__search-filter {
     max-width: 27.5rem;
     width: 100%;
     margin-left: 1.25rem
+}
+
+@media (max-width: 768px) {
+    .slots-main-desktop__search-filter {
+        margin-top: 0.625rem;
+        margin-left: 0;
+    }
+    .search-filter-slots-mobile__button {
+        margin-left: 0.375rem;
+    }
 }
 
 .slots-main-desktop__favorites-empty {
@@ -945,6 +994,22 @@
     margin-top: .5rem
 }
 
+@media (max-width: 768px) {
+    .slots-icon-desktop__name {
+        display: block;
+        color: var(--DarkUI-Text-Text-Regular, #ededed);
+        max-width: 100%;
+        height: 1.875rem;
+        font-size: .75rem;
+        line-height: .75rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        text-transform: capitalize;
+        font-weight: 400;
+    }
+}
+
 .slots-icon-desktop__modal {
     position: absolute;
     width: 100%;
@@ -1124,122 +1189,4 @@
 
 .carousel-arrows__arrow_disabled * {
     fill: #76657e
-}
-
-.loadable-image {
-    -webkit-box-flex: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
-    overflow: hidden;
-    position: relative
-}
-
-.loadable-image__loader {
-    width: 100%;
-    height: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    background-image: url(/img/src/components/LoadableImage/view/img/loaded-img.png);
-    background-size: 100% 100%;
-    background-position: center;
-    background-color: #111522;
-    background-repeat: no-repeat
-}
-
-.loadable-image__image {
-    -webkit-box-flex: 2;
-    -ms-flex-positive: 2;
-    flex-grow: 2;
-    display: none;
-    width: 100%;
-    height: 100%;
-    -o-object-fit: contain;
-    object-fit: contain;
-    -webkit-transition: opacity .3s ease-in-out;
-    transition: opacity .3s ease-in-out
-}
-
-.loadable-image__image_isLoaded {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    object-fit: cover;
-    height: 12.313rem;
-}
-
-.loadable-image__image2 {
-    -webkit-box-flex: 2;
-    -ms-flex-positive: 2;
-    flex-grow: 2;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    -o-object-fit: contain;
-    object-fit: contain;
-    -webkit-transition: opacity .3s ease-in-out;
-    transition: opacity .3s ease-in-out
-}
-
-.loadable-image__image2 svg {
-    width: 100%;
-    height: 100%
-}
-
-.loadable-image__image2_isLoaded {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center
-}
-
-@-webkit-keyframes imageLoad {
-    from {
-        left: -150px
-    }
-
-    to {
-        left: 100%
-    }
-}
-
-@keyframes imageLoad {
-    from {
-        left: -150px
-    }
-
-    to {
-        left: 100%
-    }
 }

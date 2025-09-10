@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import IconEarth from "/src/assets/img/earch.svg";
-import IconArrowDown from "/src/assets/img/arrow-down.svg";
+import IconEarth from "/src/assets/svg/earth.svg";
+import IconArrowDown from "/src/assets/svg/arrow-down.svg";
+import ImgEn from "/src/assets/img/en.png";
+import ImgEs from "/src/assets/img/es.png";
 
 const LanguageSelector = () => {
     const [showLanguage, setShowLanguage] = useState(false);
@@ -41,7 +43,7 @@ const LanguageSelector = () => {
                         >
                             <img
                                 className="set-language-desktop__item-img set-language-desktop__item-img_selected"
-                                src="https://assets.a7a.info/media/icons/flags/en.png"
+                                src={ImgEn}
                                 alt="English language flag"
                             />
                             <span className="set-language-desktop__item-text set-language-desktop__item-text_selected">
@@ -51,7 +53,7 @@ const LanguageSelector = () => {
                         <div className="set-language-desktop__item" role="menuitem">
                             <img
                                 className="set-language-desktop__item-img"
-                                src="https://assets.a7a.info/media/icons/flags/es.png"
+                                src={ImgEs}
                                 alt="Spanish language flag"
                             />
                             <span className="set-language-desktop__item-text">Español</span>

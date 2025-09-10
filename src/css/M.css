@@ -9,28 +9,6 @@ html {
     font-size: 62.5%
 }
 
-#root {
-    --body_background_color: #222 !important;
-    --body_text_color: #00c5ff !important;
-    --card_background_color: #222 !important;
-    --card_highlight_text_color: #f53dce !important;
-    --button_background_color: #00c5ff !important;
-    --button_text_color: #f53dce !important;
-    --border_radius: 10px !important;
-    --border_color: #8279ed !important;
-    --header_text_color: #00c5ff !important;
-    --main_navigation_text_color: #f53dce !important;
-    --main_navigation_active_text_color: #8279ed !important;
-    --navigation_text_color: #f53dce !important;
-    --navigation_active_text_color: #8279ed !important;
-    --navigation_border_color: #f53dce !important;
-    --card_divider_color: #8279ed !important;
-    color: var(--body_text_color);
-    background: var(--body_background_color);
-    font-family: "Roboto",Arial,sans-serif;
-    display: block !important;
-}
-
 .bg {
     background-position: center;
     background-repeat: no-repeat;
@@ -548,7 +526,6 @@ h4,
 h5,
 h6 {
     font-weight: 300;
-    margin-bottom: 2.0rem;
     margin-top: 0
 }
 
@@ -682,7 +659,7 @@ nav {
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
-    margin: 1rem 0;
+    margin: 0;
     position: relative;
 }
 

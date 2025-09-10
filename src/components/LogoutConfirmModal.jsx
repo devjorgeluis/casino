@@ -1,4 +1,4 @@
-import IconClose from "/src/assets/img/close.svg";
+import IconClose from "/src/assets/svg/close.svg";
 
 const LogoutConfirmModal = ({ onConfirm, onCancel }) => {
     return (

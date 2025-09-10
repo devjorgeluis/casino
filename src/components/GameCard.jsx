@@ -1,8 +1,8 @@
 // import LazyLoad from "react-lazyload";
 import { useRef } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import IconPlay from "/src/assets/img/play.svg";
-import IconFavorite from "/src/assets/img/favorite.svg";
+import IconPlay from "/src/assets/svg/play.svg";
+import IconFavorite from "/src/assets/svg/favorite.svg";
 
 const GameCard = (props) => {
   const imgRef = useRef(null);

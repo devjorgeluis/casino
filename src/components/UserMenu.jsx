@@ -15,7 +15,7 @@ const UserMenu = () => {
                     <div className="user-block__menu-top-logout">
                         <span className="user-block__user-icon">
                             <span className="SVGInline SVG-component__content">
-                                <img src="/src/assets/img/logout.svg" />
+                                <img src="/src/assets/svg/logout.svg" />
                             </span>
                         </span>
                     </div>
@@ -28,7 +28,7 @@ const UserMenu = () => {
             <a className="user-block__menu-item" href="/profile">
                 <span className="user-block__menu-item-icon">
                     <span className="SVGInline SVG-component__content">
-                        <img src="/src/assets/img/user-circle.svg" />
+                        <img src="/src/assets/svg/user-circle.svg" />
                     </span>
                 </span>
                 <div className="user-block__menu-item-title">Su cuenta</div>

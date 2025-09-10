@@ -10,27 +10,28 @@ import UserMenu from "../components/UserMenu";
 import LogoutConfirmModal from "../components/LogoutConfirmModal";
 import "animate.css";
 
-import IconNavTopCasino from "/src/assets/img/nav-casino.png";
-import IconNavTopLiveCasino from "/src/assets/img/nav-livecasino.png";
-import IconNavMidLobby from "/src/assets/img/nav-mid-lobby.png";
-import IconHot from "/src/assets/img/hot.png";
-import IconHeart from "/src/assets/img/heart.png";
-import IconArrow from "/src/assets/img/arrow.png";
-import IconSearch from "/src/assets/img/search.svg";
-import IconCurrency from "/src/assets/img/currency.svg";
-import IconProfile from "/src/assets/img/profile.svg";
-import IconLogout from "/src/assets/img/logout.svg";
-import IconBet from "/src/assets/img/bet-responsibility.png";
+import ImgNavTopCasino from "/src/assets/img/nav-casino.png";
+import ImgNavTopLiveCasino from "/src/assets/img/nav-livecasino.png";
+import ImgNavMidLobby from "/src/assets/img/nav-mid-lobby.png";
+import ImgHot from "/src/assets/img/hot.png";
+import ImgHeart from "/src/assets/img/heart.png";
+import ImgArrow from "/src/assets/img/arrow.png";
+import ImgBet from "/src/assets/img/bet-responsibility.png";
 import ImgLogo from "/src/assets/img/logo-net-new.png";
 import ImgBanner1 from "/src/assets/img/banner-desktop-01.webp";
 import ImgBanner2 from "/src/assets/img/banner-desktop-02.webp";
 import ImgBanner3 from "/src/assets/img/banner-desktop-03.webp";
+import IconCurrency from "/src/assets/svg/currency.svg";
+import IconProfile from "/src/assets/svg/profile.svg";
+import IconLogout from "/src/assets/svg/logout.svg";
 import GameModal from "../components/GameModal";
 import DivLoading from "../components/DivLoading";
 import FullDivLoading from "../components/FullDivLoading";
-import MobileNavButton from "../components/MobileNavButton";
 import CustomAlert from "../components/CustomAlert";
 import LanguageSelector from "../components/LanguageSelector";
+import MobileSidebar from "../components/MobileSidebar";
+import MobileFooter from "../components/MobileFooter";
+import SearchInput from "../components/SearchInput";
 
 let selectedGameId = null;
 let selectedGameType = null;
@@ -52,7 +53,7 @@ const Home = () => {
   const [gameUrl, setGameUrl] = useState("");
   const [txtSearch, setTxtSearch] = useState("");
   const [showUserMenu, setShowUserMenu] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isLogin, setIsLogin] = useState(contextData.isLogin);
   const [isLoadingGames, setIsLoadingGames] = useState(false);
   const [showFullDivLoading, setShowFullDivLoading] = useState(false);
   const [messageCustomAlert, setMessageCustomAlert] = useState("");
@@ -60,22 +61,11 @@ const Home = () => {
   const [fragmentNavLinksTop, setFragmentNavLinksTop] = useState(<></>);
   const [fragmentNavLinksBody, setFragmentNavLinksBody] = useState(<></>);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const searchRef = useRef(null);
   const refGameModal = useRef();
 
-  const buttonStyle = {
-    display: "none",
-    width: "30px",
-    background: "none",
-    border: "0px",
-  };
-
-  const imageSlideshowDesktop = [
-    ImgBanner1,
-    ImgBanner2,
-    ImgBanner3,
-  ];
-  const imageSlideshowMobile = [
+  const imageSlideshow = [
     ImgBanner1,
     ImgBanner2,
     ImgBanner3,
@@ -113,6 +103,10 @@ const Home = () => {
     setShowUserMenu(!showUserMenu);
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   const getStatus = () => {
     callApi(
       contextData,
@@ -129,7 +123,7 @@ const Home = () => {
         <NavLinkHeader
           title="Inicio"
           pageCode="home"
-          icon={IconNavTopCasino}
+          icon={ImgNavTopCasino}
           active={
             selectedPage == "home" ||
             selectedPage == "lobby" ||
@@ -140,14 +134,14 @@ const Home = () => {
         <NavLinkHeader
           title="Casino"
           pageCode="casino"
-          icon={IconNavTopCasino}
+          icon={ImgNavTopCasino}
           active={["casino", "arcade", "megaways"].includes(selectedPage)}
           onClick={() => getPage("casino")}
         />
         <NavLinkHeader
           title="Casino en vivo"
           pageCode="livecasino"
-          icon={IconNavTopLiveCasino}
+          icon={ImgNavTopLiveCasino}
           active={["livecasino", "roulette"].includes(selectedPage)}
           onClick={() => getPage("livecasino")}
         />
@@ -157,35 +151,35 @@ const Home = () => {
         <NavLinkIcon
           title="Lobby"
           pageCode="home"
-          icon={IconHeart}
+          icon={ImgHeart}
           active={selectedPage == "home"}
           onClick={() => getPage("home")}
         />
         <NavLinkIcon
           title="Hot"
           pageCode="hot"
-          icon={IconHot}
+          icon={ImgHot}
           active={selectedPage === "hot"}
           onClick={() => getPage("hot")}
         />
         <NavLinkIcon
           title="Habilidad"
           pageCode="arcade"
-          icon={IconNavMidLobby}
+          icon={ImgNavMidLobby}
           active={selectedPage === "arcade"}
           onClick={() => getPage("arcade")}
         />
         <NavLinkIcon
           title="Megaways"
           pageCode="megaways"
-          icon={IconArrow}
+          icon={ImgArrow}
           active={selectedPage === "megaways"}
           onClick={() => getPage("megaways")}
         />
         <NavLinkIcon
           title="Ruleta"
           pageCode="roulette"
-          icon={IconNavMidLobby}
+          icon={ImgNavMidLobby}
           active={selectedPage === "roulette"}
           onClick={() => getPage("roulette")}
         />
@@ -196,7 +190,7 @@ const Home = () => {
         <NavLinkHeader
           title="Inicio"
           pageCode="home"
-          icon={IconNavTopCasino}
+          icon={ImgNavTopCasino}
           active={
             selectedPage == "home" ||
             selectedPage == "lobby" ||
@@ -210,21 +204,21 @@ const Home = () => {
         <NavLinkIcon
           title="Lobby"
           pageCode="home"
-          icon={IconHeart}
+          icon={ImgHeart}
           active={selectedPage == "home"}
           onClick={() => getPage("home")}
         />
         <NavLinkIcon
           title="Hot"
           pageCode="hot"
-          icon={IconHot}
+          icon={ImgHot}
           active={selectedPage === "hot"}
           onClick={() => getPage("hot")}
         />
         <NavLinkIcon
           title="Megaways"
           pageCode="megaways"
-          icon={IconArrow}
+          icon={ImgArrow}
           active={selectedPage === "megaways"}
           onClick={() => getPage("megaways")}
         />
@@ -518,39 +512,52 @@ const Home = () => {
               </div>
               <div className="header-desktop__right">
                 <div className="user-block">
-                  <div className="user-block__top">
-                    <div className="user-block__border">
-                      <div className="user-block__info">
-                        <span className="user-block__info-icon">
-                          <span className="SVGInline SVG-component__content">
-                            <img src={IconCurrency} />
-                          </span>
-                        </span>
-                        <span className="user-block__text">{userBalance}</span><span className="user-block__currency">ARS</span>
+                  {
+                    isLogin ? (
+                      <div className="user-block__top">
+                        <div className="user-block__border">
+                          <div className="user-block__info">
+                            <span className="user-block__info-icon">
+                              <span className="SVGInline SVG-component__content">
+                                <img src={IconCurrency} />
+                              </span>
+                            </span>
+                            <span className="user-block__text">{userBalance}</span><span className="user-block__currency">ARS</span>
+                          </div>
+                        </div>
+                        <div className="user-block__border">
+                          <div className="user-block__user-wrapper">
+                            <span className="user-block__user-icon" onClick={openMenu}>
+                              <span className="SVGInline SVG-component__content">
+                                <img src={IconProfile} />
+                              </span>
+                            </span>
+                          </div>
+                        </div>
+                        <div className="user-block__border">
+                          <div className="user-block__user-wrapper">
+                            <span
+                              className="user-block__user-icon"
+                              onClick={handleLogoutClick}
+                            >
+                              <span className="SVGInline SVG-component__content">
+                                <img src={IconLogout} alt="Logout icon" />
+                              </span>
+                            </span>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div className="user-block__border">
-                      <div className="user-block__user-wrapper">
-                        <span className="user-block__user-icon" onClick={openMenu}>
-                          <span className="SVGInline SVG-component__content">
-                            <img src={IconProfile} />
-                          </span>
-                        </span>
+                    ) : (
+                      <div className="header-login-block-desktop">
+                        <div className="header-login-block-desktop__button">
+                          <button type="button" className="button-desktop button-desktop_color_default">
+                            <span className="header-login-block-desktop__button-text">Acceder</span>
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                    <div className="user-block__border">
-                      <div className="user-block__user-wrapper">
-                        <span
-                          className="user-block__user-icon"
-                          onClick={handleLogoutClick}
-                        >
-                          <span className="SVGInline SVG-component__content">
-                            <img src={IconLogout} alt="Logout icon" />
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                    )
+                  }
+
                   {showUserMenu && <UserMenu />}
                 </div>
                 <div className="header-desktop__separator"></div>
@@ -560,43 +567,26 @@ const Home = () => {
           </header>
 
           <main className="app__main">
-            <div className="d-none d-md-block">
-              <Slideshow images={imageSlideshowDesktop}></Slideshow>
-            </div>
-            <div className="d-block d-md-none">
-              <Slideshow images={imageSlideshowMobile}></Slideshow>
-            </div>
+            <Slideshow images={imageSlideshow}></Slideshow>
             <div className="slots-main-desktop__filter-container">
               <div className="slots-main-desktop__filters">
                 <div className="slots-main-desktop__search-category-filters">
                   <div className="slots-layout-content-menu">
                     {fragmentNavLinksBody}
                   </div>
-                  <div className="slots-main-desktop__search-filter">
-                    <div className="search-filter-slots-desktop">
-                      <div className="search-filter-slots-desktop__input-wrapper">
-                        <span className="SVGInline search-filter-slots-desktop__search-icon">
-                          <img src={IconSearch} className="SVGInline-svg search-filter-slots-desktop__search-icon-svg" />
-                        </span>
-                        <div className="search-filter-slots-desktop__input">
-                          <div className="input-desktop">
-                            <input
-                              ref={searchRef}
-                              className="input-desktop__native input-desktop__native_color_default input-desktop__native_type_search-slots"
-                              type="text"
-                              name="slots-search"
-                              placeholder="Búsqueda"
-                              onChange={(event) => {
-                                setTxtSearch(event.target.value);
-                              }}
-                              onKeyUp={search}
-                              value={txtSearch}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <SearchInput
+                    txtSearch={txtSearch}
+                    setTxtSearch={setTxtSearch}
+                    searchRef={searchRef}
+                    search={search}
+                    contextData={contextData}
+                    pageData={pageData}
+                    setGames={setGames}
+                    setIsLoadingGames={setIsLoadingGames}
+                    callbackSearch={callbackSearch}
+                    searchDelayTimer={searchDelayTimer}
+                    setSearchDelayTimer={setSearchDelayTimer}
+                  />
                 </div>
               </div>
 
@@ -621,9 +611,17 @@ const Home = () => {
                   <DivLoading />
                 )}
               </div>
+
+              <div className="slots-main-mobile__search-category-filters">
+                <SearchInput
+                  txtSearch={txtSearch}
+                  setTxtSearch={setTxtSearch}
+                  searchRef={searchRef}
+                  search={search}
+                />
+              </div>
             </div>
             <div className="slots-main-desktop__content-container">
-              <div className="slots-main-desktop__provider-section"></div>
               <div className="slots-main-desktop__provider-section">
                 <div className="provider-section-desktop">
                   <div className="provider-section-desktop__header">
@@ -665,6 +663,8 @@ const Home = () => {
             </div>
           </main>
 
+          <MobileSidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} />
+
           <div className="app__footer-container">
             <footer className="footer">
               <nav className="footer__nav-links">
@@ -694,24 +694,26 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="footer__right-container">
-                  <img className="footer__icon" src={IconBet} alt="18+" />
+                  <img className="footer__icon" src={ImgBet} alt="18+" />
                 </div>
-                <div className="chat-with-us app-mode-chat">
-                  <a
-                    className="telegram"
-                    href=""
-                    target="_blank"
-                  >
-                    <img
-                      src="https://assets.a7a.info/media/icons/generic/telegram.png"
-                      title="Contactar"
-                      alt="Contactar"
-                    />
-                  </a>
-                </div>
+              </div>
+              <div className="chat-with-us app-mode-chat">
+                <a
+                  className="telegram"
+                  href=""
+                  target="_blank"
+                >
+                  <img
+                    src="https://assets.a7a.info/media/icons/generic/telegram.png"
+                    title="Contactar"
+                    alt="Contactar"
+                  />
+                </a>
               </div>
             </footer>
           </div>
+
+          <MobileFooter />
         </div>
       </div>
     </div>
