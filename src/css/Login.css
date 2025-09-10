@@ -104,18 +104,6 @@ input {
     padding-left: 40px;
     padding-right: 40px;
 }
-.chat-with-us {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    z-index: 2;
-    height: 40px;
-}
-.chat-with-us > a {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-}
 html .card-body {
     padding-top: 50px;
 }

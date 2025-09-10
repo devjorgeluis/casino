@@ -144,21 +144,6 @@ sup {
     top: -.5em
 }
 
-a {
-    color: #3490dc;
-    text-decoration: none;
-    background-color: transparent
-}
-
-a:hover {
-    color: #1d68a7;
-    text-decoration: underline
-}
-
-a:not([href]):not([class]),a:not([href]):not([class]):hover {
-    color: inherit;
-    text-decoration: none
-}
 
 code,kbd,pre,samp {
     font-family: SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;

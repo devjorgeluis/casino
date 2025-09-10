@@ -419,8 +419,7 @@ input[type='radio'] {
 }
 
 a {
-    color: var(--button_background_color);
-    text-decoration: none
+    text-decoration: none !important
 }
 
 #providers-form {
@@ -966,8 +965,6 @@ html nav.providers-with-icons-nav.minimal {
     background: var(--card_background_color);
     border-radius: var(--border_radius);
     border: 1px solid var(--border_color);
-    height: 248px !important;
-    padding: 1rem;
     margin: 1rem 0;
 }
 
@@ -1598,14 +1595,10 @@ html .swal2-icon.swal2-question .swal2-icon-content {
 
 .chat-with-us {
     position: fixed;
-    bottom: 10px;
-    right: 10px;
+    bottom: 80px;
+    right: 20px;
     z-index: 211;
     height: 40px;
-}
-
-.chat-with-us.app-mode-chat {
-    bottom: 80px;
 }
 
 .chat-with-us>a {
@@ -2473,35 +2466,32 @@ hr.big {
 }
 
 .react-slideshow-container+ul.indicators {
-    margin-top: 0;
+    margin-top: 0 !important;
 }
 
 .react-slideshow-container+ul.indicators li {
-    width: unset;
-    height: unset;
-    padding: 0;
+    width: unset !important;
+    height: unset !important;
+    padding: 0 !important;
 }
 
 .react-slideshow-container+ul.indicators .each-slideshow-indicator {
     transition: opacity .25s ease-in;
-    opacity: .3;
     filter: alpha(opacity=30);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
-    background: #fff;
     border-radius: 50%;
     cursor: pointer;
     display: inline-block;
-    margin: 0 8px;
     width: .25rem !important;
     height: .25rem !important;
-    background: #9583a0;
+    background: #9583a0 !important;
     margin: 0 1.5px;
-    opacity: 1;
+    opacity: 1 !important;
 }
 
 .react-slideshow-container+ul.indicators .each-slideshow-indicator:hover, .react-slideshow-container+ul.indicators .each-slideshow-indicator.active {
-    opacity: 1;
-    background: #8b00c9;
+    opacity: 1 !important;
+    background: #8b00c9 !important;
 }
 
 

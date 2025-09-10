@@ -125,7 +125,7 @@ function App() {
     }
   };
 
-  const component = contextData.session ? <Home /> : <Login />;
+  const component = <Home />;
 
   return (
     <>

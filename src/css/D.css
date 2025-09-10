@@ -282,7 +282,3 @@ html .banner-wrapper {
     width: 25%;
     flex-basis: 25%;
 }
-html .chat-with-us.app-mode-chat {
-    right: 20px;
-    bottom: 20px;
-}

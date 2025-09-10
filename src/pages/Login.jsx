@@ -60,12 +60,6 @@ const Login = () => {
   }, [showPassword]);
 
   useEffect(() => {
-    document.getElementById("style-tag").remove();
-    const styleTag = document.createElement("style");
-    styleTag.id = "style-tag";
-    styleTag.innerHTML = contextData.css.login;
-    document.head.appendChild(styleTag);
-
     let rootNode = document.getElementById("root").classList.remove("d-none");
   }, []);
 

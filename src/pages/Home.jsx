@@ -74,29 +74,14 @@ const Home = () => {
   const properties = {};
 
   useEffect(() => {
-    document.getElementById("style-tag").remove();
-    const styleTag = document.createElement("style");
-
-    styleTag.id = "style-tag";
-    styleTag.innerHTML = "";
-    styleTag.innerHTML += contextData.css.home;
-    styleTag.innerHTML += contextData.css.M;
-    styleTag.innerHTML += contextData.css.G;
-    styleTag.innerHTML += contextData.css.L;
-    styleTag.innerHTML += contextData.css.S;
-
-    if (!contextData.isMobile) {
-      styleTag.innerHTML += contextData.css.D;
-    }
-
-    styleTag.innerHTML += contextData.css.normalize;
-    styleTag.innerHTML += contextData.css.icons;
-    document.head.appendChild(styleTag);
-
-    getStatus();
     setSelectedPage("home");
     getPage("home");
-    refreshBalance();
+
+    if (contextData.session != null) {
+      getStatus();
+      setIsLogin(true);
+      refreshBalance();
+    }
   }, []);
 
   const openMenu = () => {
@@ -663,7 +648,7 @@ const Home = () => {
             </div>
           </main>
 
-          <MobileSidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} />
+          <MobileSidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} isLogin={isLogin} />
 
           <div className="app__footer-container">
             <footer className="footer">
