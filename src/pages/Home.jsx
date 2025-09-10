@@ -488,7 +488,7 @@ const Home = () => {
                   </div>
                 </a>
                 <nav className="header-main-menu-desktop">
-                  <a className="header-main-menu-desktop__item header-main-menu-desktop__item_active" href="/home">
+                  <a className="header-main-menu-desktop__item header-main-menu-desktop__item_active" href="/">
                     <div className="header-main-menu-desktop__item-content">
                       <span className="header-main-menu-desktop__item-text">Inicio</span>
                     </div>
@@ -654,7 +654,7 @@ const Home = () => {
             <footer className="footer">
               <nav className="footer__nav-links">
                 <div className="footer__menu-container">
-                  <a className="footer__menu-item" href="/home">
+                  <a className="footer__menu-item" href="/">
                     <span className="footer__menu-description">Inicio</span>
                   </a>
                 </div>

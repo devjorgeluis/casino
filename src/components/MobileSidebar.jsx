@@ -66,7 +66,7 @@ const MobileSidebar = ({ isOpen, onToggle, isLogin }) => {
                                         <h2 className="links-menu-side-menu__title">Juegos</h2>
                                     </div>
                                     <div className="links-menu-side-menu__items">
-                                        <a className="links-menu-side-menu__item" href="/home">
+                                        <a className="links-menu-side-menu__item" href="/">
                                             <span className="SVGInline links-menu-side-menu__item-icon">
                                                 <img src={IconCasino} className="SVGInline-svg links-menu-side-menu__item-icon-svg" />
                                             </span>

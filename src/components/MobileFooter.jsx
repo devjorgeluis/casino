@@ -10,7 +10,7 @@ import IconLiveCasino from "/src/assets/svg/live-casino.svg";
 const MobileFooter = () => {
     return (
         <div className="main-mobile-menu">
-            <a className="main-mobile-menu__ganamos-dog" href="/home">
+            <a className="main-mobile-menu__ganamos-dog" href="/">
                 <img className="main-mobile-menu__ganamos-dog-img" src={ImgDog} alt="" />
             </a>
             <img className="main-mobile-menu__background" src={ImgBackground} alt="background" />
@@ -29,7 +29,7 @@ const MobileFooter = () => {
                     </span>
                     <span className="main-mobile-menu__menu-text">Apuestas en vivo</span>
                 </div>
-                <a className="main-mobile-menu__menu-item" href="/home">
+                <a className="main-mobile-menu__menu-item" href="/">
                     <img className="main-mobile-menu__menu-active" src={ImgActive} alt="" />
                     <div className="main-mobile-menu__menu-icon-container"></div>
                     <span className="main-mobile-menu__menu-text">Inicio</span>
