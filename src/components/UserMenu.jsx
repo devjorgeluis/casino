@@ -3,7 +3,7 @@ import { AppContext } from "../AppContext";
 import IconLogout from "/src/assets/svg/logout.svg";
 import IconUserCircle from "/src/assets/svg/user-circle.svg";
 
-const UserMenu = () => {
+const UserMenu = ({ handleLogoutClick }) => {
     const { contextData } = useContext(AppContext);
 
     return (
@@ -15,7 +15,7 @@ const UserMenu = () => {
                         <div className="user-block__menu-top-user-username">{contextData.session.user.username}</div>
                     </div>
                     <div className="user-block__menu-top-logout">
-                        <span className="user-block__user-icon">
+                        <span className="user-block__user-icon" onClick={handleLogoutClick}>
                             <span className="SVGInline SVG-component__content">
                                 <img src={IconLogout} />
                             </span>

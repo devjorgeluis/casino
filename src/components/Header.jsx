@@ -80,7 +80,7 @@ const Header = ({ isLogin, userBalance, handleLoginClick, handleLogoutClick, fra
                                 </div>
                             </div>
                         )}
-                        {showUserMenu && <UserMenu />}
+                        {showUserMenu && <UserMenu handleLogoutClick={handleLogoutClick} />}
                     </div>
                     <div className="header-desktop__separator"></div>
                     <LanguageSelector />
