@@ -14,7 +14,7 @@ const UserInfo = ({ logout, isMobile = false }) => {
 
     useEffect(() => {
         if (!contextData?.session) {
-            navigate("/home");
+            navigate("/");
         }
     }, [contextData?.session, navigate]);
 

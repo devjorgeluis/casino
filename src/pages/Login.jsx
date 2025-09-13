@@ -39,7 +39,7 @@ const Login = () => {
         if (result.status === "success") {
             setMessageCustomAlert(["success", "¡Éxito! La sesión ha sido iniciada"]);
             localStorage.setItem("session", JSON.stringify(result));
-            window.location.href = "/home";
+            window.location.href = "/";
         } else {
             setMessageCustomAlert(["error", "¡Error! Nombre de usuario o contraseña no válidos"]);
         }
@@ -56,7 +56,7 @@ const Login = () => {
         <>
             <form method="POST" className="sign-in-mobile" onSubmit={handleSubmit}>
                 <div className="sign-in-mobile__back">
-                    <span className="SVGInline sign-in-mobile__arrow" onClick={() => navigate("/home")}>
+                    <span className="SVGInline sign-in-mobile__arrow" onClick={() => navigate("/")}>
                         <img className="SVGInline-svg sign-in-mobile__arrow-svg" src={IconChevronLeft} alt="Back arrow" />
                     </span>
                     <span className="sign-in-mobile__back-text">Acceder</span>

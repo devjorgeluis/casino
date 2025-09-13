@@ -22,12 +22,12 @@ const Profile = () => {
 
     const callbackLogout = () => {
         localStorage.removeItem("session");
-        window.location.href = "/home";
+        window.location.href = "/";
     };
 
     useEffect(() => {
         if (!contextData?.session) {
-            navigate("/home");
+            navigate("/");
         }
     }, [contextData?.session, navigate]);
 
@@ -57,7 +57,7 @@ const Profile = () => {
                         <div className="profile-menu-mobile__user-info">
                             <div className="profile-menu-mobile__user-info-back">
                                 <button className="back-block">
-                                    <span className="SVGInline back-block__arrow" onClick={() => navigate("/home")}>
+                                    <span className="SVGInline back-block__arrow" onClick={() => navigate("/")}>
                                         <img className="SVGInline-svg back-block__arrow-svg" src={IconChevronLeft} alt="Back arrow" />
                                     </span>
                                     <div className="back-block__content">Área personal</div>
