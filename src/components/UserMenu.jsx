@@ -45,7 +45,7 @@ const UserMenu = () => {
                 </span>
                 <div className="user-block__menu-item-title">Historial de Operaciones</div>
             </a>
-            <a className="user-block__menu-item" href="/profile/change-password">
+            <a className="user-block__menu-item" href="/profile">
                 <span className="user-block__menu-item-icon">
                     <span className="SVGInline SVG-component__content">
                         <svg className="SVGInline-svg SVG-component__content-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
