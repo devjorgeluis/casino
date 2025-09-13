@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../AppContext";
+import IconLogout from "/src/assets/svg/logout.svg";
+import IconUserCircle from "/src/assets/svg/user-circle.svg";
 
 const UserMenu = () => {
     const { contextData } = useContext(AppContext);
@@ -15,7 +17,7 @@ const UserMenu = () => {
                     <div className="user-block__menu-top-logout">
                         <span className="user-block__user-icon">
                             <span className="SVGInline SVG-component__content">
-                                <img src="/src/assets/svg/logout.svg" />
+                                <img src={IconLogout} />
                             </span>
                         </span>
                     </div>
@@ -28,7 +30,7 @@ const UserMenu = () => {
             <a className="user-block__menu-item" href="/profile">
                 <span className="user-block__menu-item-icon">
                     <span className="SVGInline SVG-component__content">
-                        <img src="/src/assets/svg/user-circle.svg" />
+                        <img src={IconUserCircle} />
                     </span>
                 </span>
                 <div className="user-block__menu-item-title">Su cuenta</div>

@@ -56,7 +56,7 @@ const Login = () => {
         <>
             <form method="POST" className="sign-in-mobile" onSubmit={handleSubmit}>
                 <div className="sign-in-mobile__back">
-                    <span className="SVGInline sign-in-mobile__arrow" onClick={() => navigate("/")}>
+                    <span className="SVGInline sign-in-mobile__arrow" onClick={() => navigate("/home")}>
                         <img className="SVGInline-svg sign-in-mobile__arrow-svg" src={IconChevronLeft} alt="Back arrow" />
                     </span>
                     <span className="sign-in-mobile__back-text">Acceder</span>

@@ -34,7 +34,7 @@ const MobileFooter = () => {
                     <div className="main-mobile-menu__menu-icon-container"></div>
                     <span className="main-mobile-menu__menu-text">Inicio</span>
                 </a>
-                <a className="main-mobile-menu__menu-item main-mobile-menu__menu-item_active" href="/slots">
+                <a className="main-mobile-menu__menu-item main-mobile-menu__menu-item_active" href="/">
                     <img className="main-mobile-menu__menu-active main-mobile-menu__menu-active_active" src={ImgActive} alt="" />
                     <div className="main-mobile-menu__menu-icon-container">
                         <span className="SVGInline main-mobile-menu__menu-icon main-mobile-menu__menu-icon_active">
@@ -43,7 +43,7 @@ const MobileFooter = () => {
                     </div>
                     <span className="main-mobile-menu__menu-text main-mobile-menu__menu-text_active">Casino</span>
                 </a>
-                <a className="main-mobile-menu__menu-item" href="/casinolive">
+                <a className="main-mobile-menu__menu-item" href="/">
                     <img className="main-mobile-menu__menu-active" src={ImgActive} alt="" />
                     <div className="main-mobile-menu__menu-icon-container">
                         <span className="SVGInline main-mobile-menu__menu-icon">
