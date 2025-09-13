@@ -54,7 +54,7 @@ const Layout = () => {
         setSelectedPage(page);
         setShowFullDivLoading(true);
         callApi(contextData, "GET", "/get-page?page=" + page, callbackGetPage, null);
-        window.location.href = "/" + (page === "home" ? "" : page);
+        navigate("/" + (page === "home" ? "" : page)); // Use navigate instead of window.location.href
     };
 
     const callbackGetPage = (result) => {
@@ -69,22 +69,16 @@ const Layout = () => {
                         title="Inicio"
                         pageCode="home"
                         icon=""
-                        active={selectedPage == "home" || selectedPage == "lobby" || selectedPage == "hot"}
-                        onClick={() => getPage("home")}
                     />
                     <NavLinkHeader
                         title="Casino"
                         pageCode="casino"
                         icon=""
-                        active={["casino", "arcade", "megaways"].includes(selectedPage)}
-                        onClick={() => getPage("casino")}
                     />
                     <NavLinkHeader
                         title="Casino en vivo"
                         pageCode="casinolive"
                         icon=""
-                        active={["casinolive", "roulette"].includes(selectedPage)}
-                        onClick={() => getPage("casinolive")}
                     />
                 </>
             );
@@ -95,15 +89,11 @@ const Layout = () => {
                         title="Inicio"
                         pageCode="home"
                         icon=""
-                        active={selectedPage == "home" || selectedPage == "lobby" || selectedPage == "hot"}
-                        onClick={() => getPage("home")}
                     />
                     <NavLinkHeader
                         title="Casino en vivo"
                         pageCode="casinolive"
                         icon=""
-                        active={["casinolive", "roulette"].includes(selectedPage)}
-                        onClick={() => getPage("casinolive")}
                     />
                 </>
             );
