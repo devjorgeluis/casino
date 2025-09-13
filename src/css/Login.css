@@ -1,144 +1,269 @@
-#root {
-    height: 100%;
-    background: var(--body_background_color);
-    background-color: black;
-    color: var(--body_text_color);
-    font-family: var(--font), 'Helvetica', 'Arial', sans-serif;
-}
-
-.container {
-    max-width: 1000px;
-}
-
-.card {
-    font-family: var(--font), 'Helvetica', 'Arial', sans-serif;
-    color: var(--body_text_color) !important;
-    font-weight: 100 !important;
-}
-
-.login {
-    height: 100%;
+.sign-in-mobile {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-}
-
-img {
-    max-width: 100%;
-}
-.navbar-brand {
     width: 100%;
-    margin-bottom: 1rem;
-}
-.languages {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 1;
-}
-.languages img {
-    width: 30px;
-    margin: 10px;
-}
-.logo {
-    text-align: center;
-}
-html, body {
-    height: 100%;
-}
-#app {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-}
-html .card {
-    background: var(--card_background_color);
-    border-radius: var(--border_radius);
-    border: 1px solid var(--border_color);
-}
-.btn-primary {
-    background: var(--button_background_color) !important;
-    border: 0.1rem solid var(--button_background_color) !important;
-    border-radius: var(--border_radius) !important;
-    color: var(--button_text_color) !important;
-}
-.btn-primary:hover {
-    background: var(--button_background_color);
-    border: 0.1rem solid var(--button_background_color);
-    opacity: 0.7;
-}
-.btn-link {
-    color: var(--button_background_color);
-}
-.btn-link:hover {
-    color: var(--button_background_color);
-    opacity: 0.7;
-}
-input {
-    border: 0.1rem solid var(--button_background_color);
-    border-radius: var(--border_radius);
-    color: var(--body_text_color);
-}
-.form-group {
-    justify-content: center;
-}
-.form-check {
-    padding: .375rem .75rem;
-    padding-left: 1.25rem;
-}
-.forget.btn {
-    padding: .375rem .75rem;
-    padding-left: 1.25rem;
-}
-.user-login-button-wrapper {
-    text-align: center;
-}
-.user-login-button-wrapper button {
-    padding-left: 40px;
-    padding-right: 40px;
-}
-html .card-body {
-    padding-top: 50px;
-}
-.toggle-password {
-    position: absolute;
-    right: 10px;
-    cursor: pointer;
-    width: 20px;
-    height: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    opacity: .8;
-}
-html input[type='password'] {
-    padding-right: 36px;
-}
-html .form-control {
-    font-size: 1.2rem;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100dvh;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0 auto;
+    background: url("../assets/img/login.webp") no-repeat bottom -0.3125rem center/95%,url("../assets/img/startsBG.png") no-repeat bottom/100%,#130227
 }
 
-:root {
-    --font: 'Lato' !important;
-    --body_background_color: #222     !important;
-    --body_text_color: #00c5ff     !important;
-    --card_background_color: #222     !important;
-    --card_highlight_text_color: #f53dce     !important;
-    --button_background_color: #00c5ff     !important;
-    --button_text_color: #f53dce     !important;
-    --border_radius: 10px     !important;
-    --border_color: #8279ed     !important;
-    --header_text_color: #00c5ff     !important;
-    --main_navigation_text_color: #f53dce     !important;
-    --main_navigation_active_text_color: #8279ed     !important;
-    --navigation_text_color: #f53dce     !important;
-    --navigation_active_text_color: #8279ed     !important;
-    --navigation_border_color: #f53dce     !important;
-    --card_divider_color: #8279ed     !important;
+.sign-in-mobile__back {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: .625rem;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 2.8125rem;
+    padding: 0 .9375rem 0 .3125rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.sign-in-mobile__arrow {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.sign-in-mobile__arrow-svg {
+    width: 1.875rem;
+    height: 1.875rem
+}
+
+.sign-in-mobile__back-text {
+    font-family: "Roboto",Arial,sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1rem;
+    color: #fff
+}
+
+.sign-in-mobile__form {
+    padding: .625rem .9375rem 2.5rem .9375rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: .9375rem
+}
+
+.sign-in-mobile__fields {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: .875rem;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.sign-in-mobile__field {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: .1875rem
+}
+
+.sign-in-mobile__label {
+    font-family: "Roboto",Arial,sans-serif;
+    font-size: .875rem;
+    font-weight: 700;
+    line-height: .875rem;
+    color: #fff;
+    margin-bottom: .3125rem
+}
+
+.sign-in-mobile__star {
+    color: #d31c32;
+    margin-left: 2px
+}
+
+.sign-in-mobile__error {
+    font-family: "Roboto",Arial,sans-serif;
+    font-size: .75rem;
+    font-weight: 400;
+    line-height: .75rem;
+    color: #e5100e
+}
+
+.sign-in-mobile__input {
+    width: 100%;
+    height: 2.5rem
+}
+
+.sign-in-mobile__button {
+    height: 2.5rem;
+    width: 100%
+}
+
+.sign-in-mobile__button-text {
+    font-size: .875rem;
+    font-weight: 700;
+    line-height: 1.25rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff
+}
+
+.sign-in-mobile__contacts,.sign-in-mobile__forgot {
+    font-family: "Roboto",Arial,sans-serif;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: .875rem;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-align: center
+}
+
+.sign-in-mobile__forgot {
+    margin-bottom: 1.6875rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.sign-in-mobile__contacts {
+    margin-bottom: .8125rem
+}
+
+.sign-in-mobile__phone {
+    font-family: "Roboto",Arial,sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1rem;
+    color: #fff;
+    margin-bottom: .5625rem;
+    text-align: center
+}
+
+.sign-in-mobile__partners {
+    width: 19.375rem;
+    margin: 0 auto 1.125rem
+}
+
+.auth-mobile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: relative;
+    background-color: #17192e
+}
+
+.auth-mobile__wrapper {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.auth-mobile__content {
+    position: relative;
+    -webkit-box-flex: 2;
+    -ms-flex-positive: 2;
+    flex-grow: 2;
+    width: 100%
+}
+
+.auth-mobile__header {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 2.75rem 0 0 0
+}
+
+.auth-mobile__content-in {
+    width: 100%;
+    position: relative;
+    margin: 0 auto
+}
+
+.auth-mobile__logo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.auth-mobile__logo-svg {
+    width: 17.625rem;
+    height: 6.5rem
+}
+
+.auth-mobile__cross {
+    z-index: 999;
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: absolute;
+    right: .9375rem;
+    top: .9375rem
+}
+
+.auth-mobile__cross-svg {
+    width: 1.4375rem;
+    height: 1.4375rem
 }

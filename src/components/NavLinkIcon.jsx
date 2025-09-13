@@ -1,6 +1,6 @@
 const NavLinkIcon = (props) => {
   let customClass = "slots-layout-content-menu__item";
-  if (props.active == true) {
+  if (props.active) {
     customClass += " slots-layout-content-menu__item_active";
   }
 

@@ -1,214 +1,139 @@
 import { useContext, useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AppContext } from "../AppContext";
-import { callApi, capitalize } from "../utils/Utils";
-import FullDivLoading from "../components/FullDivLoading";
+import { callApi } from "../utils/Utils";
 import CustomAlert from "../components/CustomAlert";
-import ImgLogo from "/src/assets/img/logo-landscape.png";
-import imgShowPassword from "/src/assets/img/show-password.png";
-import imgHidePassword from "/src/assets/img/hide-password.png";
-
-// import ImgLogoLandscape from "/src/assets/img/logo-landscape.png";
+import IconChevronLeft from "/src/assets/svg/chevron-left.svg";
+import IconEye from "/src/assets/svg/eye.svg";
+import IconEyeSlash from "/src/assets/svg/eye-slash.svg";
 
 const Login = () => {
-  const { contextData, setContextData } = useContext(AppContext);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [showFullDivLoading, setShowFullDivLoading] = useState(false);
-  const [messageCustomAlert, setMessageCustomAlert] = useState([]);
+    const { contextData } = useContext(AppContext);
+    const navigate = useNavigate();
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+    const [messageCustomAlert, setMessageCustomAlert] = useState("");
+    const isButtonEnabled = username.length > 3 && password.length > 3;
 
-  // Carga/Importación dinámica de componentes
-  const [imgLogoLandscape, setImgLogoLandscape] = useState();
+    const handleSubmit = (event) => {
+        const form = event.currentTarget;
+        event.preventDefault();
+        event.stopPropagation();
+        if (form.checkValidity()) {
+            let body = {
+                username: username,
+                password: password,
+            };
+            callApi(
+                contextData,
+                "POST",
+                "/login/",
+                callbackSubmitLogin,
+                JSON.stringify(body)
+            );
+        }
+    };
 
-  const handleSubmit = (event) => {
-    setShowFullDivLoading(true);
+    const callbackSubmitLogin = (result) => {
+        if (result.status === "success") {
+            setMessageCustomAlert(["success", "¡Éxito! La sesión ha sido iniciada"]);
+            localStorage.setItem("session", JSON.stringify(result));
+            window.location.href = "/home";
+        } else {
+            setMessageCustomAlert(["error", "¡Error! Nombre de usuario o contraseña no válidos"]);
+        }
+    };
 
-    const form = event.currentTarget;
-    event.preventDefault();
-    event.stopPropagation();
-    if (form.checkValidity()) {
-      let body = {
-        username: username,
-        password: password,
-      };
-      callApi(
-        contextData,
-        "POST",
-        "/login/",
-        callbackSubmitLogin,
-        JSON.stringify(body)
-      );
-    }
-  };
+    useEffect(() => {
+        const passwordInput = document.getElementById("password");
+        if (passwordInput) {
+            passwordInput.setAttribute("type", showPassword ? "text" : "password");
+        }
+    }, [showPassword]);
 
-  const callbackSubmitLogin = (result) => {
-    if (result.status == "success") {
-      setTimeout(function () {
-        localStorage.setItem("session", JSON.stringify(result));
-        window.location.reload();
-      }, 1000);
-    } else {
-      setShowFullDivLoading(false);
-      setMessageCustomAlert(["error", "Credenciales no válidas"]);
-    }
-  };
-
-  useEffect(() => {
-    if(showPassword) document.getElementById("password").setAttribute('type','text');
-    if(!showPassword) document.getElementById("password").setAttribute('type','password');
-  }, [showPassword]);
-
-  useEffect(() => {
-    let rootNode = document.getElementById("root").classList.remove("d-none");
-  }, []);
-
-  return (
-    <div
-      className="login"
-      style={{
-        backgroundImage: "url(img/bg.jpg)",
-      }}
-    >
-      <FullDivLoading show={showFullDivLoading} />
-      <CustomAlert message={messageCustomAlert} />
-
-      <div className="container">
-        <div className="row justify-content-center" style={{ width: "100%" }}>
-          <div className="col-md-5">
-            <div className="logo">
-              <a className="navbar-brand">
-                <img
-                  title="Casino"
-                  alt="Casino"
-                  src={ImgLogo}
-                  // src={imgLogoLandscape}
-                  className="max-h-full"
-                  style={{ width: "100%", maxWidth: "240px" }}
-                />
-              </a>
-            </div>
-            <div className="card">
-              <div className="card-body">
-                <div className="languages">
-                  <a>
-                    <img
-                      src="https://assets.a7a.info/media/icons/flags/en.png"
-                      alt="en"
-                    />
-                  </a>
-                  <a>
-                    <img
-                      src="https://assets.a7a.info/media/icons/flags/es.png"
-                      alt="es"
-                    />
-                  </a>
+    return (
+        <>
+            <form method="POST" className="sign-in-mobile" onSubmit={handleSubmit}>
+                <div className="sign-in-mobile__back">
+                    <span className="SVGInline sign-in-mobile__arrow" onClick={() => navigate("/home")}>
+                        <img className="SVGInline-svg sign-in-mobile__arrow-svg" src={IconChevronLeft} alt="Back arrow" />
+                    </span>
+                    <span className="sign-in-mobile__back-text">Acceder</span>
                 </div>
-                <form method="POST" onSubmit={handleSubmit}>
-                  <input type="hidden" name="_token" value="" />
-                  <div className="form-group row">
-                    <div className="col-md-12">
-                      <label
-                        htmlFor="email"
-                        className="col-form-label text-md-right"
-                      >
-                        Usuario
-                      </label>
-                      <input
-                        id="username"
-                        type="text"
-                        name="username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required="required"
-                        autoComplete="email"
-                        autoFocus="autoFocus"
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                  <div className="form-group row">
-                    <div className="col-md-12">
-                      <label
-                        htmlFor="password"
-                        className="col-form-label text-md-right"
-                      >
-                        Contraseña
-                      </label>
-                      <div className="position-relative">
-                        <input
-                          id="password"
-                          type="password"
-                          name="password"
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
-                          required="required"
-                          autoComplete="current-password"
-                          className="form-control "
-                          style={{ paddingRight: "30px" }}
-                        />
-                        {showPassword == false && 
-                          <img
-                            src={imgShowPassword}
-                            id="togglePassword"
-                            alt="Contraseña"
-                            className="toggle-password"
-                            onClick={() => setShowPassword(true)}
-                          />
-                        }
-                        {showPassword == true && 
-                          <img
-                          src={imgHidePassword}
-                            id="togglePassword"
-                            alt="Contraseña"
-                            className="toggle-password"
-                            onClick={() => setShowPassword(false)}
-                          />
-                        }
-                        
-                      </div>
-                    </div>
-                  </div>
-                  <div className="form-group row">
-                    <div className="col-md-12">
-                      <div className="row">
-                        <div className="col-md-6">
-                          <div className="form-check">
-                            <input
-                              type="checkbox"
-                              name="remember"
-                              id="remember"
-                              className="form-check-input"
-                            />
-                            <label
-                              htmlFor="remember"
-                              className="form-check-label"
-                            >
-                              Recuérdame
-                            </label>
-                          </div>
+                <div className="sign-in-mobile__form">
+                    <div className="sign-in-mobile__fields">
+                        <div className="sign-in-mobile__field">
+                            <span className="sign-in-mobile__label">Nombre de usuario<span className="sign-in-mobile__star">*</span></span>
+                            <div className="sign-in-mobile__input">
+                                <div className="input-mobile">
+                                    <input
+                                        className="input-mobile__native input-mobile__native_color_default input-mobile__native_type_text"
+                                        type="text"
+                                        name="username"
+                                        placeholder="Nombre de usuario"
+                                        autoComplete="false"
+                                        value={username}
+                                        onChange={(e) => setUsername(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                            </div>
                         </div>
-                        <div className="col-md-6"></div>
-                      </div>
+                        <div className="sign-in-mobile__field">
+                            <span className="sign-in-mobile__label">Contraseña<span className="sign-in-mobile__star">*</span></span>
+                            <div className="sign-in-mobile__input">
+                                <div className="input-mobile">
+                                    <input
+                                        className="input-mobile__native input-mobile__native_color_default input-mobile__native_type_password"
+                                        type={showPassword ? "text" : "password"}
+                                        name="password"
+                                        id="password"
+                                        placeholder="Contraseña"
+                                        autoComplete="false"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required
+                                    />
+                                    {showPassword === false ? (
+                                        <span
+                                            className={`SVGInline input-mobile__password ${showPassword === false ? "input-mobile__password_active" : ""}`}
+                                            onClick={() => setShowPassword(true)}
+                                        >
+                                            <img
+                                                src={IconEye}
+                                                className="SVGInline-svg input-mobile__password-svg input-mobile__password_active-svg"
+                                            />
+                                        </span>
+                                    ) : (
+                                        <span
+                                            className="SVGInline input-mobile__password input-mobile__password_active"
+                                            onClick={() => setShowPassword(false)}
+                                        >
+                                            <img
+                                                src={IconEyeSlash}
+                                                className="SVGInline-svg input-mobile__password-svg"
+                                            />
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div className="form-group row mb-0">
-                    <div className="col-md-12">
-                      <div className="user-login-button-wrapper">
-                        <button type="submit" className="btn btn-primary">
-                          Acceso
+                    <div className="sign-in-mobile__button">
+                        <button
+                            type="submit"
+                            className={`button-mobile button-mobile_color_default button-mobile_borderRadius_500 ${isButtonEnabled ? "" : "button-mobile_disabled"}`}
+                            disabled={!isButtonEnabled}
+                        >
+                            <span className="sign-in-mobile__button-text">Acceder</span>
                         </button>
-                      </div>
                     </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+                </div>
+            </form>
+            <CustomAlert message={messageCustomAlert} />
+        </>
+    );
 };
 
 export default Login;

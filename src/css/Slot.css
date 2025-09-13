@@ -296,28 +296,8 @@
     height: 2.375rem
 }
 
-.search-filter-slots-desktop__search-icon {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center
-}
-
-.search-filter-slots-desktop__search-icon-svg {
-    width: 1.25rem
-}
-
 .search-filter-slots-desktop_type_sport-rules .search-filter-slots-desktop__top {
     display: none
-}
-
-.search-filter-slots-desktop_type_sport-rules .search-filter-slots-desktop__search-icon * {
-    fill: #76657e
 }
 
 .slots-layout-content-menu {
@@ -358,13 +338,17 @@
 }
 
 .slots-layout-content-menu__item:not(:nth-child(6),:nth-child(3)) * {
-    fill: hsla(0,0%,100%,.5)
+    fill: hsla(0,0%,100%,.5);
 }
 
 .slots-layout-content-menu__item:nth-child(1) {
     -webkit-box-flex: 0;
     -ms-flex: 0;
     flex: 0
+}
+
+.slots-layout-content-menu__item:nth-child(2) img {
+    filter: invert(1);
 }
 
 .slots-layout-content-menu__item_active {
@@ -402,7 +386,7 @@
 }
 
 .slots-layout-content-menu__item:nth-child(3) .slots-layout-content-menu__item-text {
-    background: linear-gradient(113.27deg, #5428b4 15.04%, #b339e2 84.96%);
+    /* background: linear-gradient(113.27deg, #5428b4 15.04%, #b339e2 84.96%);
     border: .63px solid hsla(0,0%,100%,.2);
     border-bottom-left-radius: .625rem;
     border-top-right-radius: .625rem;
@@ -417,7 +401,7 @@
     box-shadow: 1.89px 0px 1.89px 0px hsla(0,0%,100%,.25) inset;
     font-weight: 900;
     font-size: .625rem;
-    text-transform: uppercase
+    text-transform: uppercase */
 }
 
 .slots-full-section-desktop__filter-container {

@@ -1,30 +1,54 @@
 import { useContext, useState, useEffect } from "react";
-import { AppContext } from "../AppContext";
-import { callApi, capitalize } from "../utils/Utils";
+import { ImCross } from "react-icons/im";
 import { ImRedo } from "react-icons/im";
 import { ImEnlarge2 } from "react-icons/im";
+import { ImShrink2 } from "react-icons/im";
 import { ImNewTab } from "react-icons/im";
 import DivLoading from "./DivLoading";
 
 const GameModal = (props) => {
-  const { contextData, setContextData } = useContext(AppContext);
   const [url, setUrl] = useState(null);
   const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      return window.innerWidth <= 767;
+    };
+    
+    setIsMobile(checkIsMobile());
+    
+    const handleResize = () => {
+      setIsMobile(checkIsMobile());
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     if (props.gameUrl !== null && props.gameUrl !== "") {
-      // console.log("props.gameUrl change detected, setting local to GameModal");
-      // console.log(props.gameUrl)
-      document
-        .getElementsByClassName("game-window")[0]
-        .classList.remove("d-none");
-      setUrl(props.gameUrl);
+      if (isMobile) {
+        window.location.href = props.gameUrl;
+      } else {
+        document
+          .getElementsByClassName("game-window")[0]
+          .classList.remove("d-none");
+        setUrl(props.gameUrl);
+      }
     }
-  }, [props.gameUrl]);
+  }, [props.gameUrl, isMobile]);
 
   const closeModal = () => {
     resetModal();
     document.getElementsByClassName("game-window")[0].classList.add("d-none");
+    if (props.onClose) {
+      props.onClose();
+    }
   };
 
   const reload = () => {
@@ -38,89 +62,65 @@ const GameModal = (props) => {
     document.getElementById("game-window-iframe").classList.add("d-none");
   };
 
-  const toggleFullScreen = (isFull) => {
-    // console.log("toggleFullScreen");
-
-    // maximiza
-    if (
-      (document.fullScreenElement && document.fullScreenElement !== null) ||
-      (!document.mozFullScreen && !document.webkitIsFullScreen)
-    ) {
-      if (isFull === false) {
-        return;
+  const toggleFullScreen = () => {
+    const gameWindow = document.getElementsByClassName("game-window")[0];
+    
+    if (!isFullscreen) {
+      // Enter fullscreen
+      if (gameWindow.requestFullscreen) {
+        gameWindow.requestFullscreen();
+      } else if (gameWindow.mozRequestFullScreen) {
+        gameWindow.mozRequestFullScreen();
+      } else if (gameWindow.webkitRequestFullscreen) {
+        gameWindow.webkitRequestFullscreen();
+      } else if (gameWindow.msRequestFullscreen) {
+        gameWindow.msRequestFullscreen();
       }
-
-      // windowResize()
-      // $(window).resize(function () { windowResize() });
-
-      // syncWindowHeight();
-      // window.addEventListener("resize", syncWindowHeight);
-
-      // oculta barra lateral
-      document
-        .getElementsByClassName("game-window-header")[0]
-        .classList.add("d-none");
-      document
-        .getElementById("game-window-iframe")
-        .classList.remove("game-window-iframe-border");
-
-      if (document.documentElement.requestFullScreen) {
-        document.documentElement.requestFullScreen();
-      } else if (document.documentElement.mozRequestFullScreen) {
-        document.documentElement.mozRequestFullScreen();
-      } else if (document.documentElement.webkitRequestFullScreen) {
-        document.documentElement.webkitRequestFullScreen();
-      }
-
-      // minimiza
+      setIsFullscreen(true);
     } else {
-      if (isFull === true) {
-        return;
+      // Exit fullscreen
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
       }
-
-      // window.removeEventListener("resize", syncWindowHeight);
-      // window.scrollTo(0, localStorage.pageScroll);
-
-      // document
-      //   .getElementsByClassName("game-window-header")[0]
-      //   .classList.remove("d-none");
-      // document
-      //   .getElementsByClassName("game-window-iframe-wrapper")[0]
-      //   .classList.add("game-window-iframe-border");
-
-      // if (document.cancelFullScreen) {
-      //   document.cancelFullScreen();
-      // } else if (document.mozCancelFullScreen) {
-      //   document.mozCancelFullScreen();
-      // } else if (document.webkitCancelFullScreen) {
-      //   document.webkitCancelFullScreen();
-      // }
+      setIsFullscreen(false);
     }
   };
 
   const exitHandler = () => {
     if (
-      (document.fullScreenElement && document.fullScreenElement !== null) ||
-      (!document.mozFullScreen && !document.webkitIsFullScreen)
+      !document.fullscreenElement &&
+      !document.webkitIsFullScreen &&
+      !document.mozFullScreen &&
+      !document.msFullscreenElement
     ) {
-      // aqui cae cuando se minimiza la ventana
+      setIsFullscreen(false);
       document
-        .getElementsByClassName("game-window-header")[0]
-        .classList.remove("d-none");
-      document
-        .getElementById("game-window-iframe")
-        .classList.add("game-window-iframe-border");
-    } else {
-      // aqui cae cuando se maximiza la ventana
+        .getElementsByClassName("game-window")[0]
+        .classList.remove("fullscreen");
     }
   };
 
-  if (document.addEventListener) {
-    document.addEventListener("fullscreenchange", exitHandler, false);
-    document.addEventListener("mozfullscreenchange", exitHandler, false);
-    document.addEventListener("MSFullscreenChange", exitHandler, false);
-    document.addEventListener("webkitfullscreenchange", exitHandler, false);
-  }
+  useEffect(() => {
+    // Add event listeners for fullscreen change
+    document.addEventListener("fullscreenchange", exitHandler);
+    document.addEventListener("webkitfullscreenchange", exitHandler);
+    document.addEventListener("mozfullscreenchange", exitHandler);
+    document.addEventListener("MSFullscreenChange", exitHandler);
+
+    return () => {
+      // Clean up event listeners
+      document.removeEventListener("fullscreenchange", exitHandler);
+      document.removeEventListener("webkitfullscreenchange", exitHandler);
+      document.removeEventListener("mozfullscreenchange", exitHandler);
+      document.removeEventListener("MSFullscreenChange", exitHandler);
+    };
+  }, []);
 
   const launchInNewTab = () => {
     props.launchInNewTab();
@@ -128,7 +128,6 @@ const GameModal = (props) => {
   };
 
   const handleIframeLoad = () => {
-    // console.log("handleIframeLoad");
     if (url != null) {
       document.getElementById("game-window-iframe").classList.remove("d-none");
       setIframeLoaded(true);
@@ -136,11 +135,11 @@ const GameModal = (props) => {
   };
 
   const handleIframeError = () => {
-    // console.log("handleIframeError");
-    props.setMessageCustomAlert(["error", "Se produjo un error al cargar el juego, contacte al administrador."])
+    props.setMessageCustomAlert([
+      "error",
+      "Se produjo un error al cargar el juego, contacte al administrador.",
+    ]);
   };
-
-  
 
   useEffect(() => {
     var w = window,
@@ -165,32 +164,44 @@ const GameModal = (props) => {
     }
   }, []);
 
+  if (isMobile) {
+    return null;
+  }
+
   return (
     <>
       <div className="d-none game-window">
         <div className="game-window-header">
-          <div className="game-window-header-item align-center">
-            <span
-              className="close-button"
-              onClick={closeModal}
-              title="Close"
-            ></span>
+          <div className="game-window-header-item align-center close-window">
+            <span className="close-button" onClick={closeModal} title="Close">
+              <ImCross />
+            </span>
           </div>
-          <div className="game-window-header-item align-center">
+          <div className="game-window-header-item align-center reload-window">
             <span className="icon-reload" onClick={reload} title="Reload">
               <ImRedo />
             </span>
           </div>
-          <div className="game-window-header-item align-center">
-            <span
-              className="icon-fullscreen"
-              onClick={() => toggleFullScreen(true)}
-              title="Fullscreen"
-            >
-              <ImEnlarge2 />
-            </span>
+          <div className="game-window-header-item align-center full-window">
+            {isFullscreen ? (
+              <span
+                className="icon-originscreen"
+                onClick={toggleFullScreen}
+                title="Exit Fullscreen"
+              >
+                <ImShrink2 />
+              </span>
+            ) : (
+              <span
+                className="icon-fullscreen"
+                onClick={toggleFullScreen}
+                title="Fullscreen"
+              >
+                <ImEnlarge2 />
+              </span>
+            )}
           </div>
-          <div className="game-window-header-item align-center">
+          <div className="game-window-header-item align-center new-window">
             <span
               className="icon-new-window"
               onClick={launchInNewTab}
@@ -204,7 +215,7 @@ const GameModal = (props) => {
         {iframeLoaded == false && (
           <div
             id="game-window-loading"
-            className="game-window-iframe-wrapper game-window-iframe-border"
+            className="game-window-iframe-wrapper"
           >
             <DivLoading />
           </div>
@@ -212,7 +223,7 @@ const GameModal = (props) => {
 
         <div
           id="game-window-iframe"
-          className="game-window-iframe-wrapper game-window-iframe-border d-none"
+          className="game-window-iframe-wrapper d-none"
         >
           <iframe
             allow="camera;microphone;fullscreen *"

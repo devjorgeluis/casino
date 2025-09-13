@@ -22,7 +22,7 @@ const UserMenu = () => {
                 </div>
                 <div className="user-block__menu-top-balance">
                     <div className="user-block__menu-top-balance-text">Balance:</div>
-                    <div className="user-block__menu-top-balance-amount">{contextData.session.user.balance || '...'}</div>
+                    <div className="user-block__menu-top-balance-amount">{contextData.session.user.balance || ''}</div>
                 </div>
             </div>
             <a className="user-block__menu-item" href="/profile">
