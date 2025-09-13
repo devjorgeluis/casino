@@ -81,10 +81,10 @@ const Layout = () => {
                     />
                     <NavLinkHeader
                         title="Casino en vivo"
-                        pageCode="livecasino"
+                        pageCode="casinolive"
                         icon=""
-                        active={["livecasino", "roulette"].includes(selectedPage)}
-                        onClick={() => getPage("livecasino")}
+                        active={["casinolive", "roulette"].includes(selectedPage)}
+                        onClick={() => getPage("casinolive")}
                     />
                 </>
             );
@@ -100,10 +100,10 @@ const Layout = () => {
                     />
                     <NavLinkHeader
                         title="Casino en vivo"
-                        pageCode="livecasino"
+                        pageCode="casinolive"
                         icon=""
-                        active={["livecasino", "roulette"].includes(selectedPage)}
-                        onClick={() => getPage("livecasino")}
+                        active={["casinolive", "roulette"].includes(selectedPage)}
+                        onClick={() => getPage("casinolive")}
                     />
                 </>
             );
