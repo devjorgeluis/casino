@@ -1,5 +1,6 @@
 import ImgLogo from "/src/assets/img/logo-net-new.png";
 import ImgBet from "/src/assets/img/bet-responsibility.png";
+import IconChat from "/src/assets/svg/chat.svg";
 
 const Footer = () => {
     return (
@@ -54,17 +55,12 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="chat-with-us app-mode-chat">
-                    <a
-                        className="telegram"
-                        href=""
-                        target="_blank"
-                    >
-                        <img
-                            src="https://assets.a7a.info/media/icons/generic/telegram.png"
-                            title="Contactar"
-                            alt="Contactar"
-                        />
-                    </a>
+                    <div className="tawk-min-container">
+                        <span className="tawk-badge tawk-flex tawk-flex-center tawk-flex-middle tawk-min-badge">0</span>
+                        <button type="button" aria-label="Widget de Chat" title="Widget de Chat" className="tawk-custom-color tawk-custom-border-color tawk-outline tawk-button tawk-button-circle tawk-button-large">
+                            <img className="tawk-min-chat-icon" src={IconChat} />
+                        </button>
+                    </div>
                 </div>
             </footer>
         </div>

@@ -710,6 +710,11 @@
     .slots-main-desktop__filter-container {
         margin: .625rem
     }
+
+    .slots-main-desktop__banner {
+        height: 181px;
+        object-fit: fill;
+    }
 }
 
 .slots-main-desktop__filters {
@@ -1101,6 +1106,12 @@
     justify-content: center;
 }
 
+@media (max-width: 768px) {
+    .carousel-arrows {
+        margin-bottom: 4rem;
+    }
+}
+
 .carousel-arrows__title {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1173,4 +1184,2022 @@
 
 .carousel-arrows__arrow_disabled * {
     fill: #76657e
+}
+
+.home-games-header-desktop {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: .625rem
+}
+
+.home-games-header-desktop__header-icon {
+    margin-right: .625rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 1.875rem;
+    height: 1.875rem
+}
+
+.home-games-header-desktop__header-provider-text {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ededed;
+    padding: .375rem 0
+}
+
+.home-games-header-desktop__header-img-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-right: .625rem
+}
+
+.home-games-header-desktop__link {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-family: "Sofia Pro",Arial,sans-serif;
+    font-size: .875rem;
+    font-weight: 700;
+    line-height: .875rem;
+    color: #7d7d7d
+}
+
+.home-games-header-desktop__header-line {
+    height: 3px;
+    width: 4.75rem;
+    background: #ffbc0f;
+    margin-top: .938rem
+}
+
+.home-games-header-desktop__arrow {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.home-games-header-desktop__arrow-svg {
+    width: 1.875rem;
+    height: 1.875rem
+}
+
+.home-top-slots-desktop {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%
+}
+
+.home-top-slots-desktop__list {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-column-gap: 1.25rem;
+    margin-top: 1.25rem
+}
+
+.live-casino-icon-desktop {
+    width: 100%;
+    height: -webkit-min-content;
+    height: -moz-min-content;
+    height: min-content
+}
+
+.live-casino-icon-desktop__game-icon {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: visible;
+    cursor: pointer;
+    position: relative
+}
+
+.live-casino-icon-desktop:hover .live-casino-icon-desktop__img {
+    -webkit-filter: blur(0.3rem);
+    filter: blur(0.3rem)
+}
+
+.live-casino-icon-desktop__img {
+    position: relative;
+    width: 100%;
+    border: none;
+    overflow: hidden;
+    max-height: 13.313rem;
+    min-height: 13.313rem;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin: 0 auto .313rem;
+    border-top-left-radius: .313rem;
+    border-top-right-radius: .313rem;
+    border-radius: 1rem
+}
+
+.live-casino-icon-desktop__img .loadable-image__loader {
+    min-height: 13.313rem
+}
+
+.live-casino-icon-desktop__img img {
+    -o-object-fit: fill;
+    object-fit: fill
+}
+
+.live-casino-icon-desktop__container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.live-casino-icon-desktop__favorite {
+    position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border-radius: .3125rem;
+    z-index: 10;
+    height: 2.5rem;
+    width: 2.5rem;
+    right: .625rem;
+    top: .625rem
+}
+
+.live-casino-icon-desktop__name {
+    font-size: .75rem;
+    line-height: 1rem;
+    color: #fff;
+    height: 1.875rem
+}
+
+.live-casino-icon-desktop__modal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    max-height: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    gap: 1.875rem 0;
+    overflow: hidden;
+    background: rgba(0,0,0,.5);
+    border-radius: .625rem
+}
+
+.live-casino-icon-desktop:hover .live-casino-icon-desktop__modal {
+    max-height: 100%
+}
+
+.live-casino-icon-desktop__modal-top {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 0 .875rem;
+    position: relative;
+    width: 100%
+}
+
+.live-casino-icon-desktop__play-icon {
+    width: 4.4rem;
+    min-width: 4.4rem;
+    min-height: 4.4rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 0 0 0;
+    -webkit-transition: .2s;
+    transition: .2s;
+    -webkit-box-shadow: 0px 0px 1.375rem 0px #f46a57;
+    box-shadow: 0px 0px 1.375rem 0px #f46a57;
+    border-radius: 50%
+}
+
+.live-casino-icon-desktop__modal-bottom {
+    width: 100%;
+    max-width: 100%;
+    height: 1.5rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0 .5rem;
+    position: absolute;
+    bottom: 1rem
+}
+
+.live-casino-icon-desktop__game-name {
+    color: #fff;
+    font-size: .875rem;
+    line-height: .875rem;
+    font-weight: 700;
+    position: absolute;
+    bottom: -1.75rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    padding: 0 .75rem
+}
+
+.home-pragmatic-slots-desktop {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%
+}
+
+.home-pragmatic-slots-desktop__list {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    -webkit-column-gap: 1.25rem;
+    -moz-column-gap: 1.25rem;
+    column-gap: 1.25rem;
+    width: 100%;
+    margin-top: .938rem
+}
+
+.home-ezugi-slots-desktop {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%
+}
+
+.home-ezugi-slots-desktop__list {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-column-gap: .625rem;
+    margin-top: 1.25rem
+}
+
+.home-main-slots-desktop {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-column-gap: .625rem
+}
+
+.home-main-slots-desktop__item {
+    position: relative
+}
+
+.home-main-slots-desktop__button {
+    width: 8.625rem;
+    height: 2.5rem;
+    position: absolute;
+    bottom: 1.125rem;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    background: linear-gradient(113.27deg, #5428b4 15.04%, #b339e2 84.96%);
+    border-radius: 31.25rem;
+    color: #fff;
+    font-size: .875rem;
+    font-weight: 700;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-transition: .6s;
+    transition: .6s
+}
+
+.home-main-slots-desktop__icon {
+    position: absolute;
+    z-index: 5;
+    -webkit-transition: .4s;
+    transition: .4s
+}
+
+.home-main-slots-desktop__item:hover .home-main-slots-desktop__button {
+    -webkit-transition: .6s;
+    transition: .6s;
+    background: linear-gradient(113.27deg, #b339e2 15.04%, #5428b4 84.96%)
+}
+
+.home-main-slots-desktop__item:first-child .home-main-slots-desktop__icon {
+    height: 21.5rem;
+    bottom: -2.6rem;
+    left: -1rem
+}
+
+.home-main-slots-desktop__item:first-child:hover .home-main-slots-desktop__icon {
+    -webkit-transition: .4s;
+    transition: .4s;
+    left: .4rem
+}
+
+.home-main-slots-desktop__item:nth-child(2) .home-main-slots-desktop__icon {
+    height: 18.625rem;
+    bottom: -2.25rem;
+    left: -1.444rem
+}
+
+.home-main-slots-desktop__item:nth-child(2):hover .home-main-slots-desktop__icon {
+    -webkit-transition: .4s;
+    transition: .4s;
+    left: -2rem;
+    bottom: -0.3rem;
+    -webkit-transform: rotate(-7deg);
+    -ms-transform: rotate(-7deg);
+    transform: rotate(-7deg)
+}
+
+.home-main-slots-desktop__item:nth-child(3) .home-main-slots-desktop__icon {
+    height: 13.75rem;
+    bottom: .7rem;
+    left: -2rem
+}
+
+.home-main-slots-desktop__item:nth-child(3):hover .home-main-slots-desktop__icon {
+    -webkit-transition: .4s;
+    transition: .4s;
+    -webkit-transform: rotate(7deg);
+    -ms-transform: rotate(7deg);
+    transform: rotate(7deg)
+}
+
+.home-main-slots-desktop__item:nth-child(4) .home-main-slots-desktop__icon {
+    height: 12.5rem;
+    bottom: .3rem;
+    left: -1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    z-index: 2
+}
+
+.home-main-slots-desktop__item:nth-child(4):hover .home-main-slots-desktop__icon {
+    -webkit-transition: .4s;
+    transition: .4s;
+    -webkit-transform: rotate(7deg);
+    -ms-transform: rotate(7deg);
+    transform: rotate(7deg)
+}
+
+.home-main-slots-desktop__img {
+    width: 100%;
+    height: 10.5vw;
+    position: relative;
+    z-index: 0
+}
+
+.home-main-slots-desktop__text {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3
+}
+
+.home-classic-slots-desktop {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%
+}
+
+.home-classic-slots-desktop__list {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-column-gap: 1.25rem;
+    margin-top: 1.25rem
+}
+
+.home-joker-slots-desktop {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%
+}
+
+.home-joker-slots-desktop__list {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-column-gap: 1.25rem;
+    margin-top: 1.25rem
+}
+
+.home-sports-menu-desktop {
+    height: 7.1875rem;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    margin-bottom: 1.5625rem;
+    z-index: 1000;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .625rem;
+    width: 100%
+}
+
+.home-sports-menu-desktop__ellipse_top {
+    position: absolute;
+    top: -1.0625rem;
+    right: 0;
+    width: 23.0208rem;
+    height: .9411rem;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    border-radius: 23.0208rem;
+    background: #8c32cf;
+    -webkit-filter: blur(0.3125rem);
+    filter: blur(0.3125rem)
+}
+
+.home-sports-menu-desktop__ellipse_bottom {
+    position: absolute;
+    bottom: -1.0625rem;
+    left: 0;
+    width: 23.0208rem;
+    height: .9411rem;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    border-radius: 23.0208rem;
+    background: #8c32cf;
+    -webkit-filter: blur(5px);
+    filter: blur(5px)
+}
+
+.home-sports-menu-desktop__wrapper {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    padding: 2px;
+    border-radius: .9375rem;
+    background: linear-gradient(279.25deg, rgba(196, 87, 218, 0) 28.59%, #c457da 102.15%),linear-gradient(281.65deg, #885fff 4%, rgba(129, 92, 234, 0) 52.67%);
+    overflow: hidden
+}
+
+.home-sports-menu-desktop__item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 1.7069rem;
+    background: url(/img/src/features/home/desktop/HomeSportsMenu/img/bg.webp) center/cover no-repeat,-webkit-gradient(linear, left top, left bottom, from(#320548), to(#1f073a));
+    background: url(/img/src/features/home/desktop/HomeSportsMenu/img/bg.webp) center/cover no-repeat,linear-gradient(180deg, #320548 0%, #1f073a 100%);
+    -webkit-transition: -webkit-transform .2s;
+    transition: -webkit-transform .2s;
+    transition: transform .2s;
+    transition: transform .2s, -webkit-transform .2s;
+    height: 100%;
+    width: 100%;
+    border-radius: .8125rem;
+    position: relative;
+    padding-left: 1rem
+}
+
+.home-sports-menu-desktop__item:hover {
+    background: url(/img/src/features/home/desktop/HomeSportsMenu/img/bg.webp) center/cover no-repeat,-webkit-gradient(linear, left top, left bottom, from(#320548), to(rgba(45, 10, 85, 0.4862745098)));
+    background: url(/img/src/features/home/desktop/HomeSportsMenu/img/bg.webp) center/cover no-repeat,linear-gradient(180deg, #320548 0%, rgba(45, 10, 85, 0.4862745098) 100%)
+}
+
+.home-sports-menu-desktop__item:first-child {
+    margin-left: 0
+}
+
+.home-sports-menu-desktop__item:last-child {
+    margin-right: 0
+}
+
+.home-sports-menu-desktop__title-block {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.home-sports-menu-desktop__title {
+    color: #fff;
+    font-family: Poppins;
+    font-size: 1.875rem;
+    font-style: italic;
+    font-weight: 900;
+    line-height: 80%;
+    text-transform: uppercase
+}
+
+.home-sports-menu-desktop__logo {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 8.75rem;
+    height: 7.1875rem
+}
+
+.home-sports-menu-desktop__logo_format_svg {
+    width: 8.75rem;
+    height: 7.1875rem
+}
+
+.home-sports-menu-desktop__logo_format_svg svg {
+    width: 100%;
+    height: 100%
+}
+
+.home-sports-menu-desktop__logo_format_webp {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-negative: 0;
+    flex-shrink: 0
+}
+
+.home-sports-menu-desktop__logo_format_webp img {
+    width: 100%;
+    height: 100%;
+    max-width: 8.75rem;
+    min-width: 4.0603rem;
+    max-height: 7.1875rem
+}
+
+.home-desktop {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding: 2.125rem 1.25rem 0 1.25rem;
+    width: 100%
+}
+
+.home-desktop__content {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 0 .625rem
+}
+
+.home-desktop__block {
+    margin-bottom: .938rem
+}
+
+@media (max-width: 768px) {
+    .home-desktop__block {
+        display: none;
+    }
+
+    .slide-container {
+        padding: 0 .625rem 14px .625rem;
+    }
+
+    .slide-container img {
+        width: 100%;
+        height: 25vw;
+        border-radius: .625rem
+    }
+}
+
+.home-desktop__slider {
+    padding: 0 1.25rem
+}
+
+@media (min-width: 768px) {
+    .slots-main-desktop__item-container {
+        padding: 1.5rem 1.25rem 0 1.25rem
+    }
+}
+
+.modal-change-password-mobile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    z-index: 1000;
+    padding: .5rem
+}
+
+.modal-change-password-mobile__form {
+    padding: 1.25rem 1.125rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #320548;
+    color: #fff;
+    border-radius: 1.25rem
+}
+
+.modal-change-password-mobile__title {
+    margin-bottom: 1.25rem;
+    font-size: 1.25rem;
+    text-align: center
+}
+
+.modal-change-password-mobile__sub-title {
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+    text-align: center
+}
+
+.modal-change-password-mobile__inputs {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1.25rem
+}
+
+.modal-change-password-mobile__item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%
+}
+
+.modal-change-password-mobile__item:not(:last-child) {
+    margin-bottom: .625rem
+}
+
+.modal-change-password-mobile__item-title {
+    font-family: "Roboto",Arial,sans-serif;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: .875rem;
+    color: #fff;
+    margin-bottom: .3125rem
+}
+
+.modal-change-password-mobile__item-field {
+    width: 100%;
+    height: 2.5rem
+}
+
+.modal-change-password-mobile__button {
+    width: 100%;
+    height: 2.5rem;
+    margin: 0 auto
+}
+
+.modal-change-password-mobile__button-text {
+    font-weight: 700;
+    font-size: .875rem;
+    text-transform: uppercase
+}
+
+.notification {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+    min-height: 3.25rem;
+    margin-top: .9375rem;
+    z-index: 100;
+    padding: .625rem 1.25rem;
+    font-size: .875rem;
+    font-weight: 700;
+    position: relative;
+    border: 1px solid hsla(0,0%,100%,.1);
+    border-radius: .9375rem;
+    -webkit-box-shadow: 0 5px 10px 0 rgba(35,8,60,.5);
+    box-shadow: 0 5px 10px 0 rgba(35,8,60,.5);
+    background: -webkit-gradient(linear, left bottom, left top, from(#22073c), to(#22073c));
+    background: linear-gradient(0deg, #22073c, #22073c);
+    -webkit-animation: .7s ease init;
+    animation: .7s ease init
+}
+
+.notification_type_default {
+    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 168, 0, 0.2)), to(rgba(43, 28, 0, 0))),-webkit-gradient(linear, left bottom, left top, from(#22073c), to(#22073c));
+    background: linear-gradient(90deg, rgba(255, 168, 0, 0.2) 0%, rgba(43, 28, 0, 0) 100%),linear-gradient(0deg, #22073c, #22073c)
+}
+
+.notification_type_success {
+    background: -webkit-gradient(linear, left top, right top, from(rgba(79, 211, 77, 0.2)), to(rgba(6, 43, 0, 0))),-webkit-gradient(linear, left bottom, left top, from(#22073c), to(#22073c));
+    background: linear-gradient(90deg, rgba(79, 211, 77, 0.2) 0%, rgba(6, 43, 0, 0) 100%),linear-gradient(0deg, #22073c, #22073c)
+}
+
+.notification_type_error {
+    background: -webkit-gradient(linear, left top, right top, from(rgba(241, 66, 66, 0.2)), color-stop(100%, rgba(43, 28, 0, 0)), to(rgba(43, 0, 0, 0))),-webkit-gradient(linear, left bottom, left top, from(#22073c), to(#22073c));
+    background: linear-gradient(90deg, rgba(241, 66, 66, 0.2) 0%, rgba(43, 28, 0, 0) 100%, rgba(43, 0, 0, 0) 100%),linear-gradient(0deg, #22073c, #22073c)
+}
+
+.notification__content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 10px
+}
+
+.notification__icon {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.notification__icon>svg {
+    width: 2rem;
+    height: 2rem
+}
+
+.notification__text {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.notification__title {
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: 1rem;
+    text-align: left;
+    color: #fff
+}
+
+.notification__message {
+    font-family: Roboto;
+    font-size: .75rem;
+    font-weight: 400;
+    line-height: .875rem;
+    text-align: left;
+    color: #fff;
+    word-break: break-all
+}
+
+.notification__cross-container {
+    padding-left: .5rem;
+    border: none;
+    background: rgba(0,0,0,0)
+}
+
+.notification__cross {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.notification__cross>svg {
+    width: .625rem;
+    height: .625rem
+}
+
+.notification_deleting {
+    -webkit-animation: .7s ease delete;
+    animation: .7s ease delete
+}
+
+.notification__wrapper {
+    -webkit-box-flex: 2;
+    -ms-flex-positive: 2;
+    flex-grow: 2;
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.notification__left {
+    height: 100%;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    padding: 1.25rem 0 0 0
+}
+
+.notification__cross {
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.notification__cross-svg {
+    width: .8125rem;
+    height: .8125rem
+}
+
+@-webkit-keyframes init {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(10rem);
+        transform: translateX(10rem)
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        transform: translateX(0)
+    }
+}
+
+@keyframes init {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(10rem);
+        transform: translateX(10rem)
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        transform: translateX(0)
+    }
+}
+
+@-webkit-keyframes delete {
+    0% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        transform: translateX(0)
+    }
+
+    70% {
+        opacity: 0;
+        -webkit-transform: translateX(10rem);
+        transform: translateX(10rem)
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: translateX(10rem);
+        transform: translateX(10rem)
+    }
+}
+
+@keyframes delete {
+    0% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        transform: translateX(0)
+    }
+
+    70% {
+        opacity: 0;
+        -webkit-transform: translateX(10rem);
+        transform: translateX(10rem)
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: translateX(10rem);
+        transform: translateX(10rem)
+    }
+}
+
+#notify-root {
+    position: fixed;
+    width: 90%;
+    right: .4rem;
+    padding: 0 1rem;
+    top: 0rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    z-index: 1201;
+    margin: auto;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse
+}
+
+.age-verification-mobile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%
+}
+
+.age-verification-mobile__ganamos-dog-img {
+    position: absolute;
+    top: -12rem;
+    right: 0;
+    width: 20.07rem;
+    height: 24.091875rem
+}
+
+.age-verification-mobile__container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    max-width: 21.25rem;
+    -webkit-transform: translateY(3rem);
+    -ms-transform: translateY(3rem);
+    transform: translateY(3rem)
+}
+
+.age-verification-mobile__content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    position: relative;
+    padding: 3.125rem .9375rem;
+    gap: 1.875rem;
+    border-radius: 1.875rem;
+    z-index: 2;
+    width: 100%;
+    max-width: 21.25rem;
+    background: #130227;
+    -webkit-box-shadow: 1px -1px 30px 0px rgba(85,40,180,.4);
+    box-shadow: 1px -1px 30px 0px rgba(85,40,180,.4);
+    -webkit-box-shadow: -1px 1px 30px 0px rgba(178,57,226,.4);
+    box-shadow: -1px 1px 30px 0px rgba(178,57,226,.4)
+}
+
+.age-verification-mobile__title {
+    color: #fff;
+    font-size: 1.625rem;
+    line-height: 1.625rem;
+    font-weight: 700;
+    text-align: center
+}
+
+.age-verification-mobile__sub-title {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.465rem;
+    text-align: center
+}
+
+.age-verification-mobile__sub-title>span {
+    color: #ffbc0f
+}
+
+.age-verification-mobile__title {
+    font-size: 1.625rem;
+    font-weight: 700;
+    line-height: 1.625rem;
+    text-align: center;
+    color: #fff
+}
+
+.age-verification-mobile__button-group {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: .625rem;
+    height: 100%;
+    min-height: 2.5rem
+}
+
+.age-verification-mobile__button-container {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1
+}
+
+.slider-component {
+    padding: 0 .625rem 14px .625rem;
+    min-height: 28.89vw
+}
+
+.slider-component .control-dots {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    bottom: -0.875rem;
+    margin: 0;
+    min-height: .25rem;
+    max-height: .25rem;
+    height: 100%
+}
+
+.slider-component .carousel .control-dots .dot {
+    width: .25rem !important;
+    height: .25rem !important;
+    background: #9583a0;
+    opacity: .5;
+    margin: 0 1.5px
+}
+
+.slider-component .carousel .control-dots .dot.selected {
+    opacity: 1;
+    background: #8b00c9
+}
+
+.slider-component .carousel.carousel-slider {
+    overflow: visible !important
+}
+
+.slider-component .carousel .slide img {
+    width: 100%;
+    height: 25vw;
+    border-radius: .625rem
+}
+
+.slider-component__link {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.home-mobile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding-bottom: 4rem;
+    background: no-repeat top 3.75rem left/50% url(/img/src/features/home/mobile/img/leftEllipseBG.webp),no-repeat top 3.75rem right/50% url(/img/src/features/home/mobile/img/rightEllipseBG.webp)
+}
+
+.home-mobile__content {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0
+}
+
+.home-mobile__block-provider {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-bottom: .625rem
+}
+
+.home-mobile__providers-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: .3125rem;
+    padding: 0 .625rem;
+    width: 100%;
+    overflow: auto
+}
+
+.home-mobile__provider-item {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 0 1.25rem 0 .9375rem;
+    min-height: 2.375rem;
+    max-height: 2.375rem;
+    height: 100%;
+    border-radius: 6.25rem;
+    background: -webkit-gradient(linear, left top, left bottom, from(#320548), to(#1f073a));
+    background: linear-gradient(180deg, #320548 0%, #1f073a 100%)
+}
+
+.home-mobile__provider-item-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: .625rem;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    z-index: 2
+}
+
+.home-mobile__provider-item-icon {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 1.5rem;
+    height: 1.5rem
+}
+
+.home-mobile__provider-item-text {
+    font-family: "Roboto",Arial,sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    line-height: .75rem;
+    text-align: center;
+    text-transform: capitalize;
+    color: #fff;
+    white-space: nowrap
+}
+
+.home-links-card-mobile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: .125rem;
+    position: relative;
+    width: 100%;
+    border-radius: .9375rem;
+    background: linear-gradient(279.25deg, rgba(196, 87, 218, 0) 28.59%, #c457da 102.15%),linear-gradient(281.65deg, #885fff 4%, rgba(129, 92, 234, 0) 52.67%)
+}
+
+.home-links-card-mobile__content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 7.125rem .125rem 1.25rem;
+    background: -webkit-gradient(linear, left top, left bottom, from(#320548), to(#1f073a));
+    background: linear-gradient(180deg, #320548 0%, #1f073a 100%);
+    border-radius: .9375rem;
+    width: 100%;
+    height: 100%
+}
+
+.home-links-card-mobile__content_bg_card {
+    background: top/10rem 8.75rem url(/img/src/features/home/mobile/Links/Card/img/cardBG.png) no-repeat,-webkit-gradient(linear, left top, left bottom, from(#320548), to(#1f073a));
+    background: top/10rem 8.75rem url(/img/src/features/home/mobile/Links/Card/img/cardBG.png) no-repeat,linear-gradient(180deg, #320548 0%, #1f073a 100%)
+}
+
+.home-links-card-mobile__content_bg_horseRaces {
+    background: top/10rem 8.75rem url(/img/src/features/home/mobile/Links/Card/img/horseRacesBG.png) no-repeat,-webkit-gradient(linear, left top, left bottom, from(#320548), to(#1f073a));
+    background: top/10rem 8.75rem url(/img/src/features/home/mobile/Links/Card/img/horseRacesBG.png) no-repeat,linear-gradient(180deg, #320548 0%, #1f073a 100%)
+}
+
+.home-links-card-mobile__img {
+    width: 10rem;
+    height: 8.75rem;
+    position: absolute;
+    top: -1.875rem
+}
+
+.home-links-card-mobile__img-container {
+    width: 10rem;
+    height: 8.75rem
+}
+
+.home-links-card-mobile__title {
+    font-size: .875rem;
+    font-weight: 700;
+    line-height: .875rem;
+    text-align: center;
+    color: #fff
+}
+
+.home-sports-menu-mobile {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    height: 7.1875rem;
+    border-radius: .625rem;
+    margin-bottom: 1rem;
+    z-index: 1000;
+    position: relative;
+    gap: .3125rem
+}
+
+.home-sports-menu-mobile__ellipse_top {
+    position: absolute;
+    top: -1.0625rem;
+    right: 0;
+    width: 23.0208rem;
+    height: .9411rem;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    border-radius: 23.0208rem;
+    background: #8c32cf;
+    -webkit-filter: blur(10px);
+    filter: blur(10px)
+}
+
+.home-sports-menu-mobile__ellipse_bottom {
+    position: absolute;
+    bottom: -1.0625rem;
+    left: 0;
+    width: 23.0208rem;
+    height: .9411rem;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    border-radius: 23.0208rem;
+    background: #8c32cf;
+    -webkit-filter: blur(10px);
+    filter: blur(10px)
+}
+
+.home-sports-menu-mobile__wrapper {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    padding: 2px;
+    border-radius: .9375rem;
+    overflow: hidden;
+    background: linear-gradient(279.25deg, rgba(196, 87, 218, 0) 28.59%, #c457da 102.15%),linear-gradient(281.65deg, #885fff 4%, rgba(129, 92, 234, 0) 52.67%)
+}
+
+.home-sports-menu-mobile__item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    gap: .375rem;
+    background: -webkit-gradient(linear, left top, left bottom, from(#320548), to(#1f073a));
+    background: linear-gradient(180deg, #320548 0%, #1f073a 100%);
+    -webkit-transition: -webkit-transform .2s;
+    transition: -webkit-transform .2s;
+    transition: transform .2s;
+    transition: transform .2s, -webkit-transform .2s;
+    height: 100%;
+    width: 100%;
+    border-radius: .8125rem;
+    position: relative;
+    padding: .25rem .625rem 1.1875rem .625rem;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.home-sports-menu-mobile__item:first-child {
+    margin-left: 0
+}
+
+.home-sports-menu-mobile__item:last-child {
+    margin-right: 0
+}
+
+.home-sports-menu-mobile__logo {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 5.625rem;
+    height: 4.625rem
+}
+
+.home-sports-menu-mobile__logo_format_svg {
+    width: 5.625rem;
+    height: 4.625rem
+}
+
+.home-sports-menu-mobile__logo_format_svg .SVGInline-svg {
+    width: 100%;
+    height: 100%
+}
+
+.home-sports-menu-mobile__logo_format_webp {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 5.625rem;
+    height: 4.625rem
+}
+
+.home-sports-menu-mobile__logo_format_webp img {
+    width: 100%;
+    height: 100%
+}
+
+.home-sports-menu-mobile__title-block {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 .625rem
+}
+
+.home-sports-menu-mobile__title {
+    font-family: "Roboto",Arial,sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    line-height: .75rem;
+    font-family: Roboto;
+    text-align: center;
+    color: #fff;
+    white-space: nowrap
+}
+
+.home-links-mobile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: .625rem;
+    padding: 0 .625rem .625rem
+}
+
+@media (min-width: 768px) {
+    .home-links-mobile {
+        display: none;
+        padding: 1.875rem .625rem .625rem;
+    }
+}
+
+.home-links-mobile__main {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: .625rem;
+    width: 100%
+}
+
+.home-links-mobile__sub {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: .625rem;
+    height: 4.25rem
+}
+
+.home-links-mobile__sub-item {
+    background: -webkit-gradient(linear, left top, left bottom, from(#320548), to(#1f073a));
+    background: linear-gradient(180deg, #320548 0%, #1f073a 100%);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-radius: .9375rem;
+    gap: .625rem
+}
+
+.home-links-mobile__sub-item-icon>.SVGInline-svg {
+    width: 1.5rem;
+    height: 1.5rem
+}
+
+.home-links-mobile__sub-item-text {
+    font-family: "Roboto",Arial,sans-serif;
+    font-size: .8125rem;
+    font-weight: 700;
+    line-height: .875rem;
+    color: #fff
+}
+
+.games-block-home {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%
+}
+
+.games-block-home__list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    padding: 1.25rem
+}
+
+.games-block-home .loadable-image__loader {
+    aspect-ratio: 1
+}
+
+.games-block-home .loadable-image__loader>img {
+    -o-object-fit: cover;
+    object-fit: cover
+}
+
+.slots-icon-mobile {
+    position: relative;
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: visible;
+    color: #fff;
+    gap: .31rem
+}
+
+.slots-icon-mobile__text {
+    width: calc(100% - 1.5rem)
+}
+
+.slots-icon-mobile__bottom {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    width: 100%
+}
+
+.slots-icon-mobile__name {
+    display: block;
+    color: var(--DarkUI-Text-Text-Regular, #ededed);
+    max-width: 100%;
+    height: 1.875rem;
+    font-size: .75rem;
+    line-height: .75rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+    font-weight: 400
+}
+
+.slots-icon-mobile__description {
+    display: block;
+    max-width: 100%;
+    font-weight: 500;
+    font-size: .625rem;
+    line-height: .625rem;
+    color: #888;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+.slots-icon-mobile__star-block {
+    border: none;
+    padding: 0;
+    background: -webkit-gradient(linear, left top, left bottom, from(#320548), to(#1f073a));
+    background: linear-gradient(180deg, #320548 0%, #1f073a 100%);
+    border-radius: 50%;
+    width: 30%;
+    height: 30%;
+    position: absolute;
+    bottom: .4375rem;
+    right: .415rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.slots-icon-mobile__star {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    opacity: 0;
+    -webkit-transition: 200ms;
+    transition: 200ms;
+    cursor: pointer
+}
+
+.slots-icon-mobile__star>svg {
+    width: 45%;
+    height: 45%
+}
+
+.slots-icon-mobile__star_favorite {
+    opacity: 1
+}
+
+.slots-icon-mobile__img {
+    position: relative;
+    width: 100%;
+    border: none;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    border-radius: .625rem
+}
+
+.slots-icon-mobile__img img {
+    -o-object-fit: fill;
+    object-fit: fill
+}
+
+.live-casino-icon {
+    position: relative;
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: visible;
+    color: #fff;
+    width: 100%;
+    gap: .31rem
+}
+
+.live-casino-icon__text {
+    width: calc(100% - 1.5rem)
+}
+
+.live-casino-icon__bottom {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    width: 100%
+}
+
+.live-casino-icon__name {
+    display: block;
+    color: var(--DarkUI-Text-Text-Regular, #ededed);
+    max-width: 100%;
+    height: 1.875rem;
+    font-size: .75rem;
+    line-height: .75rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+    font-weight: 400
+}
+
+.live-casino-icon__description {
+    display: block;
+    max-width: 100%;
+    font-weight: 500;
+    font-size: .625rem;
+    line-height: .625rem;
+    color: #888;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+.live-casino-icon__star-block {
+    background: #282c41;
+    width: 1.875rem;
+    height: 1.875rem;
+    position: absolute;
+    bottom: .1875rem;
+    right: .1875rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.live-casino-icon__star-block_favorite {
+    background: -webkit-gradient(linear, right top, left top, from(#e0e0e0), to(#bababa));
+    background: linear-gradient(270deg, #e0e0e0 0%, #bababa 100%)
+}
+
+.live-casino-icon__star {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.live-casino-icon__star-svg {
+    width: .75rem;
+    height: .75rem
+}
+
+.live-casino-icon__star_favorite * {
+    fill: #fff
+}
+
+.live-casino-icon__img {
+    position: relative;
+    width: 100%;
+    border: none;
+    overflow: hidden;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    border-radius: .625rem
+}
+
+.live-casino-icon__img .loadable-image__loader {
+    min-height: 5.375rem
+}
+
+.live-casino-icon__img img {
+    -o-object-fit: fill;
+    object-fit: fill
+}
+
+.home-games-header-mobile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 20px 0;
+    gap: .625rem
+}
+
+.home-games-header-mobile::after {
+    content: "";
+    width: 4.75rem;
+    height: .1875rem;
+    background: #ffbc0f
+}
+
+.home-games-header-mobile__content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.home-games-header-mobile__icon {
+    margin-left: .313rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 1.5rem;
+    height: 1.5rem
+}
+
+.home-games-header-mobile__text {
+    font-family: "Roboto",Arial,sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.3331rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #fff
+}
+
+.home-games-header-mobile__link {
+    font-family: "Roboto",Arial,sans-serif;
+    font-size: .875rem;
+    font-weight: 700;
+    line-height: 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background: radial-gradient(#9b39a7 0%, transparent 100%) hsla(0,0%,100%,.1);
+    color: #fff;
+    min-height: 2.5rem;
+    height: 100%;
+    max-height: 2.5rem;
+    padding: 0 .625rem;
+    border-radius: .625rem
+}
+
+.home-games-header-mobile__arrow {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.home-games-header-mobile__arrow-svg {
+    width: 1.875rem;
+    height: 1.875rem
+}
+
+.tawk-min-container, .tawk-min-container .tawk-button {
+    height: 100%;
+    width: 100%;
+}
+
+.tawk-min-container {
+    position: relative;
+}
+
+.tawk-badge.tawk-min-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1100;
+}
+.tawk-badge, .tawk-button {
+    box-sizing: border-box;
+    vertical-align: middle;
+    text-align: center;
+}
+.tawk-badge {
+    height: 1.25rem;
+    width: 1.25rem;
+    font-size: .687rem;
+    line-height: 1.25rem;
+    background: #bf1212;
+    color: #fff;
+    border-radius: 50%;
+}
+
+.tawk-flex-middle {
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.tawk-flex-center {
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.tawk-flex {
+    display: -ms-flexbox!important;
+    display: flex !important;
+}
+
+.tawk-min-container .tawk-button-circle.tawk-button-large {
+    width: 3.75rem;
+    height: 3.75rem;
+    line-height: 3.75rem;
+    border-radius: 50%;
+}
+
+.tawk-button:not(:disabled) {
+    cursor: pointer;
+}
+
+.tawk-button-circle {
+    height: 2.5rem;
+    width: 2.5rem;
+    line-height: 2.5rem;
+    padding: 0;
+    border-radius: 100%;
+}
+.tawk-button-large {
+    padding: 1rem 2rem;
+    line-height: 1.5rem;
+    font-size: .937rem;
+}
+.tawk-button {
+    margin: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    font: inherit;
+    color: inherit;
+    text-transform: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 1rem;
+    border: 1px solid #03a84e;
+    border-color: #6603a8 !important;
+    line-height: 1.5rem;
+    text-decoration: none;
+    background-color: #6603a8 !important;
+    color: #fff;
+}
+
+.tawk-min-chat-icon, .tawk-min-chat-icon-down {
+    transform: rotate(0deg);
+}
+
+.tawk-min-chat-icon {
+    fill: #fff;
+    filter: invert(1);
+}
+
+.tawk-button:not(.tawk-button-text) {
+    box-shadow: 0 4px 4px 0 hsla(0, 0%, 51%, .08);
 }

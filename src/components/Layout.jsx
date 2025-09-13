@@ -98,6 +98,13 @@ const Layout = () => {
                         active={selectedPage == "home" || selectedPage == "lobby" || selectedPage == "hot"}
                         onClick={() => getPage("home")}
                     />
+                    <NavLinkHeader
+                        title="Casino en vivo"
+                        pageCode="livecasino"
+                        icon=""
+                        active={["livecasino", "roulette"].includes(selectedPage)}
+                        onClick={() => getPage("livecasino")}
+                    />
                 </>
             );
         }

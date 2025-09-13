@@ -19,6 +19,23 @@ import ImgArrow from "/src/assets/img/arrow.png";
 import ImgBanner1 from "/src/assets/img/banner-desktop-01.webp";
 import ImgBanner2 from "/src/assets/img/banner-desktop-02.webp";
 import ImgBanner3 from "/src/assets/img/banner-desktop-03.webp";
+import ImgJetx from "/src/assets/img/jetx.png";
+import ImgJetxIcon from "/src/assets/img/jetx-icon.png";
+import ImgCrash from "/src/assets/img/crash.png";
+import ImgCrashIcon from "/src/assets/img/crash-icon.png";
+import ImgSpaceman from "/src/assets/img/spaceman.png";
+import ImgSpacemanIcon from "/src/assets/img/spaceman-icon.png";
+import ImgChicken from "/src/assets/img/chicken.webp";
+import ImgChickenIcon from "/src/assets/img/chicken-icon.webp";
+import ImgChickenText from "/src/assets/img/chicken-text.webp";
+import ImgHorseRaces from "/src/assets/img/horseRaces.webp";
+import ImgBlackjackMain from "/src/assets/img/blackjack-main.webp";
+import IconDigitain from "/src/assets/svg/digitain.svg";
+import IconLiga from "/src/assets/svg/liga.svg";
+import IconUltim8 from "/src/assets/svg/ultim8.svg";
+import IconYellowDeporte from "/src/assets/svg/yellow-deporte.svg";
+import IconYellowCasino from "/src/assets/svg/yellow-casino.svg";
+import IconYellowLiveCasino from "/src/assets/svg/yellow-live-casino.svg";
 
 let selectedGameId = null;
 let selectedGameType = null;
@@ -26,7 +43,7 @@ let selectedGameLauncher = null;
 let pageCurrent = 0;
 
 const Home = () => {
-  const pageTitle = "Casino";
+  const pageTitle = "Home";
   const { contextData } = useContext(AppContext);
   const [selectedPage, setSelectedPage] = useState("lobby");
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
@@ -35,13 +52,9 @@ const Home = () => {
   const [pageData, setPageData] = useState({});
   const [games, setGames] = useState([]);
   const [gameUrl, setGameUrl] = useState("");
-  const [txtSearch, setTxtSearch] = useState("");
   const [isLoadingGames, setIsLoadingGames] = useState(false);
-  const [searchDelayTimer, setSearchDelayTimer] = useState();
-  const [fragmentNavLinksBody, setFragmentNavLinksBody] = useState(<></>);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const searchRef = useRef(null);
   const refGameModal = useRef();
   const { isLogin } = useContext(LayoutContext);
   const navigate = useNavigate();
@@ -52,15 +65,15 @@ const Home = () => {
     const checkIsMobile = () => {
       return window.innerWidth <= 767;
     };
-    
+
     setIsMobile(checkIsMobile());
-    
+
     const handleResize = () => {
       setIsMobile(checkIsMobile());
     };
-    
+
     window.addEventListener('resize', handleResize);
-    
+
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -76,86 +89,14 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    updateNavLinks();
   }, [selectedPage]);
 
   const getStatus = () => {
     callApi(contextData, "GET", "/get-status", callbackGetStatus, null);
   };
 
-  const updateNavLinks = () => {
-    if ((contextData.slots_only == null) || (contextData.slots_only == false)) {
-      setFragmentNavLinksBody(
-        <>
-          <NavLinkIcon
-            title="Lobby"
-            pageCode="home"
-            icon={ImgHeart}
-            active={selectedPage === "home" || selectedPage === "lobby"}
-            onClick={() => getPage("home")}
-          />
-          <NavLinkIcon
-            title="Hot"
-            pageCode="hot"
-            icon={ImgHot}
-            active={selectedPage === "hot"}
-            onClick={() => getPage("hot")}
-          />
-          <NavLinkIcon
-            title="Habilidad"
-            pageCode="arcade"
-            icon={ImgNavMidLobby}
-            active={selectedPage === "arcade"}
-            onClick={() => getPage("arcade")}
-          />
-          <NavLinkIcon
-            title="Megaways"
-            pageCode="megaways"
-            icon={ImgArrow}
-            active={selectedPage === "megaways"}
-            onClick={() => getPage("megaways")}
-          />
-          <NavLinkIcon
-            title="Ruleta"
-            pageCode="roulette"
-            icon={ImgNavMidLobby}
-            active={selectedPage === "roulette"}
-            onClick={() => getPage("roulette")}
-          />
-        </>
-      );
-    } else {
-      setFragmentNavLinksBody(
-        <>
-          <NavLinkIcon
-            title="Lobby"
-            pageCode="home"
-            icon={ImgHeart}
-            active={selectedPage === "home" || selectedPage === "lobby"}
-            onClick={() => getPage("home")}
-          />
-          <NavLinkIcon
-            title="Hot"
-            pageCode="hot"
-            icon={ImgHot}
-            active={selectedPage === "hot"}
-            onClick={() => getPage("hot")}
-          />
-          <NavLinkIcon
-            title="Megaways"
-            pageCode="megaways"
-            icon={ImgArrow}
-            active={selectedPage === "megaways"}
-            onClick={() => getPage("megaways")}
-          />
-        </>
-      );
-    }
-  };
-
   const callbackGetStatus = (result) => {
     contextData.slots_only = result && result.slots_only;
-    updateNavLinks();
   };
 
   const getPage = (page) => {
@@ -262,61 +203,6 @@ const Home = () => {
     }
   };
 
-  const search = (e) => {
-    let keyword = e.target.value;
-    setTxtSearch(keyword);
-
-    if (navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)) {
-      let keyword = e.target.value;
-      do_search(keyword);
-    } else {
-      if (
-        (e.keyCode >= 48 && e.keyCode <= 57) ||
-        (e.keyCode >= 65 && e.keyCode <= 90) ||
-        e.keyCode == 8 ||
-        e.keyCode == 46
-      ) {
-        do_search(keyword);
-      }
-    }
-
-    if (e.key === "Enter" || e.keyCode === 13 || e.key === "Escape" || e.keyCode === 27) {
-      searchRef.current?.blur();
-    }
-  };
-
-  const do_search = (keyword) => {
-    clearTimeout(searchDelayTimer);
-
-    if (keyword == "") {
-      return;
-    }
-
-    setGames([]);
-    setIsLoadingGames(true);
-
-    let pageSize = 15;
-
-    let searchDelayTimerTmp = setTimeout(function () {
-      callApi(
-        contextData,
-        "GET",
-        "/search-content?keyword=" + txtSearch + "&page_group_code=" + pageData.page_group_code + "&length=" + pageSize,
-        callbackSearch,
-        null
-      );
-    }, 1000);
-
-    setSearchDelayTimer(searchDelayTimerTmp);
-  };
-
-  const callbackSearch = (result) => {
-    configureImageSrc(result);
-    setGames(result.content);
-    setIsLoadingGames(false);
-    pageCurrent = 0;
-  };
-
   const configureImageSrc = (result) => {
     result.content.forEach((element) => {
       let imageDataSrc = element.image_url;
@@ -357,50 +243,161 @@ const Home = () => {
           /> :
           <>
             <Slideshow images={imageSlideshow} />
-            <div className="slots-main-desktop__filter-container">
-              {
-                isLogin &&
-                <div className="slots-main-desktop__filters">
-                  <div className="slots-main-desktop__search-category-filters">
-                    <div className="slots-layout-content-menu">{fragmentNavLinksBody}</div>
-                    <SearchInput
-                      txtSearch={txtSearch}
-                      setTxtSearch={setTxtSearch}
-                      searchRef={searchRef}
-                      search={search}
-                      contextData={contextData}
-                      pageData={pageData}
-                      setGames={setGames}
-                      setIsLoadingGames={setIsLoadingGames}
-                      callbackSearch={callbackSearch}
-                      searchDelayTimer={searchDelayTimer}
-                      setSearchDelayTimer={setSearchDelayTimer}
-                    />
+
+            <div className="slots-main-desktop__item-container">
+              <div className="home-desktop__block">
+                <div className="home-sports-menu-desktop">
+                  <div className="home-sports-menu-desktop__wrapper">
+                    <a className="home-sports-menu-desktop__item" href="#">
+                      <div className="home-sports-menu-desktop__ellipse home-sports-menu-desktop__ellipse_top"></div>
+                      <div className="home-sports-menu-desktop__ellipse home-sports-menu-desktop__ellipse_bottom"></div>
+                      <div className="home-sports-menu-desktop__logo home-sports-menu-desktop__logo_format_svg">
+                        <span className="SVG-component">
+                          <span className="SVGInline SVG-component__content">
+                            <img className="SVGInline-svg SVG-component__content-svg" src={IconDigitain} />
+                          </span>
+                        </span>
+                      </div>
+                      <div className="home-sports-menu-desktop__title-block"><span className="home-sports-menu-desktop__title">Digitain Deporte</span></div>
+                    </a>
+                  </div>
+                  <div className="home-sports-menu-desktop__wrapper">
+                    <a className="home-sports-menu-desktop__item" href="#">
+                      <div className="home-sports-menu-desktop__ellipse home-sports-menu-desktop__ellipse_top"></div>
+                      <div className="home-sports-menu-desktop__ellipse home-sports-menu-desktop__ellipse_bottom"></div>
+                      <div className="home-sports-menu-desktop__logo home-sports-menu-desktop__logo_format_svg">
+                        <span className="SVG-component">
+                          <span className="SVGInline SVG-component__content">
+                            <img className="SVGInline-svg SVG-component__content-svg" src={IconLiga} />
+                          </span>
+                        </span>
+                      </div>
+                      <div className="home-sports-menu-desktop__title-block"><span className="home-sports-menu-desktop__title">Liga Premier</span></div>
+                    </a>
+                  </div>
+                  <div className="home-sports-menu-desktop__wrapper">
+                    <a className="home-sports-menu-desktop__item" href="#">
+                      <div className="home-sports-menu-desktop__ellipse home-sports-menu-desktop__ellipse_top"></div>
+                      <div className="home-sports-menu-desktop__ellipse home-sports-menu-desktop__ellipse_bottom"></div>
+                      <div className="home-sports-menu-desktop__logo home-sports-menu-desktop__logo_format_svg">
+                        <span className="SVG-component">
+                          <span className="SVGInline SVG-component__content">
+                            <img className="SVGInline-svg SVG-component__content-svg" src={IconUltim8} />
+                          </span>
+                        </span>
+                      </div>
+                      <div className="home-sports-menu-desktop__title-block"><span className="home-sports-menu-desktop__title">ULTIM8 Deporte</span></div>
+                    </a>
                   </div>
                 </div>
-              }
-
-              <div className="slots-main-desktop__provider-filter-list">
-                {categories && categories.length > 0 && (
-                  <div className="slots-provider-filter-list-desktop">
-                    {categories.map((item, index) => (
-                      <CategoryButton
-                        key={index}
-                        title={item.name}
-                        icon=""
-                        active={selectedCategoryIndex == index}
-                        onClick={() => fetchContent(item, item.id, item.table_name, index, true)}
-                      />
-                    ))}
-                  </div>
-                )}
-                {categories.length == 0 && <DivLoading />}
               </div>
-
-              <div className="slots-main-mobile__search-category-filters">
-                <SearchInput txtSearch={txtSearch} setTxtSearch={setTxtSearch} searchRef={searchRef} search={search} />
+              <div className="home-desktop__block">
+                <div className="home-main-slots-desktop">
+                  <a className="home-main-slots-desktop__item" href="#">
+                    <img className="home-main-slots-desktop__img" src={ImgJetx} alt="Main Slot" />
+                    <img className="home-main-slots-desktop__icon" src={ImgJetxIcon} alt="" />
+                    <div className="home-main-slots-desktop__button">
+                      <div>Jugar</div>
+                    </div>
+                  </a>
+                  <a className="home-main-slots-desktop__item" href="#">
+                    <img className="home-main-slots-desktop__img" src={ImgCrash} alt="Main Slot" />
+                    <img className="home-main-slots-desktop__icon" src={ImgCrashIcon} alt="" />
+                    <div className="home-main-slots-desktop__button">
+                      <div>Jugar</div>
+                    </div>
+                  </a>
+                  <a className="home-main-slots-desktop__item" href="#">
+                    <img className="home-main-slots-desktop__img" src={ImgSpaceman} alt="Main Slot" />
+                    <img className="home-main-slots-desktop__icon" src={ImgSpacemanIcon} alt="" />
+                    <div className="home-main-slots-desktop__button">
+                      <div>Jugar</div>
+                    </div>
+                  </a>
+                  <a className="home-main-slots-desktop__item" href="#">
+                    <img className="home-main-slots-desktop__text" src={ImgChickenText} alt="" />
+                    <img className="home-main-slots-desktop__img" src={ImgChicken} alt="Main Slot" />
+                    <img className="home-main-slots-desktop__icon" src={ImgChickenIcon} alt="" />
+                    <div className="home-main-slots-desktop__button">
+                      <div>Jugar</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div className="home-links-mobile">
+                <div className="home-links-mobile__main">
+                  <a className="home-links-card-mobile" href="#">
+                    <div className="home-links-card-mobile__content home-links-card-mobile__content_bg_card">
+                      <img className="home-links-card-mobile__img" src={ImgBlackjackMain} alt="Blackjack" loading="lazy" />
+                      <span className="home-links-card-mobile__title">Blackjack</span></div>
+                  </a>
+                  <a className="home-links-card-mobile" href="#">
+                    <div className="home-links-card-mobile__content home-links-card-mobile__content_bg_horseRaces">
+                      <img className="home-links-card-mobile__img" src={ImgHorseRaces} alt="Universal Race" loading="lazy" />
+                      <span className="home-links-card-mobile__title">Universal Race</span></div>
+                  </a>
+                </div>
+                <div className="home-sports-menu-mobile">
+                  <div className="home-sports-menu-mobile__wrapper">
+                    <a className="home-sports-menu-mobile__item" href="#">
+                      <div className="home-sports-menu-mobile__ellipse home-sports-menu-mobile__ellipse_top"></div>
+                      <div className="home-sports-menu-mobile__ellipse home-sports-menu-mobile__ellipse_bottom"></div>
+                      <div className="home-sports-menu-mobile__logo home-sports-menu-mobile__logo_format_svg">
+                        <span className="SVGInline">
+                          <img className="SVGInline-svg" src={IconDigitain} />
+                        </span>
+                      </div>
+                      <div className="home-sports-menu-mobile__title-block"><span className="home-sports-menu-mobile__title">Digitain Deporte</span></div>
+                    </a>
+                  </div>
+                  <div className="home-sports-menu-mobile__wrapper">
+                    <a className="home-sports-menu-mobile__item" href="#">
+                      <div className="home-sports-menu-mobile__ellipse home-sports-menu-mobile__ellipse_top"></div>
+                      <div className="home-sports-menu-mobile__ellipse home-sports-menu-mobile__ellipse_bottom"></div>
+                      <div className="home-sports-menu-mobile__logo home-sports-menu-mobile__logo_format_svg">
+                        <span className="SVGInline">
+                          <img className="SVGInline-svg" src={IconLiga} />
+                        </span>
+                      </div>
+                      <div className="home-sports-menu-mobile__title-block"><span className="home-sports-menu-mobile__title">Liga Premier</span></div>
+                    </a>
+                  </div>
+                  <div className="home-sports-menu-mobile__wrapper">
+                    <a className="home-sports-menu-mobile__item" href="#">
+                      <div className="home-sports-menu-mobile__ellipse home-sports-menu-mobile__ellipse_top"></div>
+                      <div className="home-sports-menu-mobile__ellipse home-sports-menu-mobile__ellipse_bottom"></div>
+                      <div className="home-sports-menu-mobile__logo home-sports-menu-mobile__logo_format_svg">
+                        <span className="SVGInline">
+                          <img className="SVGInline-svg" src={IconUltim8} />
+                        </span>
+                      </div>
+                      <div className="home-sports-menu-mobile__title-block"><span className="home-sports-menu-mobile__title">ULTIM8 Deporte</span></div>
+                    </a>
+                  </div>
+                </div>
+                <div className="home-links-mobile__sub">
+                  <a className="home-links-mobile__sub-item" href="#">
+                    <span className="SVGInline home-links-mobile__sub-item-icon">
+                      <img className="SVGInline-svg home-links-mobile__sub-item-icon-svg" src={IconYellowDeporte} />
+                    </span>
+                    <span className="home-links-mobile__sub-item-text">Deporte</span>
+                  </a>
+                  <a className="home-links-mobile__sub-item" href="/casino">
+                    <span className="SVGInline home-links-mobile__sub-item-icon">
+                      <img className="SVGInline-svg home-links-mobile__sub-item-icon-svg" src={IconYellowCasino} />
+                    </span>
+                    <span className="home-links-mobile__sub-item-text">Casino</span>
+                  </a>
+                  <a className="home-links-mobile__sub-item" href="/casinolive">
+                    <span className="SVGInline home-links-mobile__sub-item-icon">
+                      <img className="SVGInline-svg home-links-mobile__sub-item-icon-svg" src={IconYellowLiveCasino} />
+                    </span>
+                    <span className="home-links-mobile__sub-item-text">Casino en vivo</span>
+                  </a>
+                </div>
               </div>
             </div>
+
             <div className="slots-main-desktop__content-container">
               <div className="slots-main-desktop__provider-section">
                 <div className="provider-section-desktop">
