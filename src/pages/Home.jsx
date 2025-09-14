@@ -4,18 +4,12 @@ import { AppContext } from "../AppContext";
 import { LayoutContext } from "../components/LayoutContext";
 import { callApi } from "../utils/Utils";
 import GameCard from "/src/components/GameCard";
-import NavLinkIcon from "../components/NavLinkIcon";
-import CategoryButton from "../components/CategoryButton";
 import Slideshow from "../components/Slideshow";
 import GameModal from "../components/GameModal";
 import DivLoading from "../components/DivLoading";
-import SearchInput from "../components/SearchInput";
 import LoginModal from "../components/LoginModal";
+import VerifyAgeModal from "../components/VerifyAgeModal";
 import "animate.css";
-import ImgNavMidLobby from "/src/assets/img/nav-mid-lobby.png";
-import ImgHot from "/src/assets/img/hot.png";
-import ImgHeart from "/src/assets/img/heart.png";
-import ImgArrow from "/src/assets/img/arrow.png";
 import ImgBanner1 from "/src/assets/img/banner-desktop-01.webp";
 import ImgBanner2 from "/src/assets/img/banner-desktop-02.webp";
 import ImgBanner3 from "/src/assets/img/banner-desktop-03.webp";
@@ -55,6 +49,7 @@ const Home = () => {
   const [isLoadingGames, setIsLoadingGames] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [showAgeModal, setShowAgeModal] = useState(false);
   const refGameModal = useRef();
   const { isLogin } = useContext(LayoutContext);
   const navigate = useNavigate();
@@ -85,6 +80,11 @@ const Home = () => {
 
     if (contextData.session != null) {
       getStatus();
+    }
+
+    const isAgeVerified = localStorage.getItem("is-age-verified");
+    if (!isAgeVerified) {
+      setShowAgeModal(true);
     }
   }, []);
 
@@ -223,8 +223,18 @@ const Home = () => {
     setShowLoginModal(false);
   };
 
+  const handleAgeVerifyConfirm = () => {
+    localStorage.setItem("is-age-verified", JSON.stringify({ value: true }));
+    setShowAgeModal(false);
+  };
+
   return (
     <>
+      <VerifyAgeModal
+        isOpen={showAgeModal}
+        onClose={() => setShowAgeModal(false)}
+        onConfirm={handleAgeVerifyConfirm}
+      />
       {showLoginModal && (
         <LoginModal
           isOpen={showLoginModal}

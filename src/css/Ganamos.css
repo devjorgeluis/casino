@@ -5770,6 +5770,12 @@
     background: #130227
 }
 
+@media (max-width: 768px) {
+    .age-verification-desktop {
+        gap: 0;
+    }
+}
+
 .age-verification-desktop::before {
     content: "";
     position: absolute;
@@ -5812,6 +5818,15 @@
     -webkit-transform: translate(-50%, 0);
     -ms-transform: translate(-50%, 0);
     transform: translate(-50%, 0)
+}
+
+@media (max-width: 768px) {
+    .age-verification-desktop__mascot {
+        top: -12rem;
+        right: 0;
+        width: 20.07rem;
+        height: 24.091875rem;
+    }
 }
 
 .age-verification-desktop__button-group {
