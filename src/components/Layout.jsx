@@ -100,6 +100,11 @@ const Layout = () => {
                         icon=""
                     />
                     <NavLinkHeader
+                        title="Casino"
+                        pageCode="casino"
+                        icon=""
+                    />
+                    <NavLinkHeader
                         title="Casino en vivo"
                         pageCode="casinolive"
                         icon=""

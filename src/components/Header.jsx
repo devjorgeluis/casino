@@ -1,6 +1,7 @@
 import { useState } from "react";
 import UserMenu from "../components/UserMenu";
 import LanguageSelector from "../components/LanguageSelector";
+import NavLinkHeader from "../components/NavLinkHeader";
 import ImgLogo from "/src/assets/img/logo-net-new.png";
 import IconCurrency from "/src/assets/svg/currency.svg";
 import IconProfile from "/src/assets/svg/profile.svg";
@@ -27,7 +28,27 @@ const Header = ({ isLogin, userBalance, handleLoginClick, handleLogoutClick, fra
                         </div>
                     </a>
                     <nav className="header-main-menu-desktop">
-                        {fragmentNavLinksTop}
+                        {
+                            isLogin
+                            ? fragmentNavLinksTop
+                            : <>
+                                <NavLinkHeader
+                                    title="Inicio"
+                                    pageCode="home"
+                                    icon=""
+                                />
+                                <NavLinkHeader
+                                    title="Casino"
+                                    pageCode="casino"
+                                    icon=""
+                                />
+                                <NavLinkHeader
+                                    title="Casino en vivo"
+                                    pageCode="casinolive"
+                                    icon=""
+                                />
+                            </>
+                        }
                     </nav>
                 </div>
                 <div className="header-desktop__right">
