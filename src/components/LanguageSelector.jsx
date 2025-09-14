@@ -43,20 +43,20 @@ const LanguageSelector = () => {
                         >
                             <img
                                 className="set-language-desktop__item-img set-language-desktop__item-img_selected"
-                                src={ImgEn}
-                                alt="English language flag"
+                                src={ImgEs}
+                                alt="Spanish language flag"
                             />
                             <span className="set-language-desktop__item-text set-language-desktop__item-text_selected">
-                                English
+                                Español
                             </span>
                         </div>
                         <div className="set-language-desktop__item" role="menuitem">
                             <img
                                 className="set-language-desktop__item-img"
-                                src={ImgEs}
-                                alt="Spanish language flag"
+                                src={ImgEn}
+                                alt="English language flag"
                             />
-                            <span className="set-language-desktop__item-text">Español</span>
+                            <span className="set-language-desktop__item-text">English</span>
                         </div>
                     </div>
                 )}

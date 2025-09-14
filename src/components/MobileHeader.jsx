@@ -96,8 +96,8 @@ const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle
                                         <div className={`set-language-mobile__container ${showLanguage ? "set-language-mobile__container_isOpen" : ""}`}>
                                             <div className="set-language-mobile__current-item" onClick={toggleLanguageMenu}>
                                                 <div className="set-language-mobile__current-lang">
-                                                    <img className="set-language-mobile__current-flag" src={ImgEn} alt="English" />
-                                                    <span className="set-language-mobile__current-lang-name">English</span>
+                                                    <img className="set-language-mobile__current-flag" src={ImgEs} alt="Español" />
+                                                    <span className="set-language-mobile__current-lang-name">Español</span>
                                                 </div>
                                                 <span className="SVGInline set-language-mobile__arrow">
                                                     <img src={IconArrowRight} className="SVGInline-svg set-language-mobile__arrow-svg" />
@@ -106,8 +106,8 @@ const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle
                                             <div className={`set-language-mobile__items ${showLanguage ? "set-language-mobile__items_isOpen" : ""}`}>
                                                 <div className="set-language-mobile__item">
                                                     <div className="set-language-mobile__lang">
-                                                        <img className="set-language-mobile__flag" src={ImgEs} alt="Español" />
-                                                        <span className="set-language-mobile__lang-name">Español</span>
+                                                        <img className="set-language-mobile__flag" src={ImgEn} alt="English" />
+                                                        <span className="set-language-mobile__lang-name">English</span>
                                                     </div>
                                                     <div className="set-language-mobile__arrow"></div>
                                                 </div>
