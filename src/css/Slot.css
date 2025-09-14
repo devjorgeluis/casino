@@ -2355,7 +2355,7 @@
     height: 7.1875rem;
     border-radius: .625rem;
     margin-bottom: 1rem;
-    z-index: 1000;
+    z-index: 100;
     position: relative;
     gap: .3125rem
 }
