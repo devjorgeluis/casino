@@ -11,14 +11,14 @@ const VerifyAgeModal = ({ isOpen, onConfirm }) => {
                     <div className="age-verification-desktop">
                         <img className="age-verification-desktop__mascot" src={ImgMascot} alt="mascot" />
 
-                        <h2 className="age-verification-desktop__title">Verificação de idade</h2>
-                        <span className="age-verification-desktop__sub-title">Você tem mais de <span>18 anos</span> anos?</span>
+                        <h2 className="age-verification-desktop__title">Verificación de Edad</h2>
+                        <span className="age-verification-desktop__sub-title">Sos mayor de <span>18+</span> años?</span>
                         <div className="age-verification-desktop__button-group">
                             <div className="age-verification-desktop__button-container">
-                                <button type="button" className="button-desktop button-desktop_color_default" onClick={() => onConfirm()}>Sim</button>
+                                <button type="button" className="button-desktop button-desktop_color_default" onClick={() => onConfirm()}>Si</button>
                             </div>
                             <div className="age-verification-desktop__button-container">
-                                <a type="button" className="button-desktop button-desktop_color_purple-bordered" href="https://google.com">Não</a>
+                                <a type="button" className="button-desktop button-desktop_color_purple-bordered" href="https://google.com">No</a>
                             </div>
                         </div>
                     </div>
