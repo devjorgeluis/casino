@@ -8,7 +8,6 @@ import Slideshow from "../components/Slideshow";
 import GameModal from "../components/GameModal";
 import DivLoading from "../components/DivLoading";
 import LoginModal from "../components/LoginModal";
-import VerifyAgeModal from "../components/VerifyAgeModal";
 import "animate.css";
 import ImgBanner1 from "/src/assets/img/banner-desktop-01.webp";
 import ImgBanner2 from "/src/assets/img/banner-desktop-02.webp";
@@ -49,7 +48,6 @@ const Home = () => {
   const [isLoadingGames, setIsLoadingGames] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [showAgeModal, setShowAgeModal] = useState(false);
   const refGameModal = useRef();
   const { isLogin } = useContext(LayoutContext);
   const navigate = useNavigate();
@@ -80,11 +78,6 @@ const Home = () => {
 
     if (contextData.session != null) {
       getStatus();
-    }
-
-    const isAgeVerified = localStorage.getItem("is-age-verified");
-    if (!isAgeVerified) {
-      setShowAgeModal(true);
     }
   }, []);
 
@@ -223,18 +216,8 @@ const Home = () => {
     setShowLoginModal(false);
   };
 
-  const handleAgeVerifyConfirm = () => {
-    localStorage.setItem("is-age-verified", JSON.stringify({ value: true }));
-    setShowAgeModal(false);
-  };
-
   return (
     <>
-      <VerifyAgeModal
-        isOpen={showAgeModal}
-        onClose={() => setShowAgeModal(false)}
-        onConfirm={handleAgeVerifyConfirm}
-      />
       {showLoginModal && (
         <LoginModal
           isOpen={showLoginModal}

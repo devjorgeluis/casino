@@ -13,6 +13,7 @@ import LoginModal from "./LoginModal";
 import LogoutConfirmModal from "./LogoutConfirmModal";
 import FullDivLoading from "./FullDivLoading";
 import { NavigationContext } from "./NavigationContext";
+import VerifyAgeModal from "../components/VerifyAgeModal";
 
 const Layout = () => {
     const { contextData } = useContext(AppContext);
@@ -24,6 +25,7 @@ const Layout = () => {
     const [fragmentNavLinksTop, setFragmentNavLinksTop] = useState(<></>);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [showFullDivLoading, setShowFullDivLoading] = useState(false);
+    const [showAgeModal, setShowAgeModal] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -33,6 +35,13 @@ const Layout = () => {
             getStatus();
         }
     }, [contextData.session]);
+
+    useEffect(() => {
+        const isAgeVerified = localStorage.getItem("is-age-verified");
+        if (!isAgeVerified) {
+        setShowAgeModal(true);
+        }
+    })
 
     const refreshBalance = () => {
         setUserBalance("");
@@ -148,11 +157,21 @@ const Layout = () => {
         setShowFullDivLoading,
     };
 
+    const handleAgeVerifyConfirm = () => {
+        localStorage.setItem("is-age-verified", JSON.stringify({ value: true }));
+        setShowAgeModal(false);
+    };
+
     return (
         <LayoutContext.Provider value={layoutContextValue}>
             <NavigationContext.Provider
                 value={{ fragmentNavLinksTop, selectedPage, setSelectedPage, getPage, showFullDivLoading, setShowFullDivLoading }}
             >
+                <VerifyAgeModal
+                    isOpen={showAgeModal}
+                    onClose={() => setShowAgeModal(false)}
+                    onConfirm={handleAgeVerifyConfirm}
+                />
                 <div className="body-container fade-in">
                     <FullDivLoading show={showFullDivLoading} />
                     {showLogoutModal && (
