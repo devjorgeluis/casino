@@ -5,17 +5,13 @@ import { LayoutContext } from "../components/LayoutContext";
 import { NavigationContext } from "../components/NavigationContext";
 import { callApi } from "../utils/Utils";
 import GameCard from "/src/components/GameCard";
-import NavLinkIcon from "../components/NavLinkIcon";
 import CategoryButton from "../components/CategoryButton";
 import GameModal from "../components/GameModal";
 import DivLoading from "../components/DivLoading";
 import SearchInput from "../components/SearchInput";
 import LoginModal from "../components/LoginModal";
+import CustomAlert from "../components/CustomAlert";
 import "animate.css";
-import ImgNavMidLobby from "/src/assets/img/nav-mid-lobby.png";
-import ImgHot from "/src/assets/img/hot.png";
-import ImgHeart from "/src/assets/img/heart.png";
-import ImgArrow from "/src/assets/img/arrow.png";
 import ImgLiveBanner from "/src/assets/img/live-banner.png";
 import ImgMobileLiveBanner from "/src/assets/img/mobile-live-banner.png";
 
@@ -26,6 +22,7 @@ let pageCurrent = 0;
 
 const LiveCasino = () => {
   const pageTitle = "Live Casino";
+  const casinoBaseUrl = "https://casinotango.xyz/";
   const { contextData } = useContext(AppContext);
   const { isLogin } = useContext(LayoutContext);
   const { setShowFullDivLoading } = useContext(NavigationContext);
@@ -34,9 +31,9 @@ const LiveCasino = () => {
   const [activeCategory, setActiveCategory] = useState({});
   const [pageData, setPageData] = useState({});
   const [games, setGames] = useState([]);
-  const [topLiveCasinoGames, setTopLiveCasinoGames] = useState([]);
   const [gameUrl, setGameUrl] = useState("");
   const [txtSearch, setTxtSearch] = useState("");
+  const [messageCustomAlert, setMessageCustomAlert] = useState("");
   const [isLoadingGames, setIsLoadingGames] = useState(false);
   const [searchDelayTimer, setSearchDelayTimer] = useState();
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -64,34 +61,47 @@ const LiveCasino = () => {
   }, []);
 
   useEffect(() => {
-    getPage("home");
-
-    if (contextData.session != null) {
-      getStatus();
-    }
+    getPage("livecasino");
   }, []);
-
-  const getStatus = () => {
-    setShowFullDivLoading(true);
-    callApi(contextData, "GET", "/get-status", callbackGetStatus, null);
-  };
-
-  const callbackGetStatus = (result) => {
-    contextData.slots_only = result && result.slots_only;
-    setTopLiveCasinoGames(result && result.top_livecasino ? result.top_livecasino : []);
-    setShowFullDivLoading(false);
-  };
 
   const getPage = (page) => {
     setCategories([]);
     setGames([]);
-    setShowFullDivLoading(true);
-    callApi(contextData, "GET", "/get-page?page=" + page, callbackGetPage, null);
+    // setShowFullDivLoading(true);
+    fetch(casinoBaseUrl + "api/v2/get-page?page=" + page, {
+      mode: "cors",
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        Authorization: "bearer " + contextData.session?.authorization?.token,
+      },
+    })
+    .then((res) => {
+      switch (res.status) {
+        case 500:
+          setMessageCustomAlert(["error", "Ha ocurrido un error inesperado, contacte al administrador."]);
+          return;
+        case 422:
+          setMessageCustomAlert(["error", "Los datos ingresados no son válidos."]);
+          return;
+        case 401:
+          localStorage.removeItem("session");
+          window.location.reload();
+          return;
+        default:
+          return res.json();
+      }
+    })
+    .then((response) => {
+      callbackGetPage(response);
+    });
   };
 
   const callbackGetPage = (result) => {
-    setCategories(result.data.categories);
-    setPageData(result.data);
+    console.log(result);
+    
+    setCategories(result && result.data.categories);
+    setPageData(result && result.data);
 
     if (pageData.url && pageData.url != null) {
       if (contextData.isMobile) {
@@ -126,7 +136,7 @@ const LiveCasino = () => {
   const fetchContent = (category, categoryId, tableName, categoryIndex, resetCurrentPage) => {
     let pageSize = 30;
     setIsLoadingGames(true);
-    setShowFullDivLoading(true);
+    // setShowFullDivLoading(true);
 
     if (resetCurrentPage == true) {
       pageCurrent = 0;
@@ -136,44 +146,94 @@ const LiveCasino = () => {
     setActiveCategory(category);
     setSelectedCategoryIndex(categoryIndex);
 
-    callApi(
-      contextData,
-      "GET",
-      "/get-content?page_group_code=" +
-        pageData.page_group_code +
-        "&table_name=" +
-        tableName +
-        "&apigames_category_id=" +
-        categoryId +
-        "&page=" +
-        pageCurrent +
-        "&length=" +
-        pageSize,
-      callbackFetchContent,
-      null
-    );
-  };
+    const params = new URLSearchParams({
+      page_group_type: "categories",
+      page: pageCurrent.toString(),
+      page_group_code: pageData.page_group_code,
+      table_name: tableName || "apigames_categories",
+      apigames_category_id: categoryId.toString(),
+      length: pageSize.toString(),
+    });
 
-  const callbackFetchContent = (result) => {
-    if (pageCurrent == 0) {
-      configureImageSrc(result);
-      setGames(result.content);
-    } else {
-      configureImageSrc(result);
-      setGames([...games, ...result.content]);
-    }
-    pageCurrent += 1;
-    setIsLoadingGames(false);
-    setShowFullDivLoading(false);
-  };
+    fetch(casinoBaseUrl + "service/apigames/games?" + params.toString(), {
+      mode: "cors",
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        Authorization: "bearer " + contextData.session?.authorization?.token,
+      },
+    })
+      .then((res) => {
+        switch (res.status) {
+          case 500:
+            setMessageCustomAlert(["error", "Ha ocurrido un error inesperado, contacte al administrador."]);
+            return;
+          case 422:
+            setMessageCustomAlert(["error", "Los datos ingresados no son válidos."]);
+            return;
+          case 401:
+            localStorage.removeItem("session");
+            window.location.reload();
+            return;
+          default:
+            return res.json();
+        }
+      })
+      .then((result) => {
+        if (result && result.code === "0") {
+          const content = result.data || [];
+          if (pageCurrent == 0) {
+            configureImageSrc({ content });
+            setGames(content);
+          } else {
+            configureImageSrc({ content });
+            setGames([...games, ...content]);
+          }
+          pageCurrent += 1;
+        }
+        setIsLoadingGames(false);
+        setShowFullDivLoading(false);
+      });
+  }
 
   const launchGame = (id, type, launcher) => {
     selectedGameId = id != null ? id : selectedGameId;
     selectedGameType = type != null ? type : selectedGameType;
     selectedGameLauncher = launcher != null ? launcher : selectedGameLauncher;
-    setShowFullDivLoading(true);
+    // setShowFullDivLoading(true);
 
-    callApi(contextData, "GET", "/get-game-url?game_id=" + selectedGameId, callbackLaunchGame, null);
+    fetch(casinoBaseUrl + "service/apigames/get_game_url?launcher=modal&type=casino&game_id=" + selectedGameId, callbackLaunchGame, {
+      mode: "cors",
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        Authorization: "bearer " + contextData.session?.authorization?.token,
+      },
+    })
+    .then((res) => {      
+      switch (res.status) {
+        case 500:
+          setMessageCustomAlert(["error", "Ha ocurrido un error inesperado, contacte al administrador."]);
+          return;
+        case 422:
+          setMessageCustomAlert(["error", "Los datos ingresados no son válidos."]);
+          return;
+        case 401:
+          localStorage.removeItem("session");
+          // window.location.reload();
+          return;
+        default:
+          return res.json();
+      }
+    })
+    .then((response) => {
+      if (response) {
+        callbackGetPage(response);
+      } else {
+        selectedGameId = null;
+        getPage("livecasino");
+      }
+    });
   };
 
   const callbackLaunchGame = (result) => {
@@ -248,9 +308,6 @@ const LiveCasino = () => {
   const configureImageSrc = (result) => {
     result.content.forEach((element) => {
       let imageDataSrc = element.image_url;
-      if (element.image_local != null) {
-        imageDataSrc = contextData.cdnUrl + element.image_local;
-      }
       element.imageDataSrc = imageDataSrc;
     });
   };
@@ -273,6 +330,8 @@ const LiveCasino = () => {
         />
       )}
 
+      <CustomAlert message={messageCustomAlert} />
+
       {selectedGameId !== null ? (
         <GameModal
           gameUrl={gameUrl}
@@ -288,41 +347,6 @@ const LiveCasino = () => {
               src={isMobile ? ImgMobileLiveBanner : ImgLiveBanner}
               alt="banner"
             />
-            {topLiveCasinoGames.length > 0 && (
-              <div className="slots-main-desktop__content-container">
-                <div className="slots-main-desktop__provider-section">
-                  <div className="provider-section-desktop">
-                    <div className="provider-section-desktop__header">
-                      <div className="provider-section-desktop__header-img-container">
-                        <div className="provider-section-desktop__header-img-top">
-                          <span className="provider-section-desktop__header-provider-text">
-                            Los mejores juegos de casino en vivo
-                          </span>
-                        </div>
-                        <div className="provider-section-desktop__header-line"></div>
-                      </div>
-                    </div>
-                    <div className="provider-section-desktop__games-container">
-                      {topLiveCasinoGames.map((item, index) => (
-                        <GameCard
-                          key={index}
-                          id={item.id}
-                          title={item.name}
-                          imageSrc={item.image_url || item.image_local ? contextData.cdnUrl + item.image_local : ""}
-                          onClick={() =>
-                            isLogin
-                              ? launchGame(item.id, item.type, item.launcher || "modal")
-                              : isMobile
-                              ? navigate("/login")
-                              : handleLoginClick()
-                          }
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
             <div className="slots-main-desktop__filter-container">
               <div className="slots-main-desktop__provider-filter-list">
                 {categories && categories.length > 0 && (
@@ -384,8 +408,8 @@ const LiveCasino = () => {
                             isLogin
                               ? launchGame(item.id, item.type, item.launcher)
                               : isMobile
-                              ? navigate("/login")
-                              : handleLoginClick()
+                                ? navigate("/login")
+                                : handleLoginClick()
                           }
                         />
                       ))}

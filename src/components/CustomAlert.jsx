@@ -1,20 +1,49 @@
+import { useState, useEffect } from "react";
 import IconSuccess from "/src/assets/svg/success.svg";
 import IconError from "/src/assets/svg/error.svg";
 
-const CustomAlert = (props) => {
+const CustomAlert = ({ message, onClose }) => {
+  const [isVisible, setIsVisible] = useState(!!message && Array.isArray(message) && message[1] !== "");
+
+  useEffect(() => {
+    // Update visibility when message prop changes
+    setIsVisible(!!message && Array.isArray(message) && message[1] !== "");
+  }, [message]);
+
+  const handleClose = (e) => {
+    e.preventDefault();
+    e.stopPropagation(); // Prevent event bubbling
+    console.log("CustomAlert: Close button clicked", { message, isVisible });
+    setIsVisible(false);
+    if (onClose) {
+      onClose(); // Notify parent component if onClose is provided
+    }
+  };
+
+  if (!isVisible) return null;
+
   return (
     <div id="notify-root">
-      {props.message && Array.isArray(props.message) && props.message[1] !== "" && (
+      {message && Array.isArray(message) && message[1] !== "" && (
         <div
-          className={`notification ${props.message[0] === "success" ? "notification_type_success" : "notification_type_error"}`}
+          className={`notification ${
+            message[0] === "success" ? "notification_type_success" : "notification_type_error"
+          }`}
         >
           <div className="notification__wrapper">
-            <span className="notification__text">{props.message[1]}</span>
+            <span className="notification__text">{message[1]}</span>
             <div className="notification__left">
-              <span className="SVGInline notification__cross">
+              <span
+                className="SVGInline notification__cross"
+                onClick={handleClose}
+                role="button"
+                aria-label="Close alert"
+                style={{ cursor: "pointer" }}
+              >
                 <img
-                  src={props.message[0] === "success" ? IconSuccess : IconError}
+                  src={message[0] === "success" ? IconSuccess : IconError}
                   className="SVGInline-svg notification__cross-svg"
+                  alt="Close"
                 />
               </span>
             </div>
