@@ -86,6 +86,11 @@ const Layout = () => {
                         pageCode="casino"
                         icon=""
                     />
+                    <NavLinkHeader
+                        title="Casino en vivo"
+                        pageCode="casinolive"
+                        icon=""
+                    />
                 </>
             );
         } else {

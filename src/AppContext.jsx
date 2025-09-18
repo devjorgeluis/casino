@@ -5,6 +5,7 @@ export const AppContext = createContext(null);
 // y contiene las variables globales de la aplicación (contextData)
 const AppContextProvider = (props) => {
   let apiBaseUrl = import.meta.env.VITE_API_URL;
+  let serviceUrl = import.meta.env.VITE_SERVICE_URL;
   let cdnUrl = import.meta.env.VITE_CDN_URL;
   let pageTitle = import.meta.env.VITE_PAGE_TITLE;
   let buildMode = import.meta.env.MODE;
@@ -23,6 +24,7 @@ const AppContextProvider = (props) => {
 
   const [contextData, setContextData] = useState({
     apiBaseUrl: apiBaseUrl,
+    serviceUrl: serviceUrl,
     cdnUrl: cdnUrl,
     buildMode: buildMode,
     session: session,
