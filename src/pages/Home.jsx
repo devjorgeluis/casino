@@ -8,6 +8,7 @@ import Slideshow from "../components/Slideshow";
 import GameModal from "../components/GameModal";
 import DivLoading from "../components/DivLoading";
 import LoginModal from "../components/LoginModal";
+import CustomAlert from "../components/CustomAlert";
 import "animate.css";
 import ImgBanner1 from "/src/assets/img/banner-desktop-01.webp";
 import ImgBanner2 from "/src/assets/img/banner-desktop-02.webp";
@@ -37,6 +38,7 @@ let pageCurrent = 0;
 
 const Home = () => {
   const pageTitle = "Home";
+  const casinoBaseUrl = "https://casinotango.xyz/";
   const { contextData } = useContext(AppContext);
   const [selectedPage, setSelectedPage] = useState("lobby");
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
@@ -48,6 +50,7 @@ const Home = () => {
   const [isLoadingGames, setIsLoadingGames] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [messageCustomAlert, setMessageCustomAlert] = useState("");
   const refGameModal = useRef();
   const { isLogin } = useContext(LayoutContext);
   const navigate = useNavigate();
@@ -174,6 +177,41 @@ const Home = () => {
     setIsLoadingGames(false);
   };
 
+  const launchLiveCasinoGame = (id, type, launcher) => {
+    fetch(casinoBaseUrl + `service/apigames/get_game_url?launcher=${launcher}&type=${type}&game_id=${id}`, callbackLaunchGame, {
+      mode: "cors",
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        Authorization: "bearer " + contextData.session?.authorization?.token,
+      },
+    })
+    .then((res) => {      
+      switch (res.status) {
+        case 500:
+          setMessageCustomAlert(["error", "Ha ocurrido un error inesperado, contacte al administrador."]);
+          return;
+        case 422:
+          setMessageCustomAlert(["error", "Los datos ingresados no son válidos."]);
+          return;
+        case 401:
+          localStorage.removeItem("session");
+          // window.location.reload();
+          return;
+        default:
+          return res.json();
+      }
+    })
+    .then((response) => {
+      if (response) {
+        callbackGetPage(response);
+      } else {
+        selectedGameId = null;
+        getPage("home");
+      }
+    });
+  };
+
   const launchGame = (id, type, launcher) => {
     selectedGameId = id != null ? id : selectedGameId;
     selectedGameType = type != null ? type : selectedGameType;
@@ -225,6 +263,8 @@ const Home = () => {
           onConfirm={handleLoginConfirm}
         />
       )}
+
+      <CustomAlert message={messageCustomAlert} />
 
       {
         selectedGameId !== null ?
@@ -320,7 +360,7 @@ const Home = () => {
               <div className="home-links-mobile">
                 <div className="home-links-mobile__main">
                   <a className="home-links-card-mobile" href="#">
-                    <div className="home-links-card-mobile__content home-links-card-mobile__content_bg_card">
+                    <div className="home-links-card-mobile__content home-links-card-mobile__content_bg_card" onClick={() => launchLiveCasinoGame(19985, "casino", "modal")}>
                       <img className="home-links-card-mobile__img" src={ImgBlackjackMain} alt="Blackjack" loading="lazy" />
                       <span className="home-links-card-mobile__title">Blackjack</span></div>
                   </a>

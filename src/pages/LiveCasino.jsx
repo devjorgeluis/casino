@@ -3,12 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../AppContext";
 import { LayoutContext } from "../components/LayoutContext";
 import { NavigationContext } from "../components/NavigationContext";
-import { callApi } from "../utils/Utils";
 import GameCard from "/src/components/GameCard";
 import CategoryButton from "../components/CategoryButton";
 import GameModal from "../components/GameModal";
 import DivLoading from "../components/DivLoading";
-import SearchInput from "../components/SearchInput";
 import LoginModal from "../components/LoginModal";
 import CustomAlert from "../components/CustomAlert";
 import "animate.css";
@@ -32,13 +30,10 @@ const LiveCasino = () => {
   const [pageData, setPageData] = useState({});
   const [games, setGames] = useState([]);
   const [gameUrl, setGameUrl] = useState("");
-  const [txtSearch, setTxtSearch] = useState("");
   const [messageCustomAlert, setMessageCustomAlert] = useState("");
   const [isLoadingGames, setIsLoadingGames] = useState(false);
-  const [searchDelayTimer, setSearchDelayTimer] = useState();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const searchRef = useRef(null);
   const refGameModal = useRef();
   const navigate = useNavigate();
 
@@ -68,7 +63,7 @@ const LiveCasino = () => {
     setCategories([]);
     setGames([]);
     // setShowFullDivLoading(true);
-    fetch(casinoBaseUrl + "api/v2/get-page?page=" + page, {
+    fetch(casinoBaseUrl + "api/v2/get-page?page=" + page + "&slot_only=true", {
       mode: "cors",
       method: "GET",
       headers: {
@@ -248,63 +243,6 @@ const LiveCasino = () => {
     setShowFullDivLoading(false);
   };
 
-  const search = (e) => {
-    let keyword = e.target.value;
-    setTxtSearch(keyword);
-
-    if (navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)) {
-      let keyword = e.target.value;
-      do_search(keyword);
-    } else {
-      if (
-        (e.keyCode >= 48 && e.keyCode <= 57) ||
-        (e.keyCode >= 65 && e.keyCode <= 90) ||
-        e.keyCode == 8 ||
-        e.keyCode == 46
-      ) {
-        do_search(keyword);
-      }
-    }
-
-    if (e.key === "Enter" || e.keyCode === 13 || e.key === "Escape" || e.keyCode === 27) {
-      searchRef.current?.blur();
-    }
-  };
-
-  const do_search = (keyword) => {
-    clearTimeout(searchDelayTimer);
-
-    if (keyword == "") {
-      return;
-    }
-
-    setGames([]);
-    setIsLoadingGames(true);
-    setShowFullDivLoading(true);
-
-    let pageSize = 15;
-
-    let searchDelayTimerTmp = setTimeout(function () {
-      callApi(
-        contextData,
-        "GET",
-        "/search-content?keyword=" + txtSearch + "&page_group_code=" + pageData.page_group_code + "&length=" + pageSize,
-        callbackSearch,
-        null
-      );
-    }, 1000);
-
-    setSearchDelayTimer(searchDelayTimerTmp);
-  };
-
-  const callbackSearch = (result) => {
-    configureImageSrc(result);
-    setGames(result.content);
-    setIsLoadingGames(false);
-    setShowFullDivLoading(false);
-    pageCurrent = 0;
-  };
-
   const configureImageSrc = (result) => {
     result.content.forEach((element) => {
       let imageDataSrc = element.image_url;
@@ -363,15 +301,6 @@ const LiveCasino = () => {
                   </div>
                 )}
                 {categories.length == 0 && <DivLoading />}
-              </div>
-
-              <div className="slots-main-mobile__search-category-filters">
-                <SearchInput
-                  txtSearch={txtSearch}
-                  setTxtSearch={setTxtSearch}
-                  searchRef={searchRef}
-                  search={search}
-                />
               </div>
             </div>
 
