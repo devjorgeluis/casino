@@ -6,17 +6,28 @@ const CustomAlert = ({ message, onClose }) => {
   const [isVisible, setIsVisible] = useState(!!message && Array.isArray(message) && message[1] !== "");
 
   useEffect(() => {
-    // Update visibility when message prop changes
     setIsVisible(!!message && Array.isArray(message) && message[1] !== "");
   }, [message]);
 
+  useEffect(() => {
+    if (isVisible) {
+      const timer = setTimeout(() => {
+        setIsVisible(false);
+        if (onClose) {
+          onClose();
+        }
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible, onClose]);
+
   const handleClose = (e) => {
     e.preventDefault();
-    e.stopPropagation(); // Prevent event bubbling
-    console.log("CustomAlert: Close button clicked", { message, isVisible });
+    e.stopPropagation();
     setIsVisible(false);
     if (onClose) {
-      onClose(); // Notify parent component if onClose is provided
+      onClose();
     }
   };
 
