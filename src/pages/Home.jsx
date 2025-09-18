@@ -50,6 +50,7 @@ const Home = () => {
   const [isLoadingGames, setIsLoadingGames] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isSlotsOnly, setIsSlotsOnly] = useState("");
   const [messageCustomAlert, setMessageCustomAlert] = useState("");
   const refGameModal = useRef();
   const { isLogin } = useContext(LayoutContext);
@@ -93,6 +94,7 @@ const Home = () => {
 
   const callbackGetStatus = (result) => {
     contextData.slots_only = result && result.slots_only;
+    setIsSlotsOnly(contextData.slots_only ? "true" : "false")
   };
 
   const getPage = (page) => {
@@ -421,7 +423,7 @@ const Home = () => {
                     </span>
                     <span className="home-links-mobile__sub-item-text">Casino</span>
                   </a>
-                  <a className="home-links-mobile__sub-item" href="/casinolive">
+                  <a className="home-links-mobile__sub-item" href={isSlotsOnly == "" || isSlotsOnly == "true" ? "#" : "/casinolive"}>
                     <span className="SVGInline home-links-mobile__sub-item-icon">
                       <img className="SVGInline-svg home-links-mobile__sub-item-icon-svg" src={IconYellowLiveCasino} />
                     </span>

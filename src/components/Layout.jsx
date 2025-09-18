@@ -26,6 +26,7 @@ const Layout = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [showFullDivLoading, setShowFullDivLoading] = useState(false);
     const [showAgeModal, setShowAgeModal] = useState(false);
+    const [isSlotsOnly, setIsSlotsOnly] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -72,6 +73,7 @@ const Layout = () => {
 
     const callbackGetStatus = (result) => {
         if ((result && result.slots_only == null) || (result && result.slots_only == false)) {
+            setIsSlotsOnly("false");
             setFragmentNavLinksTop(
                 <>
                     <NavLinkHeader
@@ -82,16 +84,12 @@ const Layout = () => {
                     <NavLinkHeader
                         title="Casino"
                         pageCode="casino"
-                        icon=""
-                    />
-                    <NavLinkHeader
-                        title="Casino en vivo"
-                        pageCode="casinolive"
                         icon=""
                     />
                 </>
             );
         } else {
+            setIsSlotsOnly("true");
             setFragmentNavLinksTop(
                 <>
                     <NavLinkHeader
@@ -102,11 +100,6 @@ const Layout = () => {
                     <NavLinkHeader
                         title="Casino"
                         pageCode="casino"
-                        icon=""
-                    />
-                    <NavLinkHeader
-                        title="Casino en vivo"
-                        pageCode="casinolive"
                         icon=""
                     />
                 </>
@@ -197,6 +190,7 @@ const Layout = () => {
                                 handleLoginClick={handleLoginClick}
                                 handleLogoutClick={handleLogoutClick}
                                 fragmentNavLinksTop={fragmentNavLinksTop}
+                                isSlotsOnly={isSlotsOnly}
                             />
                             <MobileHeader
                                 isLogin={isLogin}
@@ -209,7 +203,7 @@ const Layout = () => {
                                 <Outlet />
                             </main>
                             <Footer />
-                            <MobileFooter />
+                            <MobileFooter isSlotsOnly={isSlotsOnly} />
                         </div>
                     </div>
                 </div>

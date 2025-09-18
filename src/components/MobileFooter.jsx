@@ -7,7 +7,7 @@ import IconLiveBetting from "/src/assets/svg/live-betting.svg";
 import IconFooterCasino from "/src/assets/svg/footer-casino.svg";
 import IconLiveCasino from "/src/assets/svg/live-casino.svg";
 
-const MobileFooter = () => {
+const MobileFooter = ({ isSlotsOnly }) => {
     return (
         <div className="main-mobile-menu">
             <a className="main-mobile-menu__ganamos-dog" href="/">
@@ -43,7 +43,7 @@ const MobileFooter = () => {
                     </div>
                     <span className="main-mobile-menu__menu-text main-mobile-menu__menu-text_active">Casino</span>
                 </a>
-                <a className="main-mobile-menu__menu-item" href="/casinolive">
+                <a className="main-mobile-menu__menu-item" href={isSlotsOnly === "" || isSlotsOnly === "true" ? "#" : "/casinolive"}>
                     <img className="main-mobile-menu__menu-active" src={ImgActive} alt="" />
                     <div className="main-mobile-menu__menu-icon-container">
                         <span className="SVGInline main-mobile-menu__menu-icon">

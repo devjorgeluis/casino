@@ -7,7 +7,7 @@ import IconCurrency from "/src/assets/svg/currency.svg";
 import IconProfile from "/src/assets/svg/profile.svg";
 import IconLogout from "/src/assets/svg/logout.svg";
 
-const Header = ({ isLogin, userBalance, handleLoginClick, handleLogoutClick, fragmentNavLinksTop }) => {
+const Header = ({ isLogin, userBalance, handleLoginClick, handleLogoutClick, fragmentNavLinksTop, isSlotsOnly }) => {
     const [showUserMenu, setShowUserMenu] = useState(false);
     const openMenu = () => {
         setShowUserMenu(!showUserMenu);
@@ -30,24 +30,53 @@ const Header = ({ isLogin, userBalance, handleLoginClick, handleLogoutClick, fra
                     <nav className="header-main-menu-desktop">
                         {
                             isLogin
-                            ? fragmentNavLinksTop
-                            : <>
-                                <NavLinkHeader
-                                    title="Inicio"
-                                    pageCode="home"
-                                    icon=""
-                                />
-                                <NavLinkHeader
-                                    title="Casino"
-                                    pageCode="casino"
-                                    icon=""
-                                />
-                                <NavLinkHeader
-                                    title="Casino en vivo"
-                                    pageCode="casinolive"
-                                    icon=""
-                                />
-                            </>
+                                ? fragmentNavLinksTop
+                                : <>
+                                    {
+                                        isSlotsOnly === "" ? 
+                                        <>
+                                            <NavLinkHeader
+                                                title="Inicio"
+                                                pageCode="home"
+                                                icon=""
+                                            />
+                                            <NavLinkHeader
+                                                title="Casino"
+                                                pageCode="casino"
+                                                icon=""
+                                            />
+                                        </> : isSlotsOnly === "false" ? 
+                                        <>
+                                            <NavLinkHeader
+                                                title="Inicio"
+                                                pageCode="home"
+                                                icon=""
+                                            />
+                                            <NavLinkHeader
+                                                title="Casino"
+                                                pageCode="casino"
+                                                icon=""
+                                            />
+                                            <NavLinkHeader
+                                                title="Casino en vivo"
+                                                pageCode="casinolive"
+                                                icon=""
+                                            />
+                                        </> :
+                                        <>
+                                            <NavLinkHeader
+                                                title="Inicio"
+                                                pageCode="home"
+                                                icon=""
+                                            />
+                                            <NavLinkHeader
+                                                title="Casino"
+                                                pageCode="casino"
+                                                icon=""
+                                            />
+                                        </>
+                                        }
+                                    </>
                         }
                     </nav>
                 </div>
