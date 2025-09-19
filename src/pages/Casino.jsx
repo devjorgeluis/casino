@@ -219,7 +219,7 @@ const Casino = () => {
   const fetchContent = (category, categoryId, tableName, categoryIndex, resetCurrentPage) => {
     let pageSize = 30;
     setIsLoadingGames(true);
-    setShowFullDivLoading(true);
+    // setShowFullDivLoading(true);
 
     if (resetCurrentPage == true) {
       pageCurrent = 0;
