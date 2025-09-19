@@ -444,7 +444,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="home-links-mobile__sub">
-                <a className="home-links-mobile__sub-item" href="#">
+                <a className="home-links-mobile__sub-item" href={isSlotsOnly == "true" ? "#" : "/sports"}>
                   <span className="SVGInline home-links-mobile__sub-item-icon">
                     <img className="SVGInline-svg home-links-mobile__sub-item-icon-svg" src={IconYellowDeporte} />
                   </span>
@@ -458,7 +458,7 @@ const Home = () => {
                 </a>
                 <a
                   className="home-links-mobile__sub-item"
-                  href={isSlotsOnly == "" || isSlotsOnly == "true" ? "#" : "/casinolive"}
+                  href={isSlotsOnly == "true" ? "#" : "/casinolive"}
                 >
                   <span className="SVGInline home-links-mobile__sub-item-icon">
                     <img className="SVGInline-svg home-links-mobile__sub-item-icon-svg" src={IconYellowLiveCasino} />

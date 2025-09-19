@@ -15,13 +15,13 @@ const MobileFooter = ({ isSlotsOnly }) => {
             </a>
             <img className="main-mobile-menu__background" src={ImgBackground} alt="background" />
             <nav className="main-mobile-menu__main">
-                <div className="main-mobile-menu__menu-item">
+                <a className="main-mobile-menu__menu-item" href={isSlotsOnly === "true" ? "#" : "/sports"}>
                     <img className="main-mobile-menu__menu-active" src={ImgActive} alt="" />
                     <span className="SVGInline main-mobile-menu__menu-icon">
                         <img className="SVGInline-svg main-mobile-menu__menu-icon-svg" src={IconSport} alt="sport" />
                     </span>
                     <span className="main-mobile-menu__menu-text">Deporte</span>
-                </div>
+                </a>
                 <div className="main-mobile-menu__menu-item">
                     <img className="main-mobile-menu__menu-active" src={ImgActive} alt="" />
                     <span className="SVGInline main-mobile-menu__menu-icon">
@@ -43,7 +43,7 @@ const MobileFooter = ({ isSlotsOnly }) => {
                     </div>
                     <span className="main-mobile-menu__menu-text main-mobile-menu__menu-text_active">Casino</span>
                 </a>
-                <a className="main-mobile-menu__menu-item" href={isSlotsOnly === "" || isSlotsOnly === "true" ? "#" : "/casinolive"}>
+                <a className="main-mobile-menu__menu-item" href={isSlotsOnly === "true" ? "#" : "/casinolive"}>
                     <img className="main-mobile-menu__menu-active" src={ImgActive} alt="" />
                     <div className="main-mobile-menu__menu-icon-container">
                         <span className="SVGInline main-mobile-menu__menu-icon">

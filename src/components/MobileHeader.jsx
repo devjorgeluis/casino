@@ -7,10 +7,13 @@ import ImgBet from "/src/assets/img/bet-responsibility.png";
 import IconHamburger from "/src/assets/svg/hamburger.svg";
 import IconProfile from "/src/assets/svg/profile.svg";
 import IconCasino from "/src/assets/svg/casino.svg";
+import IconLiveCasino from "/src/assets/svg/live-casino.svg";
+import IconDeporte from "/src/assets/svg/deporte.svg";
+import IconLive from "/src/assets/svg/live.svg";
 import IconSupport from "/src/assets/svg/support.svg";
 import IconArrowRight from "/src/assets/svg/arrow-right.svg";
 
-const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle }) => {
+const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle, isSlotsOnly }) => {
     const navigate = useNavigate();
     const [showLanguage, setShowLanguage] = useState(false);
     
@@ -67,6 +70,27 @@ const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle
                             <nav className="side-menu-mobile__navigation">
                                 <div className="links-menu-side-menu">
                                     <div className="links-menu-side-menu__header">
+                                        <h2 className="links-menu-side-menu__title">Deporte</h2>
+                                    </div>
+                                    <div className="links-menu-side-menu__items">
+                                        <a className="links-menu-side-menu__item" href={isSlotsOnly === "true" ? "#" : "/sports"}>
+                                            <span className="SVGInline links-menu-side-menu__item-icon">
+                                                <img src={IconDeporte} className="SVGInline-svg links-menu-side-menu__item-icon-svg" />
+                                            </span>
+                                            <span className="links-menu-side-menu__item-label">Deporte</span>
+                                        </a>
+                                    </div>
+                                    <div className="links-menu-side-menu__items">
+                                        <a className="links-menu-side-menu__item" href="#">
+                                            <span className="SVGInline links-menu-side-menu__item-icon">
+                                                <img src={IconLive} className="SVGInline-svg links-menu-side-menu__item-icon-svg" />
+                                            </span>
+                                            <span className="links-menu-side-menu__item-label">En vivo</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div className="links-menu-side-menu">
+                                    <div className="links-menu-side-menu__header">
                                         <h2 className="links-menu-side-menu__title">Juegos</h2>
                                     </div>
                                     <div className="links-menu-side-menu__items">
@@ -75,6 +99,14 @@ const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle
                                                 <img src={IconCasino} className="SVGInline-svg links-menu-side-menu__item-icon-svg" />
                                             </span>
                                             <span className="links-menu-side-menu__item-label">Casino</span>
+                                        </a>
+                                    </div>
+                                    <div className="links-menu-side-menu__items">
+                                        <a className="links-menu-side-menu__item" href={isSlotsOnly === "true" ? "#" : "/casinolive"}>
+                                            <span className="SVGInline links-menu-side-menu__item-icon">
+                                                <img src={IconLiveCasino} className="SVGInline-svg links-menu-side-menu__item-icon-svg" />
+                                            </span>
+                                            <span className="links-menu-side-menu__item-label">Casino en vivo</span>
                                         </a>
                                     </div>
                                 </div>

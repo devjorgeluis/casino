@@ -41,8 +41,18 @@ const Header = ({ isLogin, userBalance, handleLoginClick, handleLogoutClick, fra
                                                 icon=""
                                             />
                                             <NavLinkHeader
+                                                title="Deporte"
+                                                pageCode="sports"
+                                                icon=""
+                                            />
+                                            <NavLinkHeader
                                                 title="Casino"
                                                 pageCode="casino"
+                                                icon=""
+                                            />
+                                            <NavLinkHeader
+                                                title="Casino en vivo"
+                                                pageCode="casinolive"
                                                 icon=""
                                             />
                                         </> : isSlotsOnly === "false" ? 
@@ -50,6 +60,11 @@ const Header = ({ isLogin, userBalance, handleLoginClick, handleLogoutClick, fra
                                             <NavLinkHeader
                                                 title="Inicio"
                                                 pageCode="home"
+                                                icon=""
+                                            />
+                                            <NavLinkHeader
+                                                title="Deporte"
+                                                pageCode="sports"
                                                 icon=""
                                             />
                                             <NavLinkHeader

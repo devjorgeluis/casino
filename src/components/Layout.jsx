@@ -82,6 +82,11 @@ const Layout = () => {
                         icon=""
                     />
                     <NavLinkHeader
+                        title="Deporte"
+                        pageCode="sports"
+                        icon=""
+                    />
+                    <NavLinkHeader
                         title="Casino"
                         pageCode="casino"
                         icon=""
@@ -203,6 +208,7 @@ const Layout = () => {
                                 isOpen={isSidebarOpen}
                                 handleLoginClick={goLoginPage}
                                 onToggle={toggleSidebar}
+                                isSlotsOnly={isSlotsOnly}
                             />
                             <main className="app__main">
                                 <Outlet />

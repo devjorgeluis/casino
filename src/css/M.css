@@ -7418,3 +7418,59 @@ body>jdiv>jdiv>jdiv:nth-child(1)>jdiv:nth-child(3),body>jdiv>jdiv>jdiv:nth-child
     border-left: .4375rem solid #079737;
     background: rgba(7,151,55,.1)
 }
+
+.digitain-sport-desktop {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.digitain-sport-desktop iframe {
+    width: 100%;
+    height: 100vh;
+}
+
+.digitain-sport-desktop iframe html::-webkit-scrollbar {
+    width: 8px;
+    height: .5rem;
+    scroll-margin-right: .5rem
+}
+
+.digitain-sport-desktop iframe html::-webkit-scrollbar-thumb {
+    width: 8px;
+    height: 1rem;
+    background: #a41d0f;
+    cursor: pointer;
+    border-radius: 4px
+}
+
+.digitain-sport-desktop #sport_div_iframe {
+    width: 100%
+}
+
+.sports-layout-desktop__content {
+    height: calc(100vh - 80px);
+    position: relative;
+}
+
+.sports-error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    color: #666;
+}
+
+.sports-error-message p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
