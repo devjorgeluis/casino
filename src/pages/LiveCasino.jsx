@@ -63,7 +63,7 @@ const LiveCasino = () => {
     selectedGameLauncher = null;
     setGameUrl("");
     setShouldShowGameModal(false);
-    
+
     getPage("livecasino");
   }, [location.pathname]);
 
@@ -73,7 +73,7 @@ const LiveCasino = () => {
     callApi(contextData, "GET", "/get-page?page=" + page, callbackGetPage, null);
   };
 
-  const callbackGetPage = (result) => {   
+  const callbackGetPage = (result) => {
     if (result.status === 500 || result.status === 422) {
       setMessageCustomAlert(["error", result.message]);
     } else {
@@ -189,8 +189,11 @@ const LiveCasino = () => {
   };
 
   const configureImageSrc = (result) => {
-    result.data.forEach((element) => {
+    (result.data || []).forEach((element) => {
       let imageDataSrc = element.image_url;
+      if (element.image_local != null) {
+        imageDataSrc = contextData.cdnUrl + element.image_local;
+      }
       element.imageDataSrc = imageDataSrc;
     });
   };
@@ -210,7 +213,7 @@ const LiveCasino = () => {
   return (
     <>
       <CustomAlert message={messageCustomAlert} onClose={handleAlertClose} />
-      
+
       {showLoginModal && (
         <LoginModal
           isOpen={showLoginModal}
@@ -286,8 +289,8 @@ const LiveCasino = () => {
                           isLogin
                             ? launchGame(item.id, item.type, item.launcher)
                             : isMobile
-                            ? navigate("/login")
-                            : handleLoginClick()
+                              ? navigate("/login")
+                              : handleLoginClick()
                         }
                       />
                     ))}

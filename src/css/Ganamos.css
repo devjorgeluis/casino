@@ -8503,6 +8503,12 @@
     object-fit: fill;
 }
 
+@media (max-width: 768px) {
+    .loadable-image__image_isLoaded {
+        object-fit: cover;
+    }
+}
+
 .loadable-image__image2 {
     -webkit-box-flex: 2;
     -ms-flex-positive: 2;
