@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../AppContext";
 import { LayoutContext } from "./LayoutContext";
@@ -19,6 +19,7 @@ const Layout = () => {
     const { contextData } = useContext(AppContext);
     const [selectedPage, setSelectedPage] = useState("lobby");
     const [isLogin, setIsLogin] = useState(contextData.isLogin);
+    const [isMobile, setIsMobile] = useState(false);
     const [userBalance, setUserBalance] = useState("");
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -28,6 +29,9 @@ const Layout = () => {
     const [showAgeModal, setShowAgeModal] = useState(false);
     const [isSlotsOnly, setIsSlotsOnly] = useState("");
     const navigate = useNavigate();
+
+    const location = useLocation();
+    const isSportsPage = location.pathname === "/sports";
 
     useEffect(() => {
         if (contextData.session != null) {
@@ -40,9 +44,27 @@ const Layout = () => {
     useEffect(() => {
         const isAgeVerified = localStorage.getItem("is-age-verified");
         if (!isAgeVerified) {
-        setShowAgeModal(true);
+            setShowAgeModal(true);
         }
-    })
+    });
+
+    useEffect(() => {
+        const checkIsMobile = () => {
+            return window.innerWidth <= 767;
+        };
+
+        setIsMobile(checkIsMobile());
+
+        const handleResize = () => {
+            setIsMobile(checkIsMobile());
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const refreshBalance = () => {
         setUserBalance("");
@@ -64,7 +86,7 @@ const Layout = () => {
         setSelectedPage(page);
         setShowFullDivLoading(true);
         callApi(contextData, "GET", "/get-page?page=" + page, callbackGetPage, null);
-        navigate("/" + (page === "home" ? "" : page)); // Use navigate instead of window.location.href
+        navigate("/" + (page === "home" ? "" : page));
     };
 
     const callbackGetPage = (result) => {
@@ -213,8 +235,13 @@ const Layout = () => {
                             <main className="app__main">
                                 <Outlet />
                             </main>
-                            <Footer />
-                            <MobileFooter isSlotsOnly={isSlotsOnly} />
+                            {
+                                isMobile && !isSportsPage ? <Footer isSportsPage={isSportsPage} /> :
+                                !isMobile ? <Footer isSportsPage={isSportsPage} /> : <></>
+                            }
+                            {
+                                !isSportsPage && <MobileFooter isSlotsOnly={isSlotsOnly} />
+                            }
                         </div>
                     </div>
                 </div>
