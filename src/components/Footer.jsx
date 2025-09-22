@@ -11,6 +11,17 @@ const Footer = () => {
                         <a className="footer__menu-item" href="/">
                             <span className="footer__menu-description">Inicio</span>
                         </a>
+                        <a className="footer__menu-item" href="/sports">
+                            <span className="footer__menu-description">Deporte</span>
+                        </a>
+                    </div>
+                    <div className="footer__menu-container">
+                        <a className="footer__menu-item" href="/casino">
+                            <span className="footer__menu-description">Casino</span>
+                        </a>
+                        <a className="footer__menu-item" href="/casinolive">
+                            <span className="footer__menu-description">Casino en vivo</span>
+                        </a>
                     </div>
                     <div className="footer__menu-container">
                         <a className="footer__menu-item" href="/sport-rules">

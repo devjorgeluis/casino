@@ -7291,7 +7291,7 @@ body>jdiv>jdiv>jdiv:nth-child(1)>jdiv:nth-child(3),body>jdiv>jdiv>jdiv:nth-child
 .sport-rules-layout__content-title {
     font-size: 1.875rem;
     font-weight: 400;
-    margin-bottom: .1563rem
+    margin: .625rem 0;
 }
 
 @media (max-width: 768px) {
