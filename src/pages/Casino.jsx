@@ -252,10 +252,10 @@ const Casino = () => {
       setMessageCustomAlert(["error", result.message]);
     } else {
       if (pageCurrent == 0) {
-        configureImageSrc(result);
+        configureImageSrc(result, false);
         setGames(result.data);
       } else {
-        configureImageSrc(result);
+        configureImageSrc(result, false);
         setGames([...games, ...result.data]);
       }
       pageCurrent += 1;
@@ -339,15 +339,15 @@ const Casino = () => {
     if (result.status === 500 || result.status === 422) {
       setMessageCustomAlert(["error", result.message]);
     } else {
-      configureImageSrc(result);
-      setGames(result.data);
+      configureImageSrc(result, true);
+      setGames(result.content);
       pageCurrent = 0;
     }
     setIsLoadingGames(false);
   };
 
-  const configureImageSrc = (result) => {
-    (result.data || []).forEach((element) => {
+  const configureImageSrc = (result, isSearch) => {
+    (isSearch ? result.content || [] : result.data || []).forEach((element) => {
       let imageDataSrc = element.image_url;
       if (element.image_local != null) {
         imageDataSrc = contextData.cdnUrl + element.image_local;
