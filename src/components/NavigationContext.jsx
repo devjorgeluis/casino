@@ -7,4 +7,8 @@ export const NavigationContext = createContext({
     getPage: () => { },
     showFullDivLoading: false,
     setShowFullDivLoading: () => { },
+    supportWhatsApp: "",
+    supportTelegram: "",
+    supportEmail: "",
+    supportParent: "",
 });

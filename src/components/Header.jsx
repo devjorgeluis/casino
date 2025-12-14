@@ -6,8 +6,9 @@ import ImgLogo from "/src/assets/img/logo-net-new.png";
 import IconCurrency from "/src/assets/svg/currency.svg";
 import IconProfile from "/src/assets/svg/profile.svg";
 import IconLogout from "/src/assets/svg/logout.svg";
+import ImgSupport from "/src/assets/svg/support-black.svg";
 
-const Header = ({ isLogin, userBalance, handleLoginClick, handleLogoutClick, fragmentNavLinksTop, isSlotsOnly }) => {
+const Header = ({ isLogin, userBalance, handleLoginClick, handleLogoutClick, fragmentNavLinksTop, isSlotsOnly, supportParent, openSupportModal }) => {
     const [showUserMenu, setShowUserMenu] = useState(false);
     const openMenu = () => {
         setShowUserMenu(!showUserMenu);
@@ -99,6 +100,9 @@ const Header = ({ isLogin, userBalance, handleLoginClick, handleLogoutClick, fra
                     <div className="user-block">
                         {isLogin ? (
                             <div className="user-block__top">
+                                <button className="button-support" onClick={() => { openSupportModal(false); }}>
+                                    <img src={ImgSupport} />
+                                </button>
                                 <div className="user-block__border">
                                     <div className="user-block__info">
                                         <span className="user-block__info-icon">
@@ -135,6 +139,9 @@ const Header = ({ isLogin, userBalance, handleLoginClick, handleLogoutClick, fra
                         ) : (
                             <div className="header-login-block-desktop">
                                 <div className="header-login-block-desktop__button">
+                                    <button className="button-support" onClick={() => { openSupportModal(false); }}>
+                                        <img src={ImgSupport} />
+                                    </button>
                                     <button
                                         type="button"
                                         className="button-desktop button-desktop_color_default"
@@ -145,7 +152,7 @@ const Header = ({ isLogin, userBalance, handleLoginClick, handleLogoutClick, fra
                                 </div>
                             </div>
                         )}
-                        {showUserMenu && <UserMenu handleLogoutClick={handleLogoutClick} />}
+                        {showUserMenu && <UserMenu handleLogoutClick={handleLogoutClick} supportParent={supportParent} openSupportModal={openSupportModal} />}
                     </div>
                     <div className="header-desktop__separator"></div>
                     <LanguageSelector />

@@ -10,6 +10,7 @@ import MobileHeader from "./MobileHeader";
 import MobileFooter from "./MobileFooter";
 import NavLinkHeader from "../components/NavLinkHeader";
 import LoginModal from "./LoginModal";
+import SupportModal from "./SupportModal";
 import LogoutConfirmModal from "./LogoutConfirmModal";
 import FullDivLoading from "./FullDivLoading";
 import { NavigationContext } from "./NavigationContext";
@@ -28,6 +29,12 @@ const Layout = () => {
     const [showFullDivLoading, setShowFullDivLoading] = useState(false);
     const [showAgeModal, setShowAgeModal] = useState(false);
     const [isSlotsOnly, setIsSlotsOnly] = useState("");
+    const [supportWhatsApp, setSupportWhatsApp] = useState("");
+    const [supportTelegram, setSupportTelegram] = useState("");
+    const [supportEmail, setSupportEmail] = useState("");
+    const [supportParent, setSupportParent] = useState("");
+    const [showSupportModal, setShowSupportModal] = useState(false);
+    const [supportParentOnly, setSupportParentOnly] = useState(false);
     const navigate = useNavigate();
 
     const location = useLocation();
@@ -38,6 +45,11 @@ const Layout = () => {
             setIsLogin(true);
             refreshBalance();
             getStatus();
+
+            setSupportWhatsApp(contextData.session.support_whatsapp || "");
+            setSupportTelegram(contextData.session.support_telegram || "");
+            setSupportEmail(contextData.session.support_email || "");
+            setSupportParent(contextData.session.support_parent || "");
         }
     }, [contextData.session]);
 
@@ -137,6 +149,11 @@ const Layout = () => {
                 </>
             );
         }
+
+        setSupportWhatsApp(result && result.support_whatsapp ? result.support_whatsapp : "");
+        setSupportTelegram(result && result.support_telegram ? result.support_telegram : "");
+        setSupportEmail(result && result.support_email ? result.support_email : "");
+        setSupportParent(result && result.support_parent ? result.support_parent : "");
     };
 
     const handleLoginClick = () => {
@@ -178,19 +195,33 @@ const Layout = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
-    const layoutContextValue = {
-        isLogin,
-        userBalance,
-        handleLoginClick,
-        handleLogoutClick,
-        refreshBalance,
-        setShowFullDivLoading,
-    };
-
     const handleAgeVerifyConfirm = () => {
         localStorage.setItem("is-age-verified", JSON.stringify({ value: true }));
         setShowAgeModal(false);
     };
+
+    const openSupportModal = (parentOnly = false) => {
+        setSupportParentOnly(Boolean(parentOnly));
+        setShowSupportModal(true);
+    };
+
+    const closeSupportModal = () => {
+        setShowSupportModal(false);
+        setSupportParentOnly(false);
+    };
+
+    const layoutContextValue = {
+        isLogin,
+        userBalance,
+        supportWhatsApp,
+        supportTelegram,
+        supportEmail,
+        handleLoginClick,
+        handleLogoutClick,
+        refreshBalance,
+        setShowFullDivLoading,
+        openSupportModal
+    };    
 
     return (
         <LayoutContext.Provider value={layoutContextValue}>
@@ -223,6 +254,8 @@ const Layout = () => {
                                 handleLogoutClick={handleLogoutClick}
                                 fragmentNavLinksTop={fragmentNavLinksTop}
                                 isSlotsOnly={isSlotsOnly}
+                                supportParent={supportParent}
+                                openSupportModal={openSupportModal}
                             />
                             <MobileHeader
                                 isLogin={isLogin}
@@ -231,6 +264,8 @@ const Layout = () => {
                                 handleLoginClick={goLoginPage}
                                 onToggle={toggleSidebar}
                                 isSlotsOnly={isSlotsOnly}
+                                supportParent={supportParent}
+                                openSupportModal={openSupportModal}
                             />
                             <main className="app__main">
                                 <Outlet />
@@ -244,6 +279,16 @@ const Layout = () => {
                             }
                         </div>
                     </div>
+
+                    <SupportModal
+                        isOpen={showSupportModal}
+                        onClose={closeSupportModal}
+                        supportWhatsApp={supportWhatsApp}
+                        supportTelegram={supportTelegram}
+                        supportEmail={supportEmail}
+                        supportParentOnly={supportParentOnly}
+                        supportParent={supportParent}
+                    />
                 </div>
             </NavigationContext.Provider>
         </LayoutContext.Provider>

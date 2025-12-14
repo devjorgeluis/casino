@@ -12,8 +12,9 @@ import IconDeporte from "/src/assets/svg/deporte.svg";
 import IconLive from "/src/assets/svg/live.svg";
 import IconSupport from "/src/assets/svg/support.svg";
 import IconArrowRight from "/src/assets/svg/arrow-right.svg";
+import ImgSupport from "/src/assets/svg/support-black.svg";
 
-const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle, isSlotsOnly }) => {
+const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle, isSlotsOnly, supportParent, openSupportModal }) => {
     const navigate = useNavigate();
     const [showLanguage, setShowLanguage] = useState(false);
     
@@ -37,6 +38,9 @@ const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle
                 {
                     isLogin ? (
                         <a className="header-mobile__info" onClick={() => navigate("/profile")}>
+                            <button className="button-support" onClick={() => { openSupportModal(false); }}>
+                                <img src={ImgSupport} />
+                            </button>
                             <div className="header-card-mobile">
                                 <div className="header-card-mobile__content">
                                     <div className="header-mobile__balance">
@@ -56,6 +60,9 @@ const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle
                         </a>
                     ) : (
                         <a className="header-mobile__button" onClick={handleLoginClick}>
+                            <button className="button-support" onClick={() => { openSupportModal(false); }}>
+                                <img src={ImgSupport} />
+                            </button>
                             <div className="button-mobile button-mobile_color_default">
                                 <span className="header-mobile__button-text">Acceder</span>
                             </div>
@@ -147,6 +154,11 @@ const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle
                                         </div>
                                     </div>
                                 </div>
+                                {
+                                    supportParent && <a className="side-menu-mobile__header" onClick={() => {openSupportModal(true); onToggle();}}>
+                                        <span className="side-menu-mobile__title">Contactá a Tu Cajero</span>
+                                    </a>
+                                }
                                 <a className="side-menu-mobile__header" onClick={() => {onToggle(), navigate("/sport-rules")}}>
                                     <span className="side-menu-mobile__title">Reglas deportivas</span>
                                 </a>

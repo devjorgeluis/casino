@@ -3,7 +3,7 @@ import { AppContext } from "../AppContext";
 import IconLogout from "/src/assets/svg/logout.svg";
 import IconUserCircle from "/src/assets/svg/user-circle.svg";
 
-const UserMenu = ({ handleLogoutClick }) => {
+const UserMenu = ({ handleLogoutClick, supportParent, openSupportModal }) => {
     const { contextData } = useContext(AppContext);
 
     return (
@@ -44,6 +44,14 @@ const UserMenu = ({ handleLogoutClick }) => {
                     </span>
                 </span>
                 <div className="user-block__menu-item-title">Historial de Operaciones</div>
+            </a>
+            <a className="user-block__menu-item" onClick={() => openSupportModal(true)}>
+                <span className="user-block__menu-item-icon">
+                    <span className="SVGInline SVG-component__content">
+
+                    </span>
+                </span>
+                <div className="user-block__menu-item-title">Contactá a Tu Cajero</div>
             </a>
             <a className="user-block__menu-item" href="/profile">
                 <span className="user-block__menu-item-icon">
