@@ -43,14 +43,19 @@ const Layout = () => {
     useEffect(() => {
         if (contextData.session != null) {
             setIsLogin(true);
-            refreshBalance();
-            getStatus();
+            if (contextData.session.user && contextData.session.user.balance) {
+                const parsed = parseFloat(contextData.session.user.balance);
+                setUserBalance(Number.isFinite(parsed) ? parsed : 0);
 
-            setSupportWhatsApp(contextData.session.support_whatsapp || "");
-            setSupportTelegram(contextData.session.support_telegram || "");
-            setSupportEmail(contextData.session.support_email || "");
-            setSupportParent(contextData.session.support_parent || "");
+                setSupportWhatsApp(contextData.session.support_whatsapp || "");
+                setSupportTelegram(contextData.session.support_telegram || "");
+                setSupportEmail(contextData.session.support_email || "");
+                setSupportParent(contextData.session.support_parent || "");
+            }
+
+            refreshBalance();
         }
+        getStatus();
     }, [contextData.session]);
 
     useEffect(() => {
@@ -90,7 +95,6 @@ const Layout = () => {
     };
 
     const getStatus = () => {
-        setShowFullDivLoading(true);
         callApi(contextData, "GET", "/get-status", callbackGetStatus, null);
     };
 

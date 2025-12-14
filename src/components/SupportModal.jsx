@@ -19,10 +19,10 @@ const SupportModal = ({ isOpen, onClose, supportWhatsApp, supportTelegram, suppo
                 document.body.removeChild(ta);
             }
             setCopied(true);
-            setTimeout(() => setCopied(false), 20000);
+            setTimeout(() => setCopied(false), 2000);
         } catch (err) {
             setCopied(true);
-            setTimeout(() => setCopied(false), 20000);
+            setTimeout(() => setCopied(false), 2000);
         }
     };
 
