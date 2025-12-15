@@ -29,7 +29,7 @@ const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle
                     <span className="SVGInline header-mobile__burger" onClick={onToggle}>
                         <img src={IconHamburger} className="SVGInline-svg header-mobile__burger-svg" />
                     </span>
-                    <a className="header-mobile__home-link" href="/">
+                    <a className="header-mobile__home-link" onClick={() => {isOpen && onToggle(), navigate("/")}}>
                         <div className="header-mobile__logo">
                             <img className="logo-domain" src={ImgLogo} alt="logo" loading="lazy" />
                         </div>
@@ -59,7 +59,7 @@ const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle
                             </div>
                         </a>
                     ) : (
-                        <a className="header-mobile__button" onClick={handleLoginClick}>
+                        <a className="header-mobile__button" onClick={() => {isOpen && onToggle(), handleLoginClick()}}>
                             <button className="button-support" onClick={() => { openSupportModal(false); }}>
                                 <img src={ImgSupport} />
                             </button>
@@ -76,46 +76,54 @@ const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle
                         <section className="side-menu-mobile">
                             <nav className="side-menu-mobile__navigation">
                                 <div className="links-menu-side-menu">
-                                    <div className="links-menu-side-menu__header">
-                                        <h2 className="links-menu-side-menu__title">Deporte</h2>
-                                    </div>
-                                    <div className="links-menu-side-menu__items">
-                                        <a className="links-menu-side-menu__item" href={isSlotsOnly === "true" ? "#" : "/sports"}>
-                                            <span className="SVGInline links-menu-side-menu__item-icon">
-                                                <img src={IconDeporte} className="SVGInline-svg links-menu-side-menu__item-icon-svg" />
-                                            </span>
-                                            <span className="links-menu-side-menu__item-label">Deporte</span>
-                                        </a>
-                                    </div>
-                                    <div className="links-menu-side-menu__items">
-                                        <a className="links-menu-side-menu__item" href="#">
-                                            <span className="SVGInline links-menu-side-menu__item-icon">
-                                                <img src={IconLive} className="SVGInline-svg links-menu-side-menu__item-icon-svg" />
-                                            </span>
-                                            <span className="links-menu-side-menu__item-label">En vivo</span>
-                                        </a>
-                                    </div>
+                                    {
+                                        isSlotsOnly === "false" && <>
+                                            <div className="links-menu-side-menu__header">
+                                                <h2 className="links-menu-side-menu__title">Deporte</h2>
+                                            </div>
+                                            <div className="links-menu-side-menu__items">
+                                                <a className="links-menu-side-menu__item" onClick={() => {onToggle(), navigate("/sports")}}>
+                                                    <span className="SVGInline links-menu-side-menu__item-icon">
+                                                        <img src={IconDeporte} className="SVGInline-svg links-menu-side-menu__item-icon-svg" />
+                                                    </span>
+                                                    <span className="links-menu-side-menu__item-label">Deporte</span>
+                                                </a>
+                                            </div>
+                                            <div className="links-menu-side-menu__items">
+                                                <a className="links-menu-side-menu__item" href="#">
+                                                    <span className="SVGInline links-menu-side-menu__item-icon">
+                                                        <img src={IconLive} className="SVGInline-svg links-menu-side-menu__item-icon-svg" />
+                                                    </span>
+                                                    <span className="links-menu-side-menu__item-label">En vivo</span>
+                                                </a>
+                                            </div>
+                                        </>
+                                    }
                                 </div>
                                 <div className="links-menu-side-menu">
-                                    <div className="links-menu-side-menu__header">
-                                        <h2 className="links-menu-side-menu__title">Juegos</h2>
-                                    </div>
+                                    {
+                                        isSlotsOnly === "false" && <div className="links-menu-side-menu__header">
+                                            <h2 className="links-menu-side-menu__title">Juegos</h2>
+                                        </div>
+                                    }
                                     <div className="links-menu-side-menu__items">
-                                        <a className="links-menu-side-menu__item" href="/casino">
+                                        <a className="links-menu-side-menu__item" onClick={() => {onToggle(), navigate("/casino")}}>
                                             <span className="SVGInline links-menu-side-menu__item-icon">
                                                 <img src={IconCasino} className="SVGInline-svg links-menu-side-menu__item-icon-svg" />
                                             </span>
                                             <span className="links-menu-side-menu__item-label">Casino</span>
                                         </a>
                                     </div>
-                                    <div className="links-menu-side-menu__items">
-                                        <a className="links-menu-side-menu__item" href={isSlotsOnly === "true" ? "#" : "/casinolive"}>
-                                            <span className="SVGInline links-menu-side-menu__item-icon">
-                                                <img src={IconLiveCasino} className="SVGInline-svg links-menu-side-menu__item-icon-svg" />
-                                            </span>
-                                            <span className="links-menu-side-menu__item-label">Casino en vivo</span>
-                                        </a>
-                                    </div>
+                                    {
+                                        isSlotsOnly === "false" && <div className="links-menu-side-menu__items">
+                                            <a className="links-menu-side-menu__item" onClick={() => {onToggle(), navigate("/casinolive")}}>
+                                                <span className="SVGInline links-menu-side-menu__item-icon">
+                                                    <img src={IconLiveCasino} className="SVGInline-svg links-menu-side-menu__item-icon-svg" />
+                                                </span>
+                                                <span className="links-menu-side-menu__item-label">Casino en vivo</span>
+                                            </a>
+                                        </div>
+                                    }
                                 </div>
                                 <div className="side-menu-mobile__header">
                                     <h2 className="side-menu-mobile__title">Otro</h2>
@@ -174,7 +182,7 @@ const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle
                             </nav>
                             <div className="side-menu-mobile__licence-wrapper">
                                 <div className="side-menu-mobile__partners">
-                                    <a className="side-menu-mobile__partner" href="">
+                                    <a className="side-menu-mobile__partner" href="#">
                                         <span className="SVGInline side-menu-mobile__partner-icon">
                                             <img src={ImgBet} className="SVGInline-svg  -icon-svg" />
                                         </span>

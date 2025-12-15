@@ -7,7 +7,7 @@ import IconProfileCircle from "/src/assets/svg/profile-circle.svg";
 import IconLogout from "/src/assets/svg/logout.svg";
 import IconWhiteLogout from "/src/assets/svg/white-logout.svg";
 
-const UserInfo = ({ logout, isMobile = false }) => {
+const UserInfo = ({ logout, isMobile = false, supportParent, openSupportModal }) => {
     const navigate = useNavigate();
     const { contextData } = useContext(AppContext);
     const { userBalance } = useContext(LayoutContext);
@@ -69,6 +69,11 @@ const UserInfo = ({ logout, isMobile = false }) => {
                         0.00
                     </span>
                 </div>
+                {
+                    supportParent && <div onClick={() => openSupportModal(true)}>
+                        <span className="profile-user-info-mobile__username">Contactá a Tu Cajero</span>
+                    </div>
+                }
             </div>
             {!isMobile && <img className="user-info__mascot" src={ImgMascot} alt="mascot" />}
         </div>

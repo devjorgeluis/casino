@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { AppContext } from "../../AppContext";
 import { callApi } from "../../utils/Utils";
 import UserInfo from "./UserInfo";
@@ -15,6 +15,7 @@ import IconWhiteLock from "/src/assets/svg/white-lock.svg";
 const Profile = () => {
     const navigate = useNavigate();
     const { contextData } = useContext(AppContext);
+    const { supportParent, openSupportModal } = useOutletContext();
 
     const logout = () => {
         callApi(contextData, "POST", "/logout", callbackLogout, null);
@@ -42,7 +43,7 @@ const Profile = () => {
                 </div>
                 <div className="profile-layout-desktop__content">
                     <div className="profile-layout-desktop__content-left">
-                        <UserInfo logout={logout} />
+                        <UserInfo logout={logout} supportParent={supportParent} openSupportModal={openSupportModal} />
                         <BonusProgram />
                         <Promocode />
                         <ChangePassword />
@@ -78,7 +79,7 @@ const Profile = () => {
                         <div className="profile-menu-mobile__navigation">
                             <nav className="profile-navigation-mobile">
                                 <div className="profile-navigation-mobile__item">
-                                    <a className="profile-navigation-mobile__link" href="/profile/pay-history">
+                                    <a className="profile-navigation-mobile__link" onClick={() => navigate("/profile/pay-history")}>
                                         <span className="SVGInline profile-navigation-mobile__icon">
                                             <img className="SVGInline-svg profile-navigation-mobile__icon-svg" src={IconHistory} alt="History icon" />
                                         </span>
@@ -86,7 +87,7 @@ const Profile = () => {
                                     </a>
                                 </div>
                                 <div className="profile-navigation-mobile__item">
-                                    <a className="profile-navigation-mobile__link" href="/profile/change-password">
+                                    <a className="profile-navigation-mobile__link" onClick={() => navigate("/profile/change-password")}>
                                         <span className="SVGInline profile-navigation-mobile__icon">
                                             <img className="SVGInline-svg profile-navigation-mobile__icon-svg" src={IconWhiteLock} alt="Lock icon" />
                                         </span>

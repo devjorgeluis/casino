@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect, useRef } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useOutletContext } from "react-router-dom";
 import { AppContext } from "../AppContext";
 import { LayoutContext } from "../components/LayoutContext";
 import { NavigationContext } from "../components/NavigationContext";
@@ -48,7 +48,7 @@ const Home = () => {
   const [isLoadingGames, setIsLoadingGames] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [isSlotsOnly, setIsSlotsOnly] = useState("");
+  const { isSlotsOnly } = useOutletContext();
   const [messageCustomAlert, setMessageCustomAlert] = useState(["", ""]);
   const [shouldShowGameModal, setShouldShowGameModal] = useState(false);
   const refGameModal = useRef();
@@ -417,27 +417,30 @@ const Home = () => {
                 </div>
               </div>
               <div className="home-links-mobile__sub">
-                <a className="home-links-mobile__sub-item" href={isSlotsOnly == "true" ? "#" : "/sports"}>
-                  <span className="SVGInline home-links-mobile__sub-item-icon">
-                    <img className="SVGInline-svg home-links-mobile__sub-item-icon-svg" src={IconYellowDeporte} />
-                  </span>
-                  <span className="home-links-mobile__sub-item-text">Deporte</span>
-                </a>
-                <a className="home-links-mobile__sub-item" href="/casino">
+                {
+                  isSlotsOnly == "false" && <a className="home-links-mobile__sub-item" onClick={() => navigate("/sports")}>
+                    <span className="SVGInline home-links-mobile__sub-item-icon">
+                      <img className="SVGInline-svg home-links-mobile__sub-item-icon-svg" src={IconYellowDeporte} />
+                    </span>
+                    <span className="home-links-mobile__sub-item-text">Deporte</span>
+                  </a>
+                }
+                
+                <a className="home-links-mobile__sub-item" onClick={() => navigate("/casino")}>
                   <span className="SVGInline home-links-mobile__sub-item-icon">
                     <img className="SVGInline-svg home-links-mobile__sub-item-icon-svg" src={IconYellowCasino} />
                   </span>
                   <span className="home-links-mobile__sub-item-text">Casino</span>
                 </a>
-                <a
-                  className="home-links-mobile__sub-item"
-                  href={isSlotsOnly == "true" ? "#" : "/casinolive"}
-                >
-                  <span className="SVGInline home-links-mobile__sub-item-icon">
-                    <img className="SVGInline-svg home-links-mobile__sub-item-icon-svg" src={IconYellowLiveCasino} />
-                  </span>
-                  <span className="home-links-mobile__sub-item-text">Casino en vivo</span>
-                </a>
+
+                {
+                  isSlotsOnly == "false" && <a className="home-links-mobile__sub-item" onClick={() => navigate("/casinolive")}>
+                    <span className="SVGInline home-links-mobile__sub-item-icon">
+                      <img className="SVGInline-svg home-links-mobile__sub-item-icon-svg" src={IconYellowLiveCasino} />
+                    </span>
+                    <span className="home-links-mobile__sub-item-text">Casino en vivo</span>
+                  </a>
+                }
               </div>
             </div>
           </div>
@@ -466,7 +469,7 @@ const Home = () => {
                       </div>
                       <div className="provider-section-desktop__controls">
                         <div className="carousel-arrows">
-                          <a className="carousel-arrows__title" href="/casino">
+                          <a className="carousel-arrows__title" onClick={() => navigate("/casino")}>
                             <span className="carousel-arrows__title-text">Mostrar todo</span>
                           </a>
                         </div>

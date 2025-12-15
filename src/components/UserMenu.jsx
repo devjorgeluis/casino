@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { AppContext } from "../AppContext";
 import IconLogout from "/src/assets/svg/logout.svg";
 import IconUserCircle from "/src/assets/svg/user-circle.svg";
 
 const UserMenu = ({ handleLogoutClick, supportParent, openSupportModal }) => {
     const { contextData } = useContext(AppContext);
+    const navigate = useNavigate();
 
     return (
         <div className="user-block__menu">
@@ -27,7 +29,7 @@ const UserMenu = ({ handleLogoutClick, supportParent, openSupportModal }) => {
                     <div className="user-block__menu-top-balance-amount">{contextData.session.user.balance || ''}</div>
                 </div>
             </div>
-            <a className="user-block__menu-item" href="/profile">
+            <a className="user-block__menu-item" onClick={() => navigate("/profile")}>
                 <span className="user-block__menu-item-icon">
                     <span className="SVGInline SVG-component__content">
                         <img src={IconUserCircle} />
@@ -35,7 +37,7 @@ const UserMenu = ({ handleLogoutClick, supportParent, openSupportModal }) => {
                 </span>
                 <div className="user-block__menu-item-title">Su cuenta</div>
             </a>
-            <a className="user-block__menu-item" href="/profile">
+            <a className="user-block__menu-item" onClick={() => navigate("/profile")}>
                 <span className="user-block__menu-item-icon">
                     <span className="SVGInline SVG-component__content">
                         <svg className="SVGInline-svg SVG-component__content-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,15 +47,17 @@ const UserMenu = ({ handleLogoutClick, supportParent, openSupportModal }) => {
                 </span>
                 <div className="user-block__menu-item-title">Historial de Operaciones</div>
             </a>
-            <a className="user-block__menu-item" onClick={() => openSupportModal(true)}>
-                <span className="user-block__menu-item-icon">
-                    <span className="SVGInline SVG-component__content">
+            {
+                supportParent && <a className="user-block__menu-item" onClick={() => openSupportModal(true)}>
+                    <span className="user-block__menu-item-icon">
+                        <span className="SVGInline SVG-component__content">
 
+                        </span>
                     </span>
-                </span>
-                <div className="user-block__menu-item-title">Contactá a Tu Cajero</div>
-            </a>
-            <a className="user-block__menu-item" href="/profile">
+                    <div className="user-block__menu-item-title">Contactá a Tu Cajero</div>
+                </a>
+            }
+            <a className="user-block__menu-item" onClick={() => navigate("/profile")}>
                 <span className="user-block__menu-item-icon">
                     <span className="SVGInline SVG-component__content">
                         <svg className="SVGInline-svg SVG-component__content-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -63,7 +67,7 @@ const UserMenu = ({ handleLogoutClick, supportParent, openSupportModal }) => {
                 </span>
                 <div className="user-block__menu-item-title">Cambiar la contraseña</div>
             </a>
-            <a className="user-block__menu-item" href="/profile">
+            <a className="user-block__menu-item" onClick={() => navigate("/profile")}>
                 <span className="user-block__menu-item-icon">
                     <span className="SVGInline SVG-component__content">
                         <svg className="SVGInline-svg SVG-component__content-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

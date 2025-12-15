@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import ImgBonusProgramGift from "/src/assets/img/bonus-program-gift.webp";
 import ImgBonusProgramDevices from "/src/assets/img/bonus-program-devices.webp";
 
 const BonusProgram = ({ isMobile = false }) => {
+    const navigate = useNavigate();
+
     return (
-        <a className={isMobile ? "bonus-program-button-mobile" : "bonus-program-button-desktop"} href="/profile">
+        <a className={isMobile ? "bonus-program-button-mobile" : "bonus-program-button-desktop"} onClick={() => navigate("/profile")}>
             <div className={isMobile ? "bonus-program-button-mobile__gift-wrapper" : "bonus-program-button-desktop__gift-wrapper"}>
                 <img
                     className={isMobile ? "bonus-program-button-mobile__gift" : "bonus-program-button-desktop__gift"}
