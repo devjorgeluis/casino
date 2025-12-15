@@ -59,11 +59,11 @@ const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle
                             </div>
                         </a>
                     ) : (
-                        <a className="header-mobile__button" onClick={() => {isOpen && onToggle(), handleLoginClick()}}>
+                        <a className="header-mobile__button">
                             <button className="button-support" onClick={() => { openSupportModal(false); }}>
                                 <img src={ImgSupport} />
                             </button>
-                            <div className="button-mobile button-mobile_color_default">
+                            <div className="button-mobile button-mobile_color_default" onClick={() => {isOpen && onToggle(), handleLoginClick()}}>
                                 <span className="header-mobile__button-text">Acceder</span>
                             </div>
                         </a>
