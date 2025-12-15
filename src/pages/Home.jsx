@@ -101,7 +101,6 @@ const Home = () => {
       setMessageCustomAlert(["error", result.message]);
     } else {
       contextData.slots_only = result && result.slots_only;
-      setIsSlotsOnly(contextData.slots_only ? "true" : "false");
     }
   };
 

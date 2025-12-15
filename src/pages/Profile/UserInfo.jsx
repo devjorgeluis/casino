@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { AppContext } from "../../AppContext";
 import { LayoutContext } from "../../components/LayoutContext";
 import ImgMascot from "/src/assets/img/mascot.png";
@@ -7,7 +7,8 @@ import IconProfileCircle from "/src/assets/svg/profile-circle.svg";
 import IconLogout from "/src/assets/svg/logout.svg";
 import IconWhiteLogout from "/src/assets/svg/white-logout.svg";
 
-const UserInfo = ({ logout, isMobile = false, supportParent, openSupportModal }) => {
+const UserInfo = ({ logout, isMobile = false }) => {
+    const { supportParent, openSupportModal } = useOutletContext();
     const navigate = useNavigate();
     const { contextData } = useContext(AppContext);
     const { userBalance } = useContext(LayoutContext);
