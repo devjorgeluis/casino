@@ -22,6 +22,7 @@ const LoginModal = ({ isOpen, onClose }) => {
             let body = {
                 username: username,
                 password: password,
+                site_label: "main"
             };
             callApi(
                 contextData,
@@ -38,6 +39,8 @@ const LoginModal = ({ isOpen, onClose }) => {
             setMessageCustomAlert(["success", "¡Éxito! La sesión ha sido iniciada"]);
             localStorage.setItem("session", JSON.stringify(result));
             window.location.href = "/";
+        } else if (result.status === "country") {
+            setMessageCustomAlert(["error", result.message]);
         } else {
             setMessageCustomAlert(["error", "¡Error! Nombre de usuario o contraseña no válidos"]);
         }
