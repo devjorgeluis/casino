@@ -61,7 +61,6 @@ const UserInfo = ({ logout, isMobile = false }) => {
                         <span className={isMobile ? "profile-user-info-mobile__balance-amount" : "user-info__balance-amount"}>
                             $ {userBalance}
                         </span>
-                        <span className={isMobile ? "profile-user-info-mobile__balance-currency" : "user-info__balance-currency"}>ARS</span>
                     </div>
                 </div>
                 <div className={isMobile ? "profile-user-info-mobile__balance" : "user-info__bonus-balance"}>

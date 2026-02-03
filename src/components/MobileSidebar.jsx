@@ -34,7 +34,7 @@ const MobileSidebar = ({ isOpen, onToggle, isLogin }) => {
                         <a className="header-mobile__info" href="/profile">
                             <div className="header-card-mobile">
                                 <div className="header-card-mobile__content">
-                                    <div className="header-mobile__balance"><span className="header-mobile__amount">7.30</span><span className="header-mobile__currency">ARS</span></div>
+                                    <div className="header-mobile__balance"><span className="header-mobile__amount">7.30</span></div>
                                 </div>
                             </div>
                             <div className="header-card-mobile">

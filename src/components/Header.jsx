@@ -112,8 +112,7 @@ const Header = ({ isLogin, userBalance, handleLoginClick, handleLogoutClick, fra
                                                 <img src={IconCurrency} />
                                             </span>
                                         </span>
-                                        <span className="user-block__text">{userBalance}</span>
-                                        <span className="user-block__currency">ARS</span>
+                                        <span className="user-block__text">$ {userBalance}</span>
                                     </div>
                                 </div>
                                 <div className="user-block__border">
