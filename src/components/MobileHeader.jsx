@@ -44,7 +44,7 @@ const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle
                             <div className="header-card-mobile">
                                 <div className="header-card-mobile__content">
                                     <div className="header-mobile__balance">
-                                        <span className="header-mobile__amount">$ {userBalance}</span>
+                                        <span className="header-mobile__amount">${userBalance}</span>
                                     </div>
                                 </div>
                             </div>

@@ -26,7 +26,7 @@ const UserMenu = ({ handleLogoutClick, supportParent, openSupportModal }) => {
                 </div>
                 <div className="user-block__menu-top-balance">
                     <div className="user-block__menu-top-balance-text">Balance:</div>
-                    <div className="user-block__menu-top-balance-amount">{contextData.session.user.balance || ''}</div>
+                    <div className="user-block__menu-top-balance-amount">$ {parseFloat(contextData.session.user.balance).toFixed(2) || '0.00'}</div>
                 </div>
             </div>
             <a className="user-block__menu-item" onClick={() => navigate("/profile")}>
