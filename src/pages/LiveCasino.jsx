@@ -245,7 +245,7 @@ const LiveCasino = () => {
                     <CategoryButton
                       key={index}
                       title={item.name}
-                      icon=""
+                      icon={contextData.cdnUrl + item.image_local}
                       active={selectedCategoryIndex == index}
                       onClick={() => fetchContent(item, item.id, item.table_name, index, true)}
                     />

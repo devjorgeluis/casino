@@ -3033,3 +3033,42 @@
 .tawk-button:not(.tawk-button-text) {
     box-shadow: 0 4px 4px 0 hsla(0, 0%, 51%, .08);
 }
+
+.SVG-component__content img {
+    width: 25px;
+    height: 25px;
+    object-fit: cover;
+}
+
+@media (max-width: 576px) {
+    .provider-section-desktop__header-provider-text {
+        font-size: 1rem;
+    }
+
+    .provider-section-desktop__header-line {
+        display: none;
+    }
+
+    .provider-section-desktop__header {
+        align-items: center;
+        margin-bottom: 1rem;
+        padding: 0;
+    }
+
+    .provider-section-desktop__header .carousel-arrows {
+        margin-bottom: 0;
+    }
+
+    .carousel-arrows__title {
+        margin-top: 0;
+        height: 2rem;
+    }
+
+    .carousel-arrows__title-text {
+        font-size: 0.75rem;
+    }
+
+    .slots-main-desktop__content-container {
+        padding-bottom: 2.5rem;
+    }
+}

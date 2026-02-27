@@ -2,7 +2,7 @@ import ImgLogo from "/src/assets/img/logo-net-new.png";
 import ImgBet from "/src/assets/img/bet-responsibility.png";
 import IconChat from "/src/assets/svg/chat.svg";
 
-const Footer = () => {
+const Footer = ({ isSlotsOnly }) => {
     return (
         <div className="app__footer-container">
             <footer className="footer">
@@ -11,17 +11,23 @@ const Footer = () => {
                         <a className="footer__menu-item" href="/">
                             <span className="footer__menu-description">Inicio</span>
                         </a>
-                        <a className="footer__menu-item" href="/sports">
-                            <span className="footer__menu-description">Deporte</span>
-                        </a>
+                        {
+                            isSlotsOnly === "false" && 
+                            <a className="footer__menu-item" href="/sports">
+                                <span className="footer__menu-description">Deporte</span>
+                            </a>
+                        }
                     </div>
                     <div className="footer__menu-container">
                         <a className="footer__menu-item" href="/casino">
                             <span className="footer__menu-description">Casino</span>
                         </a>
-                        <a className="footer__menu-item" href="/casinolive">
-                            <span className="footer__menu-description">Casino en vivo</span>
-                        </a>
+                        {
+                            isSlotsOnly === "false" && 
+                            <a className="footer__menu-item" href="/casinolive">
+                                <span className="footer__menu-description">Casino en vivo</span>
+                            </a>
+                        }
                     </div>
                     <div className="footer__menu-container">
                         <a className="footer__menu-item" href="/sport-rules">
@@ -63,14 +69,6 @@ const Footer = () => {
                     </div>
                     <div className="footer__right-container">
                         <img className="footer__icon" src={ImgBet} alt="18+" />
-                    </div>
-                </div>
-                <div className="chat-with-us app-mode-chat">
-                    <div className="tawk-min-container">
-                        <span className="tawk-badge tawk-flex tawk-flex-center tawk-flex-middle tawk-min-badge">0</span>
-                        <button type="button" aria-label="Widget de Chat" title="Widget de Chat" className="tawk-custom-color tawk-custom-border-color tawk-outline tawk-button tawk-button-circle tawk-button-large">
-                            <img className="tawk-min-chat-icon" src={IconChat} />
-                        </button>
                     </div>
                 </div>
             </footer>

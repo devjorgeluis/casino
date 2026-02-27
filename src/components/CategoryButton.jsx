@@ -10,7 +10,7 @@ const CategoryButton = (props) => {
         props.icon && props.icon !== "" &&
         <span className="provider-filter-live-games-desktop__item-icon">
           <span className="SVGInline SVG-component__content">
-            <img src={props.icon} alt={props.title} />
+            <img src={props.icon} alt={props.title} width={30} />
           </span>
         </span>
       }

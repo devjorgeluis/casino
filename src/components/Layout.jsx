@@ -276,7 +276,7 @@ const Layout = () => {
                             </main>
                             {
                                 isMobile && !isSportsPage ? <Footer isSportsPage={isSportsPage} /> :
-                                !isMobile ? <Footer isSportsPage={isSportsPage} /> : <></>
+                                !isMobile ? <Footer isSportsPage={isSportsPage} isSlotsOnly={isSlotsOnly} /> : <></>
                             }
                             {
                                 !isSportsPage && <MobileFooter isSlotsOnly={isSlotsOnly} />

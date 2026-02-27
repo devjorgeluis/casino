@@ -320,7 +320,7 @@ const Casino = () => {
     setGames([]);
     setIsLoadingGames(true);
 
-    let pageSize = 15;
+    let pageSize = 30;
 
     let searchDelayTimerTmp = setTimeout(function () {
       callApi(
@@ -431,7 +431,7 @@ const Casino = () => {
                     <CategoryButton
                       key={index}
                       title={item.name}
-                      icon=""
+                      icon={contextData.cdnUrl + item.image_local}
                       active={selectedCategoryIndex == index}
                       onClick={() => fetchContent(item, item.id, item.table_name, index, true)}
                     />

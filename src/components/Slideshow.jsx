@@ -5,7 +5,18 @@ import 'react-slideshow-image/dist/styles.css';
 const Slideshow = (props) => {
   return (
     <div className="slide-container">
-      <Slide easing="ease" duration={3000} arrows={false} indicators={true} autoplay={true} pauseOnHover={false} infinite={true}>
+      <Slide
+        easing="ease"
+        duration={3000}
+        arrows={false}
+        indicators={true}
+        autoplay={true}
+        pauseOnHover={false}
+        infinite={true}
+        canSwipe={true}
+        transitionDuration={500}
+        defaultIndex={0}
+      >
         {
           props.images.map((each, index) => <img key={index} style={{ width: "100%" }} src={each} />)
         }

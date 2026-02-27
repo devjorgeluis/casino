@@ -32,7 +32,11 @@ const SearchInput = ({
                     </div>
                 </div>
                 <div className="search-filter-slots-mobile__button">
-                    <button type="submit" className="button-mobile button-mobile_color_default button-mobile_borderRadius_500">Búsqueda</button>
+                    <button
+                        type="button"
+                        className="button-mobile button-mobile_color_default button-mobile_borderRadius_500"
+                        onClick={() => search(txtSearch)}
+                    >Búsqueda</button>
                 </div>
             </form>
         </div>

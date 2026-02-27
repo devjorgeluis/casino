@@ -22,7 +22,7 @@ const LoginModal = ({ isOpen, onClose }) => {
             let body = {
                 username: username,
                 password: password,
-                site_label: "main"
+                site_label: "v2_ganamos"
             };
             callApi(
                 contextData,

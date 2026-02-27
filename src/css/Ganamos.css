@@ -8504,7 +8504,7 @@
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    object-fit: fill;
+    object-fit: cover;
 }
 
 @media (max-width: 768px) {

@@ -26,9 +26,6 @@ const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle
         <>
             <header className="header-mobile">
                 <div className="header-mobile__container">
-                    <span className="SVGInline header-mobile__burger" onClick={onToggle}>
-                        <img src={IconHamburger} className="SVGInline-svg header-mobile__burger-svg" />
-                    </span>
                     <a className="header-mobile__home-link" onClick={() => {isOpen && onToggle(), navigate("/")}}>
                         <div className="header-mobile__logo">
                             <img className="logo-domain" src={ImgLogo} alt="logo" loading="lazy" />
@@ -38,9 +35,6 @@ const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle
                 {
                     isLogin ? (
                         <a className="header-mobile__info" onClick={() => navigate("/profile")}>
-                            <button className="button-support" onClick={() => { openSupportModal(false); }}>
-                                <img src={ImgSupport} />
-                            </button>
                             <div className="header-card-mobile">
                                 <div className="header-card-mobile__content">
                                     <div className="header-mobile__balance">
@@ -59,9 +53,6 @@ const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle
                         </a>
                     ) : (
                         <a className="header-mobile__button">
-                            <button className="button-support" onClick={() => { openSupportModal(false); }}>
-                                <img src={ImgSupport} />
-                            </button>
                             <div className="button-mobile button-mobile_color_default" onClick={() => {isOpen && onToggle(), handleLoginClick()}}>
                                 <span className="header-mobile__button-text">Acceder</span>
                             </div>
