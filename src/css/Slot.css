@@ -2545,7 +2545,9 @@
     -ms-flex-align: center;
     align-items: center;
     height: 100%;
-    width: 100%;
+    width: auto;
+    margin: auto;
+    padding: 0 30px;
     border-radius: .9375rem;
     gap: .625rem
 }

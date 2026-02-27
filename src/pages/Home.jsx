@@ -259,7 +259,7 @@ const Home = () => {
             <div className="home-links-mobile">
               <div className="home-links-mobile__sub">
                 {
-                  isSlotsOnly == "false" && <a className="home-links-mobile__sub-item" onClick={() => navigate("/sports")}>
+                  <a className="home-links-mobile__sub-item" onClick={() => navigate("/sports")}>
                     <span className="SVGInline home-links-mobile__sub-item-icon">
                       <img className="SVGInline-svg home-links-mobile__sub-item-icon-svg" src={IconYellowDeporte} />
                     </span>
@@ -271,15 +271,15 @@ const Home = () => {
                   <span className="SVGInline home-links-mobile__sub-item-icon">
                     <img className="SVGInline-svg home-links-mobile__sub-item-icon-svg" src={IconYellowCasino} />
                   </span>
-                  <span className="home-links-mobile__sub-item-text">Casino</span>
+                  <span className="home-links-mobile__sub-item-text">Proveedores</span>
                 </a>
 
                 {
-                  isSlotsOnly == "false" && <a className="home-links-mobile__sub-item" onClick={() => navigate("/casinolive")}>
+                  <a className="home-links-mobile__sub-item" onClick={() => navigate("/casinolive")}>
                     <span className="SVGInline home-links-mobile__sub-item-icon">
                       <img className="SVGInline-svg home-links-mobile__sub-item-icon-svg" src={IconYellowLiveCasino} />
                     </span>
-                    <span className="home-links-mobile__sub-item-text">Casino en vivo</span>
+                    <span className="home-links-mobile__sub-item-text">En vivo</span>
                   </a>
                 }
               </div>
