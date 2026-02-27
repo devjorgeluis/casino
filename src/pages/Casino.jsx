@@ -419,6 +419,7 @@ const Casino = () => {
                     setTxtSearch={setTxtSearch}
                     searchRef={searchRef}
                     search={search}
+                    onSearch={do_search}
                     contextData={contextData}
                     pageData={pageData}
                     setGames={setGames}
@@ -449,7 +450,13 @@ const Casino = () => {
             </div>
 
             <div className="slots-main-mobile__search-category-filters">
-              <SearchInput txtSearch={txtSearch} setTxtSearch={setTxtSearch} searchRef={searchRef} search={search} />
+              <SearchInput
+                txtSearch={txtSearch}
+                setTxtSearch={setTxtSearch}
+                searchRef={searchRef}
+                search={search}
+                onSearch={do_search}
+              />
             </div>
           </div>
 

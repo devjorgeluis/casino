@@ -5,7 +5,8 @@ const SearchInput = ({
     txtSearch,
     setTxtSearch,
     searchRef,
-    search
+    search,
+    onSearch
 }) => {
     return (
         <div className="slots-main-desktop__search-filter">
@@ -35,7 +36,7 @@ const SearchInput = ({
                     <button
                         type="button"
                         className="button-mobile button-mobile_color_default button-mobile_borderRadius_500"
-                        onClick={() => search(txtSearch)}
+                        onClick={() => onSearch(txtSearch)}
                     >Búsqueda</button>
                 </div>
             </form>
