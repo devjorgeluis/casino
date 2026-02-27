@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate, useLocation, useOutletContext } from "react-router-dom";
 import { AppContext } from "../../AppContext";
 import { callApi } from "../../utils/Utils";
 import UserInfo from "./UserInfo";
@@ -16,6 +16,7 @@ const Profile = () => {
     const navigate = useNavigate();
     const { contextData } = useContext(AppContext);
     const { supportParent, openSupportModal } = useOutletContext();
+    const location = useLocation();
 
     const logout = () => {
         callApi(contextData, "POST", "/logout", callbackLogout, null);
@@ -31,6 +32,10 @@ const Profile = () => {
             navigate("/");
         }
     }, [contextData?.session, navigate]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);    
 
     return (
         <>

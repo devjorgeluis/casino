@@ -2104,7 +2104,8 @@
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    grid-gap: 1px
+    grid-gap: 1px;
+    right: 0;
 }
 
 .user-block__menu-top {
@@ -7229,7 +7230,7 @@
     left: 50%;
     width: 8rem;
     height: 8rem;
-    z-index: 1;
+    z-index: 3;
     translate: calc(-50% - .3125rem)
 }
 

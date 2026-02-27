@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import UserMenu from "../components/UserMenu";
 import NavLinkHeader from "../components/NavLinkHeader";
 import ImgLogo from "/src/assets/img/logo-net-new.png";
 import IconCurrency from "/src/assets/svg/currency.svg";
@@ -122,6 +123,7 @@ const Header = ({ isLogin, userBalance, handleLoginClick, handleLogoutClick, fra
                                 </div>
                             </div>
                         )}
+                        {showUserMenu && <UserMenu handleLogoutClick={handleLogoutClick} supportParent={supportParent} openSupportModal={openSupportModal} />}
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@ import { useNavigate, useLocation, useOutletContext } from "react-router-dom";
 import { AppContext } from "../AppContext";
 import { LayoutContext } from "../components/LayoutContext";
 import { NavigationContext } from "../components/NavigationContext";
-import { callApi, callApiService } from "../utils/Utils";
+import { callApi } from "../utils/Utils";
 import GameCard from "/src/components/GameCard";
 import Slideshow from "../components/Slideshow";
 import GameModal from "../components/GameModal";
@@ -14,20 +14,6 @@ import "animate.css";
 import ImgBanner1 from "/src/assets/img/banner-desktop-01.webp";
 import ImgBanner2 from "/src/assets/img/banner-desktop-02.webp";
 import ImgBanner3 from "/src/assets/img/banner-desktop-03.webp";
-import ImgJetx from "/src/assets/img/jetx.png";
-import ImgJetxIcon from "/src/assets/img/jetx-icon.png";
-import ImgCrash from "/src/assets/img/crash.png";
-import ImgCrashIcon from "/src/assets/img/crash-icon.png";
-import ImgSpaceman from "/src/assets/img/spaceman.png";
-import ImgSpacemanIcon from "/src/assets/img/spaceman-icon.png";
-import ImgChicken from "/src/assets/img/chicken.webp";
-import ImgChickenIcon from "/src/assets/img/chicken-icon.webp";
-import ImgChickenText from "/src/assets/img/chicken-text.webp";
-import ImgHorseRaces from "/src/assets/img/horseRaces.webp";
-import ImgBlackjackMain from "/src/assets/img/blackjack-main.webp";
-import IconDigitain from "/src/assets/svg/digitain.svg";
-import IconLiga from "/src/assets/svg/liga.svg";
-import IconUltim8 from "/src/assets/svg/ultim8.svg";
 import IconYellowDeporte from "/src/assets/svg/yellow-deporte.svg";
 import IconYellowCasino from "/src/assets/svg/yellow-casino.svg";
 import IconYellowLiveCasino from "/src/assets/svg/yellow-live-casino.svg";
@@ -43,8 +29,10 @@ const Home = () => {
   const { isLogin } = useContext(LayoutContext);
   const { setShowFullDivLoading } = useContext(NavigationContext);
   const [selectedPage, setSelectedPage] = useState("lobby");
-  const [firstFiveCategoriesGames, setFirstFiveCategoriesGames] = useState([]);
+  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
+  const [games, setGames] = useState([]);
   const [gameUrl, setGameUrl] = useState("");
+  const [pageData, setPageData] = useState({});
   const [isLoadingGames, setIsLoadingGames] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -82,8 +70,8 @@ const Home = () => {
     setGameUrl("");
     setShouldShowGameModal(false);
 
-    setSelectedPage("home");
-    getPage("home");
+    setSelectedPage("hot");
+    getPage("hot");
 
     if (contextData.session != null) {
       getStatus();
@@ -105,7 +93,6 @@ const Home = () => {
   };
 
   const getPage = (page) => {
-    setFirstFiveCategoriesGames([]);
     setSelectedPage(page);
     callApi(contextData, "GET", "/get-page?page=" + page, callbackGetPage, null);
     setIsLoadingGames(true);
@@ -115,78 +102,12 @@ const Home = () => {
     if (result.status === 500 || result.status === 422) {
       setMessageCustomAlert(["error", result.message]);
     } else {
-      if (result.data.categories && result.data.page_group_type === "categories") {
-        const firstFiveCategories = result.data.categories.slice(0, 5);
-        firstFiveCategories.forEach((item, index) => {
-          if (index < 5) {
-            fetchContentForCategory(item, item.id, item.table_name, index, true);
-          }
-        });
-      }
-
-      pageCurrent = 0;
-    }
-  };
-
-  const fetchContentForCategory = (category, categoryId, tableName, categoryIndex, resetCurrentPage) => {
-    let pageSize = 8;
-    let categoryPageCurrent = 0;
-
-    if (resetCurrentPage) {
-      categoryPageCurrent = 0;
+      setGames(result.data.categories);
+      setPageData(result.data);
+      pageCurrent = 1;
     }
 
-    callApiService(
-      contextData,
-      "GET",
-      "/games/?page_group_type=categories&page_group_code=" +
-      "default_pages_home" +
-      "&table_name=" +
-      tableName +
-      "&apigames_category_id=" +
-      categoryId +
-      "&page=" +
-      categoryPageCurrent +
-      "&length=" +
-      pageSize,
-      (result) => callbackFetchContentForCategory(result, category, categoryIndex),
-      null
-    );
-  };
-
-  const callbackFetchContentForCategory = (result, category, categoryIndex) => {
-    if (result.status === 500 || result.status === 422) {
-      setMessageCustomAlert(["error", result.message]);
-    } else {
-      setIsLoadingGames(false);
-
-      const gamesWithImages = (result.data || []).map(game => {
-        let imageDataSrc = game.image_url;
-        if (game.image_local != null) {
-          imageDataSrc = contextData.cdnUrl + game.image_local;
-        }
-        return {
-          ...game,
-          imageDataSrc: imageDataSrc
-        };
-      });
-
-      const categoryGames = {
-        category: category,
-        games: gamesWithImages
-      };
-
-      setFirstFiveCategoriesGames(prev => {
-        const updated = [...prev];
-        updated[categoryIndex] = categoryGames;
-        return updated;
-      });
-    }
-  };
-
-  const launchLiveCasinoGame = (id, type, launcher) => {
-    setShouldShowGameModal(true);
-    callApiService(contextData, "GET", `/get_game_url?launcher=${launcher}&type=${type}&game_id=` + id, callbackLaunchGame, null);
+    setIsLoadingGames(false);
   };
 
   const launchGame = (id, type, launcher) => {
@@ -259,14 +180,14 @@ const Home = () => {
             <div className="home-links-mobile">
               <div className="home-links-mobile__sub">
                 {
-                  <a className="home-links-mobile__sub-item" onClick={() => navigate("/sports")}>
+                  isSlotsOnly == "false" && <a className="home-links-mobile__sub-item" onClick={() => navigate("/sports")}>
                     <span className="SVGInline home-links-mobile__sub-item-icon">
                       <img className="SVGInline-svg home-links-mobile__sub-item-icon-svg" src={IconYellowDeporte} />
                     </span>
                     <span className="home-links-mobile__sub-item-text">Deporte</span>
                   </a>
                 }
-                
+
                 <a className="home-links-mobile__sub-item" onClick={() => navigate("/casino")}>
                   <span className="SVGInline home-links-mobile__sub-item-icon">
                     <img className="SVGInline-svg home-links-mobile__sub-item-icon-svg" src={IconYellowCasino} />
@@ -275,7 +196,7 @@ const Home = () => {
                 </a>
 
                 {
-                  <a className="home-links-mobile__sub-item" onClick={() => navigate("/casinolive")}>
+                  isSlotsOnly == "false" && <a className="home-links-mobile__sub-item" onClick={() => navigate("/casinolive")}>
                     <span className="SVGInline home-links-mobile__sub-item-icon">
                       <img className="SVGInline-svg home-links-mobile__sub-item-icon-svg" src={IconYellowLiveCasino} />
                     </span>
@@ -287,65 +208,29 @@ const Home = () => {
           </div>
 
           <div className="slots-main-desktop__content-container">
-            {firstFiveCategoriesGames.length > 0 && firstFiveCategoriesGames.map((categoryData, index) => (
-              categoryData && categoryData.games && categoryData.games.length > 0 ? (
-                <div key={index} className="slots-main-desktop__provider-section">
-                  <div className="provider-section-desktop">
-                    <div className="provider-section-desktop__header">
-                      <div className="provider-section-desktop__header-img-container">
-                        <div className="provider-section-desktop__header-img-top">
-                          {/* {categoryData.category.image_local && (
-                            <img
-                              className="provider-section-desktop__header-icon"
-                              src={contextData.cdnUrl + categoryData.category.image_local}
-                              alt={categoryData.category.name}
-                              loading="lazy"
-                            />
-                          )} */}
-                          <span className="provider-section-desktop__header-provider-text">
-                            {categoryData.category.name}
-                          </span>
-                        </div>
-                        <div className="provider-section-desktop__header-line"></div>
-                      </div>
-                      <div className="provider-section-desktop__controls">
-                        <div className="carousel-arrows">
-                          <a className="carousel-arrows__title" onClick={() => navigate("/casino")}>
-                            <span className="carousel-arrows__title-text">Mostrar todo</span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="provider-section-desktop__games-container">
-                      {categoryData.games.slice(0, 8).map((game, gameIndex) => (
-                        <GameCard
-                          key={gameIndex}
-                          id={game.id}
-                          title={game.name}
-                          imageSrc={game.imageDataSrc || game.image_url || (game.image_local ? contextData.cdnUrl + game.image_local : "")}
-                          onClick={() =>
-                            isLogin
-                              ? launchGame(game.id, game.type, game.launcher)
-                              : isMobile
-                                ? navigate("/login")
-                                : handleLoginClick()
-                          }
-                        />
-                      ))}
-                    </div>
-                    {categoryData.games.length === 8 && (
-                      <div className="carousel-arrows">
-                        <a className="carousel-arrows__title" href={`/casino?category=${categoryData.category.id}`}>
-                          <span className="carousel-arrows__title-text">Ver más {categoryData.category.name}</span>
-                        </a>
-                      </div>
-                    )}
-                  </div>
+            <div className="slots-main-desktop__provider-section">
+              <div className="provider-section-desktop">
+                <div className="provider-section-desktop__games-container">
+                  {games &&
+                    games.map((item, index) => (
+                      <GameCard
+                        key={index}
+                        id={item.id}
+                        title={item.name}
+                        imageSrc={contextData.cdnUrl + item.image_local}
+                        onClick={() =>
+                          isLogin
+                            ? launchGame(item.id, item.type, item.launcher)
+                            : isMobile
+                              ? navigate("/login")
+                              : handleLoginClick()
+                        }
+                      />
+                    ))}
                 </div>
-              ) : null
-            ))}
-
-            {isLoadingGames && <DivLoading />}
+                {isLoadingGames && <DivLoading />}
+              </div>
+            </div>
           </div>
         </>
       )}

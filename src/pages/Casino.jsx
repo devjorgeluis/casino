@@ -314,6 +314,13 @@ const Casino = () => {
     clearTimeout(searchDelayTimer);
 
     if (keyword == "") {
+      setGames([]);
+      setIsLoadingGames(false);
+      pageCurrent = 0;
+      if (categories.length > 0) {
+        const item = categories[selectedCategoryIndex] || categories[0];
+        fetchContent(item, item.id, item.table_name, selectedCategoryIndex, true);
+      }
       return;
     }
 
@@ -450,15 +457,18 @@ const Casino = () => {
             <div className="slots-main-desktop__provider-section">
               <div className="provider-section-desktop">
                 <div className="provider-section-desktop__header">
-                  <div className="provider-section-desktop__header-img-container">
-                    <div className="provider-section-desktop__header-img-top">
-                      {activeCategory.image_url && activeCategory.image_url !== "" && (
-                        <img className="provider-section-desktop__header-icon" src={activeCategory.image_url} alt="" loading="lazy" />
-                      )}
-                      <span className="provider-section-desktop__header-provider-text">{activeCategory.name}</span>
+                  {
+                    txtSearch === "" && 
+                    <div className="provider-section-desktop__header-img-container">
+                      <div className="provider-section-desktop__header-img-top">
+                        {activeCategory.image_url && activeCategory.image_url !== "" && (
+                          <img className="provider-section-desktop__header-icon" src={activeCategory.image_url} alt="" loading="lazy" />
+                        )}
+                        <span className="provider-section-desktop__header-provider-text">{activeCategory.name}</span>
+                      </div>
+                      <div className="provider-section-desktop__header-line"></div>
                     </div>
-                    <div className="provider-section-desktop__header-line"></div>
-                  </div>
+                  }
                 </div>
                 <div className="provider-section-desktop__games-container">
                   {games &&
