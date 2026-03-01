@@ -4,9 +4,19 @@ import { AppContext } from "../AppContext";
 import IconLogout from "/src/assets/svg/logout.svg";
 import IconUserCircle from "/src/assets/svg/user-circle.svg";
 
-const UserMenu = ({ handleLogoutClick, supportParent, openSupportModal }) => {
+const UserMenu = ({ handleLogoutClick, supportParent, openSupportModal, closeMenu }) => {
     const { contextData } = useContext(AppContext);
     const navigate = useNavigate();
+
+    const handleNavigate = (path) => {
+        closeMenu();
+        navigate(path);
+    };
+
+    const handleLogout = () => {
+        closeMenu();
+        handleLogoutClick();
+    };
 
     return (
         <div className="user-block__menu">
@@ -17,7 +27,7 @@ const UserMenu = ({ handleLogoutClick, supportParent, openSupportModal }) => {
                         <div className="user-block__menu-top-user-username">{contextData.session.user.username}</div>
                     </div>
                     <div className="user-block__menu-top-logout">
-                        <span className="user-block__user-icon" onClick={handleLogoutClick}>
+                        <span className="user-block__user-icon" onClick={handleLogout}>
                             <span className="SVGInline SVG-component__content">
                                 <img src={IconLogout} />
                             </span>
@@ -29,7 +39,7 @@ const UserMenu = ({ handleLogoutClick, supportParent, openSupportModal }) => {
                     <div className="user-block__menu-top-balance-amount">$ {parseFloat(contextData.session.user.balance).toFixed(2) || '0.00'}</div>
                 </div>
             </div>
-            <a className="user-block__menu-item" onClick={() => navigate("/profile")}>
+            <a className="user-block__menu-item" onClick={() => handleNavigate("/profile")}>
                 <span className="user-block__menu-item-icon">
                     <span className="SVGInline SVG-component__content">
                         <img src={IconUserCircle} />
@@ -37,7 +47,7 @@ const UserMenu = ({ handleLogoutClick, supportParent, openSupportModal }) => {
                 </span>
                 <div className="user-block__menu-item-title">Su cuenta</div>
             </a>
-            <a className="user-block__menu-item" onClick={() => navigate("/profile")}>
+            <a className="user-block__menu-item" onClick={() => handleNavigate("/profile#history")}>
                 <span className="user-block__menu-item-icon">
                     <span className="SVGInline SVG-component__content">
                         <svg className="SVGInline-svg SVG-component__content-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -47,17 +57,17 @@ const UserMenu = ({ handleLogoutClick, supportParent, openSupportModal }) => {
                 </span>
                 <div className="user-block__menu-item-title">Historial de Operaciones</div>
             </a>
-            {
-                supportParent && <a className="user-block__menu-item" onClick={() => openSupportModal(true)}>
-                    <span className="user-block__menu-item-icon">
-                        <span className="SVGInline SVG-component__content">
-
-                        </span>
+            <a className="user-block__menu-item" onClick={() => handleNavigate("/profile#transaction")}>
+                <span className="user-block__menu-item-icon">
+                    <span className="SVGInline SVG-component__content">
+                        <svg className="SVGInline-svg SVG-component__content-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fillRule="evenodd" clipRule="evenodd" d="M10.0667 15.5661C10.5413 15.5661 10.926 15.1814 10.926 14.7067V14.1789C13.6199 13.1817 12.9694 9.21888 10.0667 9.16393C8.92406 9.11731 8.9296 7.49855 10.0667 7.45137C10.4117 7.45137 10.6872 7.63415 10.8225 7.95293C11.0079 8.38978 11.5125 8.59353 11.9494 8.40813C12.3862 8.22268 12.59 7.71815 12.4046 7.28126C12.1169 6.60362 11.5824 6.10807 10.926 5.87729V5.2968C10.8807 4.15661 9.25233 4.15747 9.20734 5.2968V5.87987C6.51731 6.87702 7.15886 10.8275 10.0667 10.8826C11.2029 10.9296 11.2101 12.5601 10.0667 12.6074C9.73249 12.6074 9.40104 12.3894 9.26071 12.0771C9.06615 11.6442 8.55746 11.451 8.1246 11.6456C7.6917 11.8402 7.49848 12.3488 7.69308 12.7817C7.98638 13.4343 8.54848 13.9356 9.20734 14.1736V14.7067C9.20734 15.1814 9.59207 15.5661 10.0667 15.5661ZM7.10176 18.5083C7.4473 18.5083 7.77321 18.2983 7.90431 17.9563C8.07424 17.5132 7.8527 17.0162 7.40954 16.8463C-0.0725399 13.8251 1.93692 2.85332 10.0239 2.71879C13.5803 2.71879 16.6061 5.2568 17.2184 8.75359C17.3003 9.22103 17.7456 9.53366 18.2131 9.45181C18.6806 9.36996 18.9933 8.9246 18.9114 8.45711C18.5497 6.39166 17.4653 4.50323 15.858 3.13974C10.0649 -1.81167 0.974623 2.39382 1.00058 10.0234C0.957264 13.6913 3.36418 17.1769 6.79428 18.4511C6.89551 18.4899 6.99945 18.5083 7.10176 18.5083ZM21.2813 19.1752C21.2813 18.7006 21.666 18.3159 22.1406 18.3159C22.6153 18.3159 23 18.7006 23 19.1752V22.14C22.955 23.2793 21.3267 23.2802 21.2813 22.14V19.1752ZM18.7032 18.3159C18.2286 18.3159 17.8439 18.7006 17.8439 19.1752V22.14C17.8893 23.2802 19.5176 23.2793 19.5626 22.14V19.1752C19.5626 18.7006 19.1779 18.3159 18.7032 18.3159ZM14.4065 19.1752C14.4065 18.7006 14.7912 18.3159 15.2658 18.3159C15.7405 18.3159 16.1252 18.7006 16.1252 19.1752V22.14C16.0802 23.2793 14.4519 23.2802 14.4065 22.14V19.1752ZM11.8284 20.9369C11.3538 20.9369 10.9691 21.3216 10.9691 21.7963V22.14C11.0144 23.2802 12.6428 23.2793 12.6878 22.14V21.7963C12.6878 21.3216 12.303 20.9369 11.8284 20.9369ZM22.9999 15.738V11.9139C22.9999 11.4393 22.6152 11.0546 22.1406 11.0546H18.2735C17.1341 11.0995 17.1333 12.7279 18.2735 12.7733H20.1177L17.5826 15.3083H13.2463C13.0184 15.3083 12.7997 15.3989 12.6386 15.5601L6.66612 21.5325C6.3305 21.8681 6.3305 22.4122 6.66612 22.7478C7.00169 23.0835 7.54584 23.0835 7.88141 22.7478L13.6022 17.0271H17.9386C18.1665 17.0271 18.3851 16.9365 18.5463 16.7753L21.2812 14.0404V15.738C21.3262 16.8774 22.9545 16.8782 22.9999 15.738Z" fill="#EDEDED"></path>
+                        </svg>
                     </span>
-                    <div className="user-block__menu-item-title">Contactá a Tu Cajero</div>
-                </a>
-            }
-            <a className="user-block__menu-item" onClick={() => navigate("/profile")}>
+                </span>
+                <div className="user-block__menu-item-title">Transacciones</div>
+            </a>
+            <a className="user-block__menu-item" onClick={() => handleNavigate("/profile")}>
                 <span className="user-block__menu-item-icon">
                     <span className="SVGInline SVG-component__content">
                         <svg className="SVGInline-svg SVG-component__content-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -67,7 +77,7 @@ const UserMenu = ({ handleLogoutClick, supportParent, openSupportModal }) => {
                 </span>
                 <div className="user-block__menu-item-title">Cambiar la contraseña</div>
             </a>
-            <a className="user-block__menu-item" onClick={() => navigate("/profile")}>
+            <a className="user-block__menu-item" onClick={() => handleNavigate("/profile")}>
                 <span className="user-block__menu-item-icon">
                     <span className="SVGInline SVG-component__content">
                         <svg className="SVGInline-svg SVG-component__content-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

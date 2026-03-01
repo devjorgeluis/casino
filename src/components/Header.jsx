@@ -88,9 +88,9 @@ const Header = ({ isLogin, userBalance, handleLoginClick, handleLogoutClick, fra
                                         <span className="user-block__text">$ {userBalance}</span>
                                     </div>
                                 </div>
-                                <div className="user-block__border">
+                                <div className="user-block__border" onClick={openMenu}>
                                     <div className="user-block__user-wrapper">
-                                        <span className="user-block__user-icon" onClick={openMenu}>
+                                        <span className="user-block__user-icon">
                                             <span className="SVGInline SVG-component__content">
                                                 <img src={IconProfile} />
                                             </span>
@@ -123,7 +123,7 @@ const Header = ({ isLogin, userBalance, handleLoginClick, handleLogoutClick, fra
                                 </div>
                             </div>
                         )}
-                        {showUserMenu && <UserMenu handleLogoutClick={handleLogoutClick} supportParent={supportParent} openSupportModal={openSupportModal} />}
+                        {showUserMenu && <UserMenu handleLogoutClick={handleLogoutClick} supportParent={supportParent} openSupportModal={openSupportModal} closeMenu={() => setShowUserMenu(false)} />}
                     </div>
                 </div>
             </div>

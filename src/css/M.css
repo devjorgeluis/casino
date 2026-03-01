@@ -3057,7 +3057,8 @@ hr.big {
 
 .pay-history-item-desktop__date-number {
     font-weight: 600;
-    font-size: .75rem
+    font-size: .75rem;
+    color: white;
 }
 
 .pay-history-item-desktop__date-number_status_2 {

@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect, useRef } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useOutletContext } from "react-router-dom";
 import { AppContext } from "../AppContext";
 import { LayoutContext } from "../components/LayoutContext";
 import { NavigationContext } from "../components/NavigationContext";
@@ -16,7 +16,8 @@ import "animate.css";
 import ImgNavMidLobby from "/src/assets/img/nav-mid-lobby.png";
 import ImgHot from "/src/assets/img/hot.png";
 import ImgHeart from "/src/assets/img/heart.png";
-import ImgArrow from "/src/assets/img/arrow.png";
+import ImgMegaway from "/src/assets/svg/megaway.svg";
+import ImgJoker from "/src/assets/svg/joker.svg";
 import ImgRuleta from "/src/assets/img/ruleta.png";
 import ImgSlotsBanner from "/src/assets/img/slots-banner.png";
 import ImgMobileSlotsBanner from "/src/assets/img/mobile-slots-banner.png";
@@ -50,6 +51,7 @@ const Casino = () => {
   const refGameModal = useRef();
   const navigate = useNavigate();
   const location = useLocation();
+  const { isSlotsOnly } = useOutletContext();
 
   useEffect(() => {
     const checkIsMobile = () => {
@@ -76,24 +78,19 @@ const Casino = () => {
     setGameUrl("");
     setShouldShowGameModal(false);
 
-    setSelectedPage("casino");
-    getPage("casino");
-
-    if (contextData.session != null) {
-      getStatus();
-    }
-  }, [location.pathname]);
+    const targetPage = location.state?.page || "casino";
+    setSelectedPage(targetPage);
+    getPage(targetPage);
+  }, [location.pathname, location.state]);
 
   useEffect(() => {
     updateNavLinks();
   }, [selectedPage]);
 
-  const getStatus = () => {
-    callApi(contextData, "GET", "/get-status", callbackGetStatus, null);
-  };
+  const isSlotsOnlyFalse = isSlotsOnly === false || isSlotsOnly === "false";
 
   const updateNavLinks = () => {
-    if ((contextData.slots_only == null) || (contextData.slots_only == false)) {
+    if (isSlotsOnlyFalse) {
       setFragmentNavLinksBody(
         <>
           <NavLinkIcon
@@ -120,9 +117,16 @@ const Casino = () => {
           <NavLinkIcon
             title="Megaways"
             pageCode="megaways"
-            icon={ImgArrow}
+            icon={ImgMegaway}
             active={selectedPage === "megaways"}
             onClick={() => getPage("megaways")}
+          />
+          <NavLinkIcon
+            title="Jokers"
+            pageCode="joker"
+            icon={ImgJoker}
+            active={selectedPage === "joker"}
+            onClick={() => getPage("joker")}
           />
           <NavLinkIcon
             title="Ruleta"
@@ -153,21 +157,19 @@ const Casino = () => {
           <NavLinkIcon
             title="Megaways"
             pageCode="megaways"
-            icon={ImgArrow}
+            icon={ImgMegaway}
             active={selectedPage === "megaways"}
             onClick={() => getPage("megaways")}
           />
+          <NavLinkIcon
+            title="Jokers"
+            pageCode="joker"
+            icon={ImgJoker}
+            active={selectedPage === "joker"}
+            onClick={() => getPage("joker")}
+          />
         </>
       );
-    }
-  };
-
-  const callbackGetStatus = (result) => {
-    if (result.status === 500 || result.status === 422) {
-      setMessageCustomAlert(["error", result.message]);
-    } else {
-      contextData.slots_only = result && result.slots_only;
-      updateNavLinks();
     }
   };
 
@@ -179,21 +181,28 @@ const Casino = () => {
   };
 
   const callbackGetPage = (result) => {
+    if (!result || !result.data) {
+      setMessageCustomAlert(["error", "Error al cargar la página"]);
+      return;
+    }
+
     if (result.status === 500 || result.status === 422) {
       setMessageCustomAlert(["error", result.message]);
     } else {
-      setCategories(result.data.categories);
-      setPageData(result.data);
+      const data = result.data;
 
-      if (pageData.url && pageData.url != null) {
+      setCategories(data.categories || []);
+      setPageData(data);
+
+      if (data.url && data.url != null) {
         if (contextData.isMobile) {
           // Mobile sports workaround
         }
       } else {
-        if (result.data.page_group_type == "categories") {
+        if (data.page_group_type == "categories") {
           setSelectedCategoryIndex(0);
         }
-        if (result.data.page_group_type == "games") {
+        if (data.page_group_type == "games") {
           loadMoreContent();
         }
       }
@@ -219,7 +228,6 @@ const Casino = () => {
   const fetchContent = (category, categoryId, tableName, categoryIndex, resetCurrentPage) => {
     let pageSize = 30;
     setIsLoadingGames(true);
-    // setShowFullDivLoading(true);
 
     if (resetCurrentPage == true) {
       pageCurrent = 0;
@@ -248,6 +256,12 @@ const Casino = () => {
   };
 
   const callbackFetchContent = (result) => {
+    if (!result || !result.data) {
+      setIsLoadingGames(false);
+      setShowFullDivLoading(false);
+      return;
+    }
+
     if (result.status === 500 || result.status === 422) {
       setMessageCustomAlert(["error", result.message]);
     } else {
@@ -274,6 +288,11 @@ const Casino = () => {
   };
 
   const callbackLaunchGame = (result) => {
+    if (!result) {
+      setShowFullDivLoading(false);
+      return;
+    }
+
     if (result.status == "0") {
       switch (selectedGameLauncher) {
         case "modal":
@@ -333,7 +352,7 @@ const Casino = () => {
       callApi(
         contextData,
         "GET",
-        "/search-content?keyword=" + txtSearch + "&page_group_code=" + pageData.page_group_code + "&length=" + pageSize,
+        "/search-content?keyword=" + keyword + "&page_group_code=" + pageData.page_group_code + "&length=" + pageSize,
         callbackSearch,
         null
       );
@@ -343,11 +362,16 @@ const Casino = () => {
   };
 
   const callbackSearch = (result) => {
+    if (!result) {
+      setIsLoadingGames(false);
+      return;
+    }
+
     if (result.status === 500 || result.status === 422) {
       setMessageCustomAlert(["error", result.message]);
     } else {
       configureImageSrc(result, true);
-      setGames(result.content);
+      setGames(result.content || []);
       pageCurrent = 0;
     }
     setIsLoadingGames(false);
@@ -446,7 +470,7 @@ const Casino = () => {
                   ))}
                 </div>
               )}
-              {categories.length == 0 && <DivLoading />}
+              {/* {categories.length == 0 && <DivLoading />} */}
             </div>
 
             <div className="slots-main-mobile__search-category-filters">
@@ -465,7 +489,7 @@ const Casino = () => {
               <div className="provider-section-desktop">
                 <div className="provider-section-desktop__header">
                   {
-                    txtSearch === "" && 
+                    txtSearch === "" &&
                     <div className="provider-section-desktop__header-img-container">
                       <div className="provider-section-desktop__header-img-top">
                         {activeCategory.image_url && activeCategory.image_url !== "" && (

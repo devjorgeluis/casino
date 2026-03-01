@@ -6,7 +6,7 @@ import IconChevronRight from "/src/assets/svg/chevron-right.svg";
 import IconDoubleLeft from "/src/assets/img/double-left.png";
 import IconDoubleRight from "/src/assets/img/double-right.png";
 
-const PayHistory = () => {
+const PayTransaction = () => {
     const { contextData } = useContext(AppContext);
     const [transactions, setTransactions] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -27,19 +27,16 @@ const PayHistory = () => {
 
     const fetchHistory = () => {
         setLoading(true);
-        const statusParams = [];
 
         const queryParams = new URLSearchParams({
             start: pagination.start,
             length: pagination.length,
-            type: "slot",
-            ...(statusParams.length > 0 && { status: statusParams.join(",") }),
         }).toString();
 
         callApi(
             contextData,
             "GET",
-            `/get-history?${queryParams}`,
+            `/get-transactions?${queryParams}`,
             (response) => {
                 if (response.status === "0") {
                     setTransactions(response.data);
@@ -104,7 +101,7 @@ const PayHistory = () => {
         <div className="pay-history-desktop">
             <div className="pay-history-desktop__filter">
                 <div className="pay-history-desktop__filter-header">
-                    <div className="pay-history-desktop__filter-header-title">Historial de Operaciones</div>
+                    <div className="pay-history-desktop__filter-header-title">Transacciones</div>
                 </div>
             </div>
             <section className="pay-history-desktop__main">
@@ -124,20 +121,20 @@ const PayHistory = () => {
                                         </div>
                                         <div className="pay-history-item-desktop__item">
                                             <div className="pay-history-item-desktop__title">Monto</div>
-                                            <div className={`pay-history-item-desktop__description pay-history-item-desktop__date-number_status_${txn.value_after > txn.value_before ? 2 : 1}`}>
+                                            <div className={`pay-history-item-desktop__description pay-history-item-desktop__date-number_status_${txn.to_new_balance > txn.to_current_balance ? 2 : 1}`}>
                                                 {formatBalance(txn.value || txn.amount || 0)}
                                             </div>
                                         </div>
                                         <div className="pay-history-item-desktop__item">
                                             <div className="pay-history-item-desktop__title">Balance Previo</div>
                                             <div className="pay-history-item-desktop__description">
-                                                {formatBalance(txn.value_before) || 0}
+                                                {formatBalance(txn.to_current_balance) || 0}
                                             </div>
                                         </div>
                                         <div className="pay-history-item-desktop__item">
                                             <div className="pay-history-item-desktop__title">Balance Posterior</div>
                                             <div className="pay-history-item-desktop__date-number">
-                                                {formatBalance(txn.value_after) || 0}
+                                                {formatBalance(txn.to_new_balance) || 0}
                                             </div>
                                         </div>
                                     </div>
@@ -214,4 +211,4 @@ const PayHistory = () => {
     );
 };
 
-export default PayHistory;
+export default PayTransaction;

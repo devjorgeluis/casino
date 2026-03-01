@@ -33,10 +33,10 @@ const UserInfo = ({ logout, isMobile = false }) => {
                         </span>
                         <div className={isMobile ? "profile-user-info-mobile__credentials" : "user-info__header-info"}>
                             <div className={isMobile ? "profile-user-info-mobile__id" : "user-info__header-info-id"}>
-                                ID {contextData?.session?.user?.id || '******'}
+                                ID {contextData?.session?.user?.id || ''}
                             </div>
                             <div className={isMobile ? "profile-user-info-mobile__username" : "user-info__header-info-username"}>
-                                {contextData?.session?.user?.name || 'Guest'}
+                                {contextData?.session?.user?.username || ''}
                             </div>
                         </div>
                         {isMobile && (
@@ -69,11 +69,6 @@ const UserInfo = ({ logout, isMobile = false }) => {
                         0.00
                     </span>
                 </div>
-                {
-                    supportParent && <div onClick={() => openSupportModal(true)}>
-                        <span className="profile-user-info-mobile__username">Contactá a Tu Cajero</span>
-                    </div>
-                }
             </div>
             {!isMobile && <img className="user-info__mascot" src={ImgMascot} alt="mascot" />}
         </div>
