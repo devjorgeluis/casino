@@ -1,30 +1,32 @@
-import ImgLogo from "/src/assets/svg/logo.svg";
+import { useNavigate } from "react-router-dom";
+import ImgLogo from "/src/assets/svg/footer-logo.svg";
 import ImgBet from "/src/assets/img/bet-responsibility.png";
-import IconChat from "/src/assets/svg/chat.svg";
 
 const Footer = ({ isSlotsOnly }) => {
+    const navigate = useNavigate();
+
     return (
         <div className="app__footer-container">
             <footer className="footer">
                 <nav className="footer__nav-links">
                     <div className="footer__menu-container">
-                        <a className="footer__menu-item" href="/">
+                        <a className="footer__menu-item" onClick={() => navigate("/")}>
                             <span className="footer__menu-description">Inicio</span>
                         </a>
                         {
                             isSlotsOnly === "false" && 
-                            <a className="footer__menu-item" href="/sports">
+                            <a className="footer__menu-item" onClick={() => navigate("/sports")}>
                                 <span className="footer__menu-description">Deporte</span>
                             </a>
                         }
                     </div>
                     <div className="footer__menu-container">
-                        <a className="footer__menu-item" href="/casino">
+                        <a className="footer__menu-item" onClick={() => navigate("/casino")}>
                             <span className="footer__menu-description">Casino</span>
                         </a>
                         {
                             isSlotsOnly === "false" && 
-                            <a className="footer__menu-item" href="/casinolive">
+                            <a className="footer__menu-item" onClick={() => navigate("/casinolive")}>
                                 <span className="footer__menu-description">Casino en vivo</span>
                             </a>
                         }

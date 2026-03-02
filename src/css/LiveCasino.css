@@ -615,7 +615,7 @@
 }
 
 .provider-filter-live-games-desktop__item_active {
-    background: linear-gradient(113.27deg, #5428b4 15.04%, #b339e2 84.96%)
+    background: linear-gradient(113.27deg, #5428b4 15.04%, #e72062e6 84.96%)
 }
 
 .provider-filter-live-games-desktop__item-name {
@@ -854,7 +854,7 @@
 }
 
 .live-casino-category-filter-desktop__content_active {
-    background: linear-gradient(113.27deg, #5428b4 15.04%, #b339e2 84.96%);
+    background: linear-gradient(113.27deg, #5428b4 15.04%, #e72062e6 84.96%);
     border: none
 }
 

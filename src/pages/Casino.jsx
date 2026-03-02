@@ -19,7 +19,7 @@ import ImgHeart from "/src/assets/img/heart.png";
 import ImgMegaway from "/src/assets/svg/megaway.svg";
 import ImgJoker from "/src/assets/svg/joker.svg";
 import ImgRuleta from "/src/assets/img/ruleta.png";
-import ImgSlotsBanner from "/src/assets/img/slots-banner.png";
+import ImgSlotsBanner from "/src/assets/img/casino_seccion_desktop.jpg";
 import ImgMobileSlotsBanner from "/src/assets/img/mobile-slots-banner.png";
 
 let selectedGameId = null;
@@ -112,7 +112,7 @@ const Casino = () => {
           <NavLinkIcon title="Lobby" pageCode="home" icon={ImgHeart}
             active={selectedPage === "home" || selectedPage === "lobby"}
             onClick={() => getPage("home")} />
-          <NavLinkIcon title="Hot" pageCode="hot" icon={ImgHot}
+          <NavLinkIcon title="Nuevos" pageCode="hot" icon={ImgHot}
             active={selectedPage === "hot"} onClick={() => getPage("hot")} />
           <NavLinkIcon title="Habilidad" pageCode="arcade" icon={ImgNavMidLobby}
             active={selectedPage === "arcade"} onClick={() => getPage("arcade")} />
@@ -130,7 +130,7 @@ const Casino = () => {
           <NavLinkIcon title="Lobby" pageCode="home" icon={ImgHeart}
             active={selectedPage === "home" || selectedPage === "lobby"}
             onClick={() => getPage("home")} />
-          <NavLinkIcon title="Hot" pageCode="hot" icon={ImgHot}
+          <NavLinkIcon title="Nuevos" pageCode="hot" icon={ImgHot}
             active={selectedPage === "hot"} onClick={() => getPage("hot")} />
           <NavLinkIcon title="Megaways" pageCode="megaways" icon={ImgMegaway}
             active={selectedPage === "megaways"} onClick={() => getPage("megaways")} />

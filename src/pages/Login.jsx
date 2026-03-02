@@ -24,7 +24,7 @@ const Login = () => {
             let body = {
                 username: username,
                 password: password,
-                site_label: "v2_ganamos"
+                site_label: "v2_zeus"
             };
             callApi(
                 contextData,

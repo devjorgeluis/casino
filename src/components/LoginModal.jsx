@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { AppContext } from "../AppContext";
 import { callApi } from "../utils/Utils";
 import CustomAlert from "../components/CustomAlert";
-import ImgBackground from "/src/assets/img/auth-background.png";
+import ImgBackground from "/src/assets/svg/logo.svg";
 import IconClose from "/src/assets/svg/close.svg";
 import IconEye from "/src/assets/svg/eye.svg";
 import IconEyeSlash from "/src/assets/svg/eye-slash.svg";
@@ -22,7 +22,7 @@ const LoginModal = ({ isOpen, onClose }) => {
             let body = {
                 username: username,
                 password: password,
-                site_label: "v2_ganamos"
+                site_label: "v2_zeus"
             };
             callApi(
                 contextData,
