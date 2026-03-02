@@ -35,6 +35,8 @@ const Casino = () => {
   const [selectedPage, setSelectedPage] = useState("lobby");
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
   const [categories, setCategories] = useState([]);
+  const [mainCategories, setMainCategories] = useState([]);
+  const mainCategoriesRef = useRef([]);
   const [activeCategory, setActiveCategory] = useState({});
   const [pageData, setPageData] = useState({});
   const [games, setGames] = useState([]);
@@ -49,27 +51,27 @@ const Casino = () => {
   const [messageCustomAlert, setMessageCustomAlert] = useState(["", ""]);
   const searchRef = useRef(null);
   const refGameModal = useRef();
+  const pageGroupTypeRef = useRef("");
   const navigate = useNavigate();
   const location = useLocation();
   const { isSlotsOnly } = useOutletContext();
+  const pageDataRef = useRef({});
 
   useEffect(() => {
-    const checkIsMobile = () => {
-      return window.innerWidth <= 767;
-    };
-
+    const checkIsMobile = () => window.innerWidth <= 767;
     setIsMobile(checkIsMobile());
-
-    const handleResize = () => {
-      setIsMobile(checkIsMobile());
-    };
-
+    const handleResize = () => setIsMobile(checkIsMobile());
     window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    if (categories.length > 0 && pageGroupTypeRef.current === "categories") {
+      const item = categories[0];
+      setActiveCategory(item);
+      fetchContent(item, item.id, item.table_name, 0, true);
+    }
+  }, [categories]);
 
   useEffect(() => {
     selectedGameId = null;
@@ -78,10 +80,23 @@ const Casino = () => {
     setGameUrl("");
     setShouldShowGameModal(false);
 
-    const targetPage = location.state?.page || "casino";
-    setSelectedPage(targetPage);
-    getPage(targetPage);
-  }, [location.pathname, location.state]);
+    const hash = location.hash.replace("#", "");
+
+    if (hash) {
+      // Always preload casino first to populate mainCategories ref, then load hash page
+      callApi(contextData, "GET", "/get-page?page=casino", (result) => {
+        if (result && result.data && result.data.categories) {
+          const casinoCategories = result.data.categories || [];
+          // Set both state AND ref so it's immediately available
+          setMainCategories(casinoCategories);
+          mainCategoriesRef.current = casinoCategories;
+        }
+        getPage(hash);
+      }, null);
+    } else {
+      getPage("casino");
+    }
+  }, [location.pathname, location.hash]);
 
   useEffect(() => {
     updateNavLinks();
@@ -93,81 +108,33 @@ const Casino = () => {
     if (isSlotsOnlyFalse) {
       setFragmentNavLinksBody(
         <>
-          <NavLinkIcon
-            title="Lobby"
-            pageCode="home"
-            icon={ImgHeart}
+          <NavLinkIcon title="Lobby" pageCode="home" icon={ImgHeart}
             active={selectedPage === "home" || selectedPage === "lobby"}
-            onClick={() => getPage("home")}
-          />
-          <NavLinkIcon
-            title="Hot"
-            pageCode="hot"
-            icon={ImgHot}
-            active={selectedPage === "hot"}
-            onClick={() => getPage("hot")}
-          />
-          <NavLinkIcon
-            title="Habilidad"
-            pageCode="arcade"
-            icon={ImgNavMidLobby}
-            active={selectedPage === "arcade"}
-            onClick={() => getPage("arcade")}
-          />
-          <NavLinkIcon
-            title="Megaways"
-            pageCode="megaways"
-            icon={ImgMegaway}
-            active={selectedPage === "megaways"}
-            onClick={() => getPage("megaways")}
-          />
-          <NavLinkIcon
-            title="Jokers"
-            pageCode="joker"
-            icon={ImgJoker}
-            active={selectedPage === "joker"}
-            onClick={() => getPage("joker")}
-          />
-          <NavLinkIcon
-            title="Ruleta"
-            pageCode="roulette"
-            icon={ImgRuleta}
-            active={selectedPage === "roulette"}
-            onClick={() => getPage("roulette")}
-          />
+            onClick={() => getPage("home")} />
+          <NavLinkIcon title="Hot" pageCode="hot" icon={ImgHot}
+            active={selectedPage === "hot"} onClick={() => getPage("hot")} />
+          <NavLinkIcon title="Habilidad" pageCode="arcade" icon={ImgNavMidLobby}
+            active={selectedPage === "arcade"} onClick={() => getPage("arcade")} />
+          <NavLinkIcon title="Megaways" pageCode="megaways" icon={ImgMegaway}
+            active={selectedPage === "megaways"} onClick={() => getPage("megaways")} />
+          <NavLinkIcon title="Jokers" pageCode="joker" icon={ImgJoker}
+            active={selectedPage === "joker"} onClick={() => getPage("joker")} />
+          <NavLinkIcon title="Ruleta" pageCode="roulette" icon={ImgRuleta}
+            active={selectedPage === "roulette"} onClick={() => getPage("roulette")} />
         </>
       );
     } else {
       setFragmentNavLinksBody(
         <>
-          <NavLinkIcon
-            title="Lobby"
-            pageCode="home"
-            icon={ImgHeart}
+          <NavLinkIcon title="Lobby" pageCode="home" icon={ImgHeart}
             active={selectedPage === "home" || selectedPage === "lobby"}
-            onClick={() => getPage("home")}
-          />
-          <NavLinkIcon
-            title="Hot"
-            pageCode="hot"
-            icon={ImgHot}
-            active={selectedPage === "hot"}
-            onClick={() => getPage("hot")}
-          />
-          <NavLinkIcon
-            title="Megaways"
-            pageCode="megaways"
-            icon={ImgMegaway}
-            active={selectedPage === "megaways"}
-            onClick={() => getPage("megaways")}
-          />
-          <NavLinkIcon
-            title="Jokers"
-            pageCode="joker"
-            icon={ImgJoker}
-            active={selectedPage === "joker"}
-            onClick={() => getPage("joker")}
-          />
+            onClick={() => getPage("home")} />
+          <NavLinkIcon title="Hot" pageCode="hot" icon={ImgHot}
+            active={selectedPage === "hot"} onClick={() => getPage("hot")} />
+          <NavLinkIcon title="Megaways" pageCode="megaways" icon={ImgMegaway}
+            active={selectedPage === "megaways"} onClick={() => getPage("megaways")} />
+          <NavLinkIcon title="Jokers" pageCode="joker" icon={ImgJoker}
+            active={selectedPage === "joker"} onClick={() => getPage("joker")} />
         </>
       );
     }
@@ -177,10 +144,10 @@ const Casino = () => {
     setCategories([]);
     setGames([]);
     setSelectedPage(page);
-    callApi(contextData, "GET", "/get-page?page=" + page, callbackGetPage, null);
+    callApi(contextData, "GET", "/get-page?page=" + page, (result) => callbackGetPage(result, page), null);
   };
 
-  const callbackGetPage = (result) => {
+  const callbackGetPage = (result, page) => {
     if (!result || !result.data) {
       setMessageCustomAlert(["error", "Error al cargar la página"]);
       return;
@@ -188,48 +155,55 @@ const Casino = () => {
 
     if (result.status === 500 || result.status === 422) {
       setMessageCustomAlert(["error", result.message]);
-    } else {
-      const data = result.data;
+      return;
+    }
 
-      setCategories(data.categories || []);
-      setPageData(data);
+    const data = result.data;
+    pageGroupTypeRef.current = data.page_group_type;
+    setPageData(data);
 
-      if (data.url && data.url != null) {
-        if (contextData.isMobile) {
-          // Mobile sports workaround
-        }
-      } else {
-        if (data.page_group_type == "categories") {
-          setSelectedCategoryIndex(0);
-        }
-        if (data.page_group_type == "games") {
-          loadMoreContent();
-        }
+    if (data.url && data.url != null) {
+      return;
+    }
+
+    if (data.page_group_type === "categories") {
+      const newCategories = data.categories || [];
+      setSelectedCategoryIndex(0);
+      setCategories(newCategories);
+      pageDataRef.current = data;
+      if (page === "casino") {
+        setMainCategories(newCategories);
+        mainCategoriesRef.current = newCategories;
       }
       pageCurrent = 0;
+    } else if (data.page_group_type === "games") {
+      // Use ref here — guaranteed to have the latest value synchronously
+      const currentMainCategories = mainCategoriesRef.current;
+      setCategories(currentMainCategories.length > 0 ? currentMainCategories : []);
+
+      const gamesWithImages = (data.categories || []).map((game) => ({
+        ...game,
+        imageDataSrc: game.image_local !== null
+          ? contextData.cdnUrl + game.image_local
+          : game.image_url,
+      }));
+      setGames(gamesWithImages);
+      pageCurrent = 1;
     }
   };
 
-  useEffect(() => {
-    if (categories.length > 0) {
-      let item = categories[0];
-      fetchContent(item, item.id, item.table_name, 0, false);
-      setActiveCategory(item);
-    }
-  }, [categories]);
-
   const loadMoreContent = () => {
-    let item = categories[selectedCategoryIndex];
+    const item = categories[selectedCategoryIndex];
     if (item) {
       fetchContent(item, item.id, item.table_name, selectedCategoryIndex, false);
     }
   };
 
   const fetchContent = (category, categoryId, tableName, categoryIndex, resetCurrentPage) => {
-    let pageSize = 30;
+    const pageSize = 30;
     setIsLoadingGames(true);
 
-    if (resetCurrentPage == true) {
+    if (resetCurrentPage === true) {
       pageCurrent = 0;
       setGames([]);
     }
@@ -237,19 +211,17 @@ const Casino = () => {
     setActiveCategory(category);
     setSelectedCategoryIndex(categoryIndex);
 
+    const groupCode = pageData.page_group_code || pageDataRef.current.page_group_code;
+
     callApiService(
       contextData,
       "GET",
       "/games/?page_group_type=categories&page_group_code=" +
-      pageData.page_group_code +
-      "&table_name=" +
-      tableName +
-      "&apigames_category_id=" +
-      categoryId +
-      "&page=" +
-      pageCurrent +
-      "&length=" +
-      pageSize,
+      groupCode +
+      "&table_name=" + tableName +
+      "&apigames_category_id=" + categoryId +
+      "&page=" + pageCurrent +
+      "&length=" + pageSize,
       callbackFetchContent,
       null
     );
@@ -265,12 +237,12 @@ const Casino = () => {
     if (result.status === 500 || result.status === 422) {
       setMessageCustomAlert(["error", result.message]);
     } else {
-      if (pageCurrent == 0) {
+      if (pageCurrent === 0) {
         configureImageSrc(result, false);
         setGames(result.data);
       } else {
         configureImageSrc(result, false);
-        setGames([...games, ...result.data]);
+        setGames((prev) => [...prev, ...result.data]);
       }
       pageCurrent += 1;
     }
@@ -311,7 +283,6 @@ const Casino = () => {
     setTxtSearch(keyword);
 
     if (navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)) {
-      let keyword = e.target.value;
       do_search(keyword);
     } else {
       if (
@@ -332,7 +303,7 @@ const Casino = () => {
   const do_search = (keyword) => {
     clearTimeout(searchDelayTimer);
 
-    if (keyword == "") {
+    if (keyword === "") {
       setGames([]);
       setIsLoadingGames(false);
       pageCurrent = 0;
@@ -346,9 +317,9 @@ const Casino = () => {
     setGames([]);
     setIsLoadingGames(true);
 
-    let pageSize = 30;
+    const pageSize = 30;
 
-    let searchDelayTimerTmp = setTimeout(function () {
+    const searchDelayTimerTmp = setTimeout(function () {
       callApi(
         contextData,
         "GET",
@@ -379,21 +350,14 @@ const Casino = () => {
 
   const configureImageSrc = (result, isSearch) => {
     (isSearch ? result.content || [] : result.data || []).forEach((element) => {
-      let imageDataSrc = element.image_url;
-      if (element.image_local != null) {
-        imageDataSrc = contextData.cdnUrl + element.image_local;
-      }
-      element.imageDataSrc = imageDataSrc;
+      element.imageDataSrc = element.image_local != null
+        ? contextData.cdnUrl + element.image_local
+        : element.image_url;
     });
   };
 
-  const handleLoginClick = () => {
-    setShowLoginModal(true);
-  };
-
-  const handleLoginConfirm = () => {
-    setShowLoginModal(false);
-  };
+  const handleLoginClick = () => setShowLoginModal(true);
+  const handleLoginConfirm = () => setShowLoginModal(false);
 
   const closeGameModal = () => {
     selectedGameId = null;
@@ -403,9 +367,7 @@ const Casino = () => {
     setShouldShowGameModal(false);
   };
 
-  const handleAlertClose = () => {
-    setMessageCustomAlert(["", ""]);
-  };
+  const handleAlertClose = () => setMessageCustomAlert(["", ""]);
 
   return (
     <>
@@ -434,27 +396,25 @@ const Casino = () => {
             alt="banner"
           />
           <div className="slots-main-desktop__filter-container">
-            {isLogin && (
-              <div className="slots-main-desktop__filters">
-                <div className="slots-main-desktop__search-category-filters">
-                  <div className="slots-layout-content-menu">{fragmentNavLinksBody}</div>
-                  <SearchInput
-                    txtSearch={txtSearch}
-                    setTxtSearch={setTxtSearch}
-                    searchRef={searchRef}
-                    search={search}
-                    onSearch={do_search}
-                    contextData={contextData}
-                    pageData={pageData}
-                    setGames={setGames}
-                    setIsLoadingGames={setIsLoadingGames}
-                    callbackSearch={callbackSearch}
-                    searchDelayTimer={searchDelayTimer}
-                    setSearchDelayTimer={setSearchDelayTimer}
-                  />
-                </div>
+            <div className="slots-main-desktop__filters">
+              <div className="slots-main-desktop__search-category-filters">
+                <div className="slots-layout-content-menu">{fragmentNavLinksBody}</div>
+                <SearchInput
+                  txtSearch={txtSearch}
+                  setTxtSearch={setTxtSearch}
+                  searchRef={searchRef}
+                  search={search}
+                  onSearch={do_search}
+                  contextData={contextData}
+                  pageData={pageData}
+                  setGames={setGames}
+                  setIsLoadingGames={setIsLoadingGames}
+                  callbackSearch={callbackSearch}
+                  searchDelayTimer={searchDelayTimer}
+                  setSearchDelayTimer={setSearchDelayTimer}
+                />
               </div>
-            )}
+            </div>
 
             <div className="slots-main-desktop__provider-filter-list">
               {categories && categories.length > 0 && (
@@ -464,13 +424,15 @@ const Casino = () => {
                       key={index}
                       title={item.name}
                       icon={contextData.cdnUrl + item.image_local}
-                      active={selectedCategoryIndex == index}
-                      onClick={() => fetchContent(item, item.id, item.table_name, index, true)}
+                      active={selectedCategoryIndex === index}
+                      onClick={() => {
+                        pageGroupTypeRef.current = "categories";
+                        fetchContent(item, item.id, item.table_name, index, true);
+                      }}
                     />
                   ))}
                 </div>
               )}
-              {/* {categories.length == 0 && <DivLoading />} */}
             </div>
 
             <div className="slots-main-mobile__search-category-filters">
@@ -488,45 +450,48 @@ const Casino = () => {
             <div className="slots-main-desktop__provider-section">
               <div className="provider-section-desktop">
                 <div className="provider-section-desktop__header">
-                  {
-                    txtSearch === "" &&
+                  {txtSearch === "" && (
                     <div className="provider-section-desktop__header-img-container">
                       <div className="provider-section-desktop__header-img-top">
                         {activeCategory.image_url && activeCategory.image_url !== "" && (
-                          <img className="provider-section-desktop__header-icon" src={activeCategory.image_url} alt="" loading="lazy" />
+                          <img
+                            className="provider-section-desktop__header-icon"
+                            src={activeCategory.image_url}
+                            alt=""
+                            loading="lazy"
+                          />
                         )}
-                        <span className="provider-section-desktop__header-provider-text">{activeCategory.name}</span>
+                        <span className="provider-section-desktop__header-provider-text">
+                          {activeCategory.name}
+                        </span>
                       </div>
                       <div className="provider-section-desktop__header-line"></div>
                     </div>
-                  }
+                  )}
                 </div>
                 <div className="provider-section-desktop__games-container">
-                  {games &&
-                    games.map((item, index) => (
-                      <GameCard
-                        key={index}
-                        id={item.id}
-                        title={item.name}
-                        imageSrc={item.imageDataSrc}
-                        onClick={() =>
-                          isLogin
-                            ? launchGame(item.id, item.type, item.launcher)
-                            : isMobile
+                  {games && games.map((item, index) => (
+                    <GameCard
+                      key={index}
+                      id={item.id}
+                      title={item.name}
+                      imageSrc={item.imageDataSrc}
+                      onClick={() =>
+                        isLogin
+                          ? launchGame(item.id, item.type, item.launcher)
+                          : isMobile
                             ? navigate("/login")
                             : handleLoginClick()
-                        }
-                      />
-                    ))}
+                      }
+                    />
+                  ))}
                 </div>
                 {isLoadingGames && <DivLoading />}
-                {!isLoadingGames && (
-                  <div className="carousel-arrows">
-                    <a className="carousel-arrows__title" onClick={loadMoreContent}>
-                      <span className="carousel-arrows__title-text">Mostrar todo</span>
-                    </a>
-                  </div>
-                )}
+                <div className="carousel-arrows">
+                  <a className="carousel-arrows__title" onClick={loadMoreContent}>
+                    <span className="carousel-arrows__title-text">Mostrar todo</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
