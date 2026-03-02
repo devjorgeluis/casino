@@ -49,6 +49,7 @@ const Casino = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [shouldShowGameModal, setShouldShowGameModal] = useState(false);
   const [messageCustomAlert, setMessageCustomAlert] = useState(["", ""]);
+  const [casinoPageGroupCode, setCasinoPageGroupCode] = useState("");
   const searchRef = useRef(null);
   const refGameModal = useRef();
   const pageGroupTypeRef = useRef("");
@@ -174,6 +175,7 @@ const Casino = () => {
       if (page === "casino") {
         setMainCategories(newCategories);
         mainCategoriesRef.current = newCategories;
+        setCasinoPageGroupCode(data.page_group_code);
       }
       pageCurrent = 0;
     } else if (data.page_group_type === "games") {
@@ -211,7 +213,13 @@ const Casino = () => {
     setActiveCategory(category);
     setSelectedCategoryIndex(categoryIndex);
 
-    const groupCode = pageData.page_group_code || pageDataRef.current.page_group_code;
+    let groupCode;
+
+    if (pageData.page_group_type === "games") {
+      groupCode = casinoPageGroupCode || pageDataRef.current.page_group_code;
+    } else {
+      groupCode = pageData.page_group_code || pageDataRef.current.page_group_code;
+    }
 
     let apiUrl =
       "/get-content?page_group_type=categories&page_group_code=" +
