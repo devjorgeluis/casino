@@ -272,7 +272,7 @@ const Layout = () => {
                                 openSupportModal={openSupportModal}
                             />
                             <main className="app__main">
-                                <Outlet context={{ isSlotsOnly, supportParent, openSupportModal }} />
+                                <Outlet context={{ isSlotsOnly, supportParent, openSupportModal, isMobile }} />
                             </main>
                             {
                                 isMobile && !isSportsPage ? <Footer isSportsPage={isSportsPage} /> :

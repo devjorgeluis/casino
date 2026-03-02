@@ -5221,6 +5221,12 @@ hr.big {
     height: 100dvh
 }
 
+@media (max-width: 576px) {
+    .profile-menu-mobile {
+        height: auto;
+    }
+}
+
 .profile-menu-mobile__card {
     position: relative;
     background: -webkit-gradient(linear, left bottom, left top, color-stop(0.78%, #9209cf), color-stop(78.71%, #130227));
@@ -6178,6 +6184,12 @@ hr.big {
     flex-grow: 2;
     min-height: 0;
     height: 100dvh
+}
+
+@media (max-width: 576px) {
+    .profile-layout-mobile {
+        height: auto;
+    }
 }
 
 @media (min-width: 768px) {

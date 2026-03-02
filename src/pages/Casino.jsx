@@ -213,22 +213,23 @@ const Casino = () => {
 
     const groupCode = pageData.page_group_code || pageDataRef.current.page_group_code;
 
-    callApiService(
-      contextData,
-      "GET",
-      "/games/?page_group_type=categories&page_group_code=" +
+    let apiUrl =
+      "/get-content?page_group_type=categories&page_group_code=" +
       groupCode +
-      "&table_name=" + tableName +
-      "&apigames_category_id=" + categoryId +
-      "&page=" + pageCurrent +
-      "&length=" + pageSize,
-      callbackFetchContent,
-      null
-    );
+      "&table_name=" +
+      tableName +
+      "&apigames_category_id=" +
+      categoryId +
+      "&page=" +
+      pageCurrent +
+      "&length=" +
+      pageSize;
+
+    callApi(contextData, "GET", apiUrl, callbackFetchContent, null);
   };
 
   const callbackFetchContent = (result) => {
-    if (!result || !result.data) {
+    if (!result) {
       setIsLoadingGames(false);
       setShowFullDivLoading(false);
       return;
@@ -237,12 +238,17 @@ const Casino = () => {
     if (result.status === 500 || result.status === 422) {
       setMessageCustomAlert(["error", result.message]);
     } else {
+      const items = result.content || result.data || [];
+      items.forEach((element) => {
+        element.imageDataSrc = element.image_local != null
+          ? contextData.cdnUrl + element.image_local
+          : element.image_url;
+      });
+
       if (pageCurrent === 0) {
-        configureImageSrc(result, false);
-        setGames(result.data);
+        setGames(items);
       } else {
-        configureImageSrc(result, false);
-        setGames((prev) => [...prev, ...result.data]);
+        setGames((prev) => [...prev, ...items]);
       }
       pageCurrent += 1;
     }
@@ -349,7 +355,11 @@ const Casino = () => {
   };
 
   const configureImageSrc = (result, isSearch) => {
-    (isSearch ? result.content || [] : result.data || []).forEach((element) => {
+    const items = isSearch
+      ? result.content || []
+      : result.content || result.data || [];
+
+    items.forEach((element) => {
       element.imageDataSrc = element.image_local != null
         ? contextData.cdnUrl + element.image_local
         : element.image_url;

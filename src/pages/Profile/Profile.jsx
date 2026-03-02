@@ -3,20 +3,17 @@ import { useNavigate, useLocation, useOutletContext } from "react-router-dom";
 import { AppContext } from "../../AppContext";
 import { callApi } from "../../utils/Utils";
 import UserInfo from "./UserInfo";
-import BonusProgram from "./BonusProgram";
-import Promocode from "./Promocode";
-import ChangePassword from "./ChangePassword";
 import PayHistory from "./PayHistory";
 import PayTransaction from "./PayTransaction";
 import IconChevronLeft from "/src/assets/svg/chevron-left.svg";
 import IconBell from "/src/assets/svg/bell.svg";
 import IconHistory from "/src/assets/svg/history.svg";
-import IconWhiteLock from "/src/assets/svg/white-lock.svg";
+import IconTransaction from "/src/assets/svg/transaction.svg";
 
 const Profile = () => {
     const navigate = useNavigate();
     const { contextData } = useContext(AppContext);
-    const { supportParent, openSupportModal } = useOutletContext();
+    const { supportParent, openSupportModal, isMobile } = useOutletContext();
     const location = useLocation();
 
     const hash = location.hash; // e.g. "#transaction" or "#history"
@@ -44,17 +41,15 @@ const Profile = () => {
     const renderHashContent = () => {
         if (hash === "#transaction") {
             return (
-                <div className="profile-menu-mobile">
-                    <div className="profile-menu-mobile__card">
-                        <div className="profile-menu-mobile__user-info">
-                            <div className="profile-menu-mobile__user-info-back">
-                                <button className="back-block">
-                                    <span className="SVGInline back-block__arrow" onClick={() => navigate("/profile")}>
-                                        <img className="SVGInline-svg back-block__arrow-svg" src={IconChevronLeft} alt="Back arrow" />
-                                    </span>
-                                    <div className="back-block__content">Transacciones</div>
-                                </button>
-                            </div>
+                <div className={`${isMobile ? "pay-history-mobile" : "profile-menu-mobile__card" }`}>
+                    <div className="profile-menu-mobile__user-info">
+                        <div className="profile-menu-mobile__user-info-back">
+                            <button className="back-block" onClick={() => navigate("/profile")}>
+                                <span className="SVGInline back-block__arrow">
+                                    <img className="SVGInline-svg back-block__arrow-svg" src={IconChevronLeft} alt="Back arrow" />
+                                </span>
+                                <div className="back-block__content">Transacciones</div>
+                            </button>
                         </div>
                     </div>
                     <PayTransaction />
@@ -64,17 +59,15 @@ const Profile = () => {
 
         if (hash === "#history") {
             return (
-                <div className="profile-menu-mobile">
-                    <div className="profile-menu-mobile__card">
-                        <div className="profile-menu-mobile__user-info">
-                            <div className="profile-menu-mobile__user-info-back">
-                                <button className="back-block">
-                                    <span className="SVGInline back-block__arrow" onClick={() => navigate("/profile")}>
-                                        <img className="SVGInline-svg back-block__arrow-svg" src={IconChevronLeft} alt="Back arrow" />
-                                    </span>
-                                    <div className="back-block__content">Historial de Operaciones</div>
-                                </button>
-                            </div>
+                <div className={`${isMobile ? "pay-history-mobile" : "profile-menu-mobile__card" }`}>
+                    <div className="profile-menu-mobile__user-info">
+                        <div className="profile-menu-mobile__user-info-back">
+                            <button className="back-block" onClick={() => navigate("/profile")}>
+                                <span className="SVGInline back-block__arrow">
+                                    <img className="SVGInline-svg back-block__arrow-svg" src={IconChevronLeft} alt="Back arrow" />
+                                </span>
+                                <div className="back-block__content">Historial de Operaciones</div>
+                            </button>
                         </div>
                     </div>
                     <PayHistory />
@@ -100,9 +93,6 @@ const Profile = () => {
                 <div className="profile-layout-desktop__content">
                     <div className="profile-layout-desktop__content-left">
                         <UserInfo logout={logout} supportParent={supportParent} openSupportModal={openSupportModal} />
-                        <BonusProgram />
-                        <Promocode />
-                        <ChangePassword />
                     </div>
                     {hash === "#transaction" ? <PayTransaction /> : <PayHistory />}
                 </div>
@@ -115,8 +105,8 @@ const Profile = () => {
                         <div className="profile-menu-mobile__card">
                             <div className="profile-menu-mobile__user-info">
                                 <div className="profile-menu-mobile__user-info-back">
-                                    <button className="back-block">
-                                        <span className="SVGInline back-block__arrow" onClick={() => navigate("/")}>
+                                    <button className="back-block" onClick={() => navigate("/")}>
+                                        <span className="SVGInline back-block__arrow">
                                             <img className="SVGInline-svg back-block__arrow-svg" src={IconChevronLeft} alt="Back arrow" />
                                         </span>
                                         <div className="back-block__content">Área personal</div>
@@ -145,21 +135,15 @@ const Profile = () => {
                                         </a>
                                     </div>
                                     <div className="profile-navigation-mobile__item">
-                                        <a className="profile-navigation-mobile__link" onClick={() => navigate("/profile/change-password")}>
+                                        <a className="profile-navigation-mobile__link" onClick={() => navigate("/profile#transaction")}>
                                             <span className="SVGInline profile-navigation-mobile__icon">
-                                                <img className="SVGInline-svg profile-navigation-mobile__icon-svg" src={IconWhiteLock} alt="Lock icon" />
+                                                <img className="SVGInline-svg profile-navigation-mobile__icon-svg" src={IconTransaction} alt="Transaction icon" />
                                             </span>
-                                            <span className="profile-navigation-mobile__text">Cambiar la contraseña</span>
+                                            <span className="profile-navigation-mobile__text">Transacciones</span>
                                         </a>
                                     </div>
                                 </nav>
                             </div>
-                        </div>
-                        <div className="profile-menu-mobile__bonus">
-                            <BonusProgram isMobile={true} />
-                        </div>
-                        <div className="profile-menu-mobile__promocode">
-                            <Promocode isMobile={true} />
                         </div>
                     </div>
                 )}

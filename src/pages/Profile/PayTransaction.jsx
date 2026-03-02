@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { useOutletContext } from "react-router-dom";
 import { AppContext } from "../../AppContext";
 import { callApi } from "../../utils/Utils";
 import IconChevronLeft from "/src/assets/svg/chevron-left.svg";
@@ -8,6 +9,7 @@ import IconDoubleRight from "/src/assets/img/double-right.png";
 
 const PayTransaction = () => {
     const { contextData } = useContext(AppContext);
+    const { isMobile } = useOutletContext();
     const [transactions, setTransactions] = useState([]);
     const [loading, setLoading] = useState(false);
     const [pagination, setPagination] = useState({
@@ -99,11 +101,14 @@ const PayTransaction = () => {
 
     return (
         <div className="pay-history-desktop">
-            <div className="pay-history-desktop__filter">
-                <div className="pay-history-desktop__filter-header">
-                    <div className="pay-history-desktop__filter-header-title">Transacciones</div>
+            {
+                !isMobile && 
+                <div className="pay-history-desktop__filter">
+                    <div className="pay-history-desktop__filter-header">
+                        <div className="pay-history-desktop__filter-header-title">Transacciones</div>
+                    </div>
                 </div>
-            </div>
+            }
             <section className="pay-history-desktop__main">
                 <div className="pay-history-desktop__content-container">
                     <div className="pay-history-desktop__content">
