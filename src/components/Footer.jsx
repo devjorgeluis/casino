@@ -1,4 +1,4 @@
-import ImgLogo from "/src/assets/img/logo-net-new.png";
+import ImgLogo from "/src/assets/svg/logo.svg";
 import ImgBet from "/src/assets/img/bet-responsibility.png";
 import IconChat from "/src/assets/svg/chat.svg";
 

@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UserMenu from "../components/UserMenu";
 import NavLinkHeader from "../components/NavLinkHeader";
-import ImgLogo from "/src/assets/img/logo-net-new.png";
+import ImgLogo from "/src/assets/svg/logo.svg";
 import IconCurrency from "/src/assets/svg/currency.svg";
 import IconProfile from "/src/assets/svg/profile.svg";
+import IconLogin from "/src/assets/img/login.png";
 import IconLogout from "/src/assets/svg/logout.svg";
 
 const Header = ({ isLogin, userBalance, handleLoginClick, handleLogoutClick, fragmentNavLinksTop, isSlotsOnly, supportParent, openSupportModal }) => {
@@ -113,13 +114,7 @@ const Header = ({ isLogin, userBalance, handleLoginClick, handleLogoutClick, fra
                         ) : (
                             <div className="header-login-block-desktop">
                                 <div className="header-login-block-desktop__button">
-                                    <button
-                                        type="button"
-                                        className="button-desktop button-desktop_color_default"
-                                        onClick={handleLoginClick}
-                                    >
-                                        <span className="header-login-block-desktop__button-text">Acceder</span>
-                                    </button>
+                                    <img src={IconLogin} title="login" onClick={handleLoginClick} />
                                 </div>
                             </div>
                         )}

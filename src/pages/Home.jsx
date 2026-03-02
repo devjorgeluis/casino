@@ -11,9 +11,10 @@ import DivLoading from "../components/DivLoading";
 import LoginModal from "../components/LoginModal";
 import CustomAlert from "../components/CustomAlert";
 import "animate.css";
-import ImgBanner1 from "/src/assets/img/banner-desktop-01.webp";
-import ImgBanner2 from "/src/assets/img/banner-desktop-02.webp";
-import ImgBanner3 from "/src/assets/img/banner-desktop-03.webp";
+import ImgBanner1 from "/src/assets/img/banner1.jpg";
+import ImgBanner2 from "/src/assets/img/banner2.jpg";
+import ImgBanner3 from "/src/assets/img/banner3.jpg";
+import ImgBanner4 from "/src/assets/img/banner4.jpg";
 import IconYellowDeporte from "/src/assets/svg/yellow-deporte.svg";
 import IconYellowCasino from "/src/assets/svg/yellow-casino.svg";
 import IconYellowLiveCasino from "/src/assets/svg/yellow-live-casino.svg";
@@ -43,7 +44,7 @@ const Home = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const imageSlideshow = [ImgBanner1, ImgBanner2, ImgBanner3];
+  const imageSlideshow = [ImgBanner1, ImgBanner2, ImgBanner3, ImgBanner4];
 
   useEffect(() => {
     const checkIsMobile = () => {
