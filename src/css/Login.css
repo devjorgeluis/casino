@@ -40,7 +40,7 @@
     -ms-flex-align: center;
     align-items: center;
     gap: .625rem;
-    width: 100%;
+    width: fit-content;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     height: 2.8125rem;

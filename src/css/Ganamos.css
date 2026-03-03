@@ -5317,24 +5317,21 @@ a {
 }
 
 .notification_type_error {
-    background-color: #320548;
-    border: 1px solid #682984;
+    background-color: #b22549;
+    border: 1px solid #b22549;
     border-radius: .313rem;
-    background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M16.9985%2014.4733L14.4718%2017L10%2012.5267L5.52672%2016.9985L3%2014.4718L7.47474%2010L3.00146%205.52672L5.52818%203.00146L10%207.47328L14.4733%203L17%205.52672L12.5253%2010L16.9985%2014.4733Z%22%20fill%3D%22%23D31C32%22%2F%3E%0A%3C%2Fsvg%3E%0A");
     background-repeat: no-repeat;
     background-position-y: center;
-    background-position-x: 1rem;
     background-size: 1.25rem
 }
 
 .notification_type_success {
-    background-color: #320548;
-    border: 1px solid #682984;
+    background-color: #b22549;
+    border: 1px solid #b22549;
     border-radius: .313rem;
     background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M3.70363%207.01647L8.08795%2011.4008L16.2964%203.19238L19%205.89601L8.08795%2016.8081L1%209.72011L3.70363%207.01647Z%22%20fill%3D%22%230D9252%22%2F%3E%0A%3C%2Fsvg%3E%0A");
     background-repeat: no-repeat;
     background-position-y: center;
-    background-position-x: 1rem;
     background-size: 1.25rem
 }
 
@@ -5391,7 +5388,7 @@ a {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    margin-left: 2rem;
+    margin-left: 0;
     margin-right: 1rem;
     -webkit-box-align: center;
     -ms-flex-align: center;
