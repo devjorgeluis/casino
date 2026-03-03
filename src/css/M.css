@@ -2863,7 +2863,7 @@ hr.big {
     -ms-flex-align: center;
     align-items: center;
     width: 100%;
-    background: linear-gradient(2.19deg, #9209cf -2.5%, #130227 97.48%);
+    background: linear-gradient(2.19deg, #e72062e6 -2.5%, #130227 97.48%);
     border-radius: 1.25rem;
     position: relative
 }
@@ -2877,9 +2877,10 @@ hr.big {
 .user-info__mascot {
     position: absolute;
     width: 9.099rem;
-    height: 13.016rem;
+    height: 9.099rem;
     bottom: 0;
-    right: .938rem
+    right: .938rem;
+    opacity: 0.5;
 }
 
 .user-info__header {
@@ -2954,7 +2955,7 @@ hr.big {
 }
 
 .user-info__balance-title {
-    color: #9583a0;
+    color: #fff;
     font-size: .875rem;
     font-weight: 600;
     line-height: 1.026rem
@@ -2980,7 +2981,7 @@ hr.big {
 }
 
 .user-info__bonus-balance-title {
-    color: #9583a0;
+    color: #fff;
     line-height: 1.026rem;
     font-size: .875rem;
     font-weight: 700;

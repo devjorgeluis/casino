@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { AppContext } from "../../AppContext";
 import { LayoutContext } from "../../components/LayoutContext";
-import ImgMascot from "/src/assets/img/mascot.png";
+import ImgMascot from "/src/assets/img/favicon.webp";
 import IconProfileCircle from "/src/assets/svg/profile-circle.svg";
 import IconLogout from "/src/assets/svg/logout.svg";
 import IconWhiteLogout from "/src/assets/svg/white-logout.svg";
