@@ -13,7 +13,7 @@
     position: relative;
     overflow: hidden;
     min-height: 100%;
-    background: #130227
+    background: #191919
 }
 
 a {
@@ -1491,7 +1491,7 @@ a {
 
 .dropdown-menu_open {
     overflow: hidden;
-    background: #130227;
+    background: #191919;
     border-radius: 6.25rem
 }
 
@@ -1796,7 +1796,7 @@ a {
 }
 
 .header-main-menu-desktop__promo_active .header-main-menu-desktop__promo-content {
-    background: #130227;
+    background: #191919;
     border-radius: 6.25rem
 }
 
@@ -2187,7 +2187,7 @@ a {
     width: 20rem;
     padding: .625rem;
     border-radius: .625rem;
-    background: var(--DarkUI-Main-Background, #130227)
+    background: var(--DarkUI-Main-Background, #191919)
 }
 
 .notifies-view-desktop__header {
@@ -2268,7 +2268,7 @@ a {
 
 .notifies-view-desktop__container {
     border-radius: .625rem;
-    background: var(--DarkUI-Main-Background, #130227)
+    background: var(--DarkUI-Main-Background, #191919)
 }
 
 .notifies-view-desktop__item-wrapper {
@@ -2997,7 +2997,7 @@ a {
 }
 
 .input-desktop__native_color_dark-blue {
-    background: #130227;
+    background: #191919;
     font-size: .75rem;
     font-weight: 600;
     color: #fff;
@@ -3724,7 +3724,7 @@ a {
     -ms-flex-align: end;
     align-items: flex-end;
     border-radius: 30px;
-    background: var(--DarkUI-Main-Background, #130227);
+    background: var(--DarkUI-Main-Background, #191919);
     -webkit-box-shadow: -1px 1px 30px 0px rgba(178,57,226,.4),1px -1px 30px 0px rgba(85,40,180,.4);
     box-shadow: -1px 1px 30px 0px rgba(178,57,226,.4),1px -1px 30px 0px rgba(85,40,180,.4)
 }
@@ -3801,8 +3801,8 @@ a {
 .win-modal-container-desktop__win-modal-body {
     z-index: 1;
     border-radius: .625rem 0px .625rem .625rem;
-    background: -webkit-gradient(linear, left top, left bottom, from(#320548), to(#1f073a)),#130227;
-    background: linear-gradient(180deg, #320548 0%, #1f073a 100%),#130227;
+    background: -webkit-gradient(linear, left top, left bottom, from(#320548), to(#1f073a)),#191919;
+    background: linear-gradient(180deg, #320548 0%, #1f073a 100%),#191919;
     -webkit-box-shadow: -0.0169rem .0169rem 1.6946rem 0px rgba(178,57,226,.2);
     box-shadow: -0.0169rem .0169rem 1.6946rem 0px rgba(178,57,226,.2);
     display: -webkit-box;
@@ -4646,7 +4646,7 @@ a {
     flex-direction: column;
     width: 23.938rem;
     padding-bottom: 3.125rem;
-    background: #130227;
+    background: #191919;
     border-radius: .625rem;
     position: relative;
     margin: .8rem .8rem .8rem 0;
@@ -5703,7 +5703,7 @@ a {
     min-width: 24.75rem;
     border-radius: 1.875rem;
     position: relative;
-    background: #130227
+    background: #191919
 }
 
 @media (max-width: 768px) {
@@ -6338,7 +6338,7 @@ a {
     height: 100%;
     z-index: 1000;
     overflow-y: auto;
-    background: #130227;
+    background: #191919;
     padding-top: 3.75rem
 }
 
@@ -8114,7 +8114,7 @@ a {
     width: calc(100% - 1.25rem);
     margin-top: 6.875rem;
     border-radius: .5084rem;
-    background: #130227;
+    background: #191919;
     -webkit-box-shadow: 0px 0px .625rem 0px rgba(178,57,226,.3);
     box-shadow: 0px 0px .625rem 0px rgba(178,57,226,.3);
     display: flex;
@@ -8175,8 +8175,8 @@ a {
 .win-modal-container-mobile__win-modal-body {
     z-index: 1;
     border-radius: 10px 0px 10px 10px;
-    background: -webkit-gradient(linear, left top, left bottom, from(#320548), to(#1f073a)),#130227;
-    background: linear-gradient(180deg, #320548 0%, #1f073a 100%),#130227;
+    background: -webkit-gradient(linear, left top, left bottom, from(#320548), to(#1f073a)),#191919;
+    background: linear-gradient(180deg, #320548 0%, #1f073a 100%),#191919;
     -webkit-box-shadow: -0.271px .271px 27.113px 0px rgba(178,57,226,.2);
     box-shadow: -0.271px .271px 27.113px 0px rgba(178,57,226,.2);
     display: -webkit-box;
