@@ -1,4 +1,4 @@
-import ImgMascot from "/src/assets/img/mascot.webp";
+import ImgMascot from "/src/assets/img/favicon.webp";
 
 const VerifyAgeModal = ({ isOpen, onConfirm }) => {
 
