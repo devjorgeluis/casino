@@ -236,32 +236,8 @@
     font-size: .875rem
 }
 
-.search-filter-slots-desktop__input input::-webkit-input-placeholder {
-    color: #9583a0;
-    font-weight: 600;
-    font-size: .875rem
-}
-
-.search-filter-slots-desktop__input input::-moz-placeholder {
-    color: #9583a0;
-    font-weight: 600;
-    font-size: .875rem
-}
-
-.search-filter-slots-desktop__input input:-ms-input-placeholder {
-    color: #9583a0;
-    font-weight: 600;
-    font-size: .875rem
-}
-
-.search-filter-slots-desktop__input input::-ms-input-placeholder {
-    color: #9583a0;
-    font-weight: 600;
-    font-size: .875rem
-}
-
 .search-filter-slots-desktop__input input::placeholder {
-    color: #9583a0;
+    color: rgba(255, 255 , 255, .5);
     font-weight: 600;
     font-size: .875rem
 }
@@ -752,6 +728,10 @@
     max-width: 27.5rem;
     width: 100%;
     margin-left: 1.25rem
+}
+
+.search-filter-slots-mobile__button .button-mobile {
+    background: #b22549;
 }
 
 @media (max-width: 768px) {

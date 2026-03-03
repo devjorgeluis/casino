@@ -37,6 +37,7 @@ const Casino = () => {
   const [mainCategories, setMainCategories] = useState([]);
   const mainCategoriesRef = useRef([]);
   const [activeCategory, setActiveCategory] = useState({});
+  const [selectedProvider, setSelectedProvider] = useState(null);
   const [pageData, setPageData] = useState({});
   const [games, setGames] = useState([]);
   const [gameUrl, setGameUrl] = useState("");
@@ -102,6 +103,16 @@ const Casino = () => {
     updateNavLinks();
   }, [selectedPage]);
 
+  const pageCodeToTitle = {
+    home: "Lobby",
+    lobby: "Lobby",
+    hot: "Nuevos",
+    arcade: "Habilidad",
+    megaways: "Megaways",
+    joker: "Jokers",
+    roulette: "Ruleta",
+  };
+
   const isSlotsOnlyFalse = isSlotsOnly === false || isSlotsOnly === "false";
 
   const updateNavLinks = () => {
@@ -109,8 +120,11 @@ const Casino = () => {
       setFragmentNavLinksBody(
         <>
           <NavLinkIcon title="Lobby" pageCode="home" icon={ImgHeart}
-            active={selectedPage === "home" || selectedPage === "lobby"}
-            onClick={() => getPage("home")} />
+            active={selectedPage === "home" || selectedPage === "lobby" || selectedPage === "casino"}
+            onClick={() => {
+              setActiveCategory({});
+              getPage("casino");
+            }} />
           <NavLinkIcon title="Nuevos" pageCode="hot" icon={ImgHot}
             active={selectedPage === "hot"} onClick={() => getPage("hot")} />
           <NavLinkIcon title="Habilidad" pageCode="arcade" icon={ImgNavMidLobby}
@@ -127,8 +141,11 @@ const Casino = () => {
       setFragmentNavLinksBody(
         <>
           <NavLinkIcon title="Lobby" pageCode="home" icon={ImgHeart}
-            active={selectedPage === "home" || selectedPage === "lobby"}
-            onClick={() => getPage("home")} />
+            active={selectedPage === "home" || selectedPage === "lobby" || selectedPage === "casino"}
+            onClick={() => {
+              setActiveCategory({});
+              getPage("casino");
+            }} />
           <NavLinkIcon title="Nuevos" pageCode="hot" icon={ImgHot}
             active={selectedPage === "hot"} onClick={() => getPage("hot")} />
           <NavLinkIcon title="Megaways" pageCode="megaways" icon={ImgMegaway}
@@ -141,6 +158,7 @@ const Casino = () => {
   };
 
   const getPage = (page) => {
+    setIsLoadingGames(true);
     setCategories([]);
     setGames([]);
     setSelectedPage(page);
@@ -178,9 +196,11 @@ const Casino = () => {
       }
       pageCurrent = 0;
     } else if (data.page_group_type === "games") {
-      // Use ref here — guaranteed to have the latest value synchronously
       const currentMainCategories = mainCategoriesRef.current;
       setCategories(currentMainCategories.length > 0 ? currentMainCategories : []);
+
+      const displayName = pageCodeToTitle[page] || data.page_group_name || data.name || page;
+      setActiveCategory({ name: displayName, image_url: data.image_url || "" });
 
       const gamesWithImages = (data.categories || []).map((game) => ({
         ...game,
@@ -191,6 +211,8 @@ const Casino = () => {
       setGames(gamesWithImages);
       pageCurrent = 1;
     }
+
+    setIsLoadingGames(false);
   };
 
   const loadMoreContent = () => {
@@ -202,6 +224,9 @@ const Casino = () => {
 
   const fetchContent = (category, categoryId, tableName, categoryIndex, resetCurrentPage) => {
     const pageSize = 30;
+
+    setTxtSearch("")
+    setSelectedProvider(null);
     setIsLoadingGames(true);
 
     if (resetCurrentPage === true) {
@@ -244,6 +269,8 @@ const Casino = () => {
 
     if (result.status === 500 || result.status === 422) {
       setMessageCustomAlert(["error", result.message]);
+      setIsLoadingGames(false);
+      setShowFullDivLoading(false);
     } else {
       const items = result.content || result.data || [];
       items.forEach((element) => {
@@ -258,9 +285,10 @@ const Casino = () => {
         setGames((prev) => [...prev, ...items]);
       }
       pageCurrent += 1;
+  
+      setIsLoadingGames(false);
+      setShowFullDivLoading(false);
     }
-    setIsLoadingGames(false);
-    setShowFullDivLoading(false);
   };
 
   const launchGame = (id, type, launcher) => {
@@ -444,6 +472,9 @@ const Casino = () => {
                       active={selectedCategoryIndex === index}
                       onClick={() => {
                         pageGroupTypeRef.current = "categories";
+                        setSelectedProvider(null);
+                        setActiveCategory(item);
+                        setSelectedCategoryIndex(index);
                         fetchContent(item, item.id, item.table_name, index, true);
                       }}
                     />
@@ -469,20 +500,24 @@ const Casino = () => {
                 <div className="provider-section-desktop__header">
                   {txtSearch === "" && (
                     <div className="provider-section-desktop__header-img-container">
-                      <div className="provider-section-desktop__header-img-top">
-                        {activeCategory.image_url && activeCategory.image_url !== "" && (
-                          <img
-                            className="provider-section-desktop__header-icon"
-                            src={activeCategory.image_url}
-                            alt=""
-                            loading="lazy"
-                          />
-                        )}
-                        <span className="provider-section-desktop__header-provider-text">
-                          {activeCategory.name}
-                        </span>
-                      </div>
-                      <div className="provider-section-desktop__header-line"></div>
+                      {
+                        !isLoadingGames && <>
+                          <div className="provider-section-desktop__header-img-top">
+                            {activeCategory && activeCategory.image_url && activeCategory.image_url !== "" && (
+                              <img
+                                className="provider-section-desktop__header-icon"
+                                src={activeCategory.image_url}
+                                alt=""
+                                loading="lazy"
+                              />
+                            )}
+                            <span className="provider-section-desktop__header-provider-text">
+                              {activeCategory?.name}
+                            </span>
+                          </div>
+                          <div className="provider-section-desktop__header-line"></div>
+                        </>
+                      }
                     </div>
                   )}
                 </div>

@@ -47,7 +47,6 @@ const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle
                                     <span className="SVGInline header-mobile__user">
                                         <img src={IconProfile} className="SVGInline-svg header-mobile__user-svg" />
                                     </span>
-                                    <div className="header-mobile__user-notifies-count header-mobile__user-notifies-count_zero">0</div>
                                 </div>
                             </div>
                         </a>

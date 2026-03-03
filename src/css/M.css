@@ -1929,7 +1929,7 @@ html .fade-class {
     top: 1.25rem;
     right: 0;
     margin: 0 1.25rem;
-    background-color: #320548;
+    background-color: #b22549;
     border-radius: .3125rem;
     font-size: 28px;
     display: inline-block;
@@ -2863,7 +2863,7 @@ hr.big {
     -ms-flex-align: center;
     align-items: center;
     width: 100%;
-    background: linear-gradient(2.19deg, #e72062e6 -2.5%, #130227 97.48%);
+    background: linear-gradient(2.19deg, #e72062e6 -2.5%, #0d0912 97.48%);
     border-radius: 1.25rem;
     position: relative
 }
@@ -3004,8 +3004,7 @@ hr.big {
     justify-content: space-between;
     padding: .5rem 1.25rem;
     border-radius: .625rem;
-    background: -webkit-gradient(linear, left top, left bottom, from(#320548), to(#1f073a));
-    background: linear-gradient(180deg, #320548 0%, #1f073a 100%)
+    background: linear-gradient(180deg, #7b273da3 0%, #b22549 100%)
 }
 
 .pay-history-item-desktop__item {
@@ -3033,7 +3032,7 @@ hr.big {
     align-items: center;
     -webkit-font-feature-settings: "pnum" on, "lnum" on;
     font-feature-settings: "pnum" on, "lnum" on;
-    color: #9583a0
+    color: #fff
 }
 
 .pay-history-item-desktop__description {
@@ -3207,8 +3206,7 @@ hr.big {
 }
 
 .pay-history-desktop__filter {
-    background: -webkit-gradient(linear, left top, left bottom, from(#320548), to(#1f073a));
-    background: linear-gradient(180deg, #320548 0%, #1f073a 100%);
+    background: #b22549;
     border-radius: 1.25rem;
     padding: .625rem 1.25rem
 }
@@ -3330,7 +3328,7 @@ hr.big {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    color: #76657e
+    color: #fff
 }
 
 .spinner-mobile {
@@ -4624,7 +4622,7 @@ hr.big {
 }
 
 .profile-layout-desktop__header-subtitle {
-    color: #9583a0;
+    color: #fff;
     font-size: .875rem;
     font-weight: 500;
     line-height: 1.026rem;
@@ -4989,7 +4987,7 @@ hr.big {
     font-size: .875rem;
     font-weight: 700;
     line-height: 1rem;
-    color: #9583a0
+    color: #fff
 }
 
 .profile-user-info-mobile__balance-value {
@@ -5233,8 +5231,7 @@ hr.big {
 
 .profile-menu-mobile__card {
     position: relative;
-    background: -webkit-gradient(linear, left bottom, left top, color-stop(0.78%, #b22549), color-stop(78.71%, #130227));
-    background: linear-gradient(360deg, #b22549 0.78%, #130227 78.71%);
+    background: linear-gradient(360deg, #b22549 0.78%, #270212 78.71%);
     border-radius: 0 0 1.25rem 1.25rem;
     overflow: hidden
 }
@@ -5805,7 +5802,7 @@ hr.big {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    color: #76657e
+    color: #fff
 }
 
 .scoring-points-item-mobile {
@@ -7165,62 +7162,6 @@ body>jdiv>jdiv>jdiv:nth-child(1)>jdiv:nth-child(1) {
     flex-grow: 2
 }
 
-.search-filter-slots-desktop__input input {
-    padding-left: .938rem;
-    border: none;
-    background: rgba(0, 0, 0, 0);
-    color: #fff;
-    font-weight: 600;
-    font-size: .875rem
-}
-
-.search-filter-slots-desktop__input input::-webkit-input-placeholder {
-    color: #9583a0;
-    font-weight: 600;
-    font-size: .875rem
-}
-
-.search-filter-slots-desktop__input input::-moz-placeholder {
-    color: #9583a0;
-    font-weight: 600;
-    font-size: .875rem
-}
-
-.search-filter-slots-desktop__input input:-ms-input-placeholder {
-    color: #9583a0;
-    font-weight: 600;
-    font-size: .875rem
-}
-
-.search-filter-slots-desktop__input input::-ms-input-placeholder {
-    color: #9583a0;
-    font-weight: 600;
-    font-size: .875rem
-}
-
-.search-filter-slots-desktop__input input::placeholder {
-    color: #9583a0;
-    font-weight: 600;
-    font-size: .875rem
-}
-
-.search-filter-slots-desktop__search-input {
-    position: relative;
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    margin-right: .4375rem
-}
-
 .search-filter-slots-desktop__search-input label {
     width: 100%;
     height: 100%
@@ -7635,4 +7576,8 @@ body>jdiv>jdiv>jdiv:nth-child(1)>jdiv:nth-child(1) {
     to {
         transform: rotate(360deg);
     }
+}
+
+.react-slideshow-container+ul.indicators .each-slideshow-indicator:before {
+    display: none !important;
 }
