@@ -7439,8 +7439,7 @@ a {
     border: solid 1px rgba(0,0,0,0);
     border-radius: 150px;
     outline: none;
-    background: -webkit-gradient(linear, left top, left bottom, from(#320548), to(#1f073a));
-    background: linear-gradient(180deg, #320548 0%, #1f073a 100%);
+    background: linear-gradient(113.27deg, #d38581 15.04%, #e72062e6 84.96%);
     color: #fff;
     -webkit-appearance: none;
     font-family: "Roboto",Arial,sans-serif;
@@ -7457,32 +7456,8 @@ a {
     line-height: 1.025625rem
 }
 
-.input-mobile__native::-moz-placeholder {
-    color: #9583a0;
-    font-family: "Roboto",Arial,sans-serif;
-    font-size: .875rem;
-    font-weight: 600;
-    line-height: 1.025625rem
-}
-
-.input-mobile__native:-ms-input-placeholder {
-    color: #9583a0;
-    font-family: "Roboto",Arial,sans-serif;
-    font-size: .875rem;
-    font-weight: 600;
-    line-height: 1.025625rem
-}
-
-.input-mobile__native::-ms-input-placeholder {
-    color: #9583a0;
-    font-family: "Roboto",Arial,sans-serif;
-    font-size: .875rem;
-    font-weight: 600;
-    line-height: 1.025625rem
-}
-
 .input-mobile__native::placeholder {
-    color: #9583a0;
+    color: rgba(255, 255, 255, 0.5);
     font-family: "Roboto",Arial,sans-serif;
     font-size: .875rem;
     font-weight: 600;
@@ -7602,7 +7577,8 @@ a {
 
 .input-mobile__password-svg,.input-mobile__password-off-svg {
     width: 1.5rem;
-    height: 1.5rem
+    height: 1.5rem;
+    filter: brightness(0) invert(1);
 }
 
 .input-mobile__password_active {
