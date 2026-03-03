@@ -47,7 +47,7 @@ const Footer = ({ isSlotsOnly }) => {
                     </div>
                 </nav>
                 <div className="footer__center">
-                    <div className="footer__logo">
+                    <div className="footer__logo" onClick={() => navigate("/")}>
                         <img
                             title="Casino"
                             alt="Casino"

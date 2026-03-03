@@ -58,8 +58,8 @@ const Login = () => {
     return (
         <>
             <form method="POST" className="sign-in-mobile" onSubmit={handleSubmit}>
-                <div className="sign-in-mobile__back">
-                    <span className="SVGInline sign-in-mobile__arrow" onClick={() => navigate("/home")}>
+                <div className="sign-in-mobile__back" onClick={() => navigate("/home")}>
+                    <span className="SVGInline sign-in-mobile__arrow">
                         <img className="SVGInline-svg sign-in-mobile__arrow-svg" src={IconChevronLeft} alt="Back arrow" />
                     </span>
                     <span className="sign-in-mobile__back-text">Acceder</span>
@@ -126,7 +126,7 @@ const Login = () => {
                     <div className="sign-in-mobile__button">
                         <button
                             type="submit"
-                            className={`button-mobile button-mobile_color_default button-mobile_borderRadius_500 ${isButtonEnabled ? "" : "button-mobile_disabled"}`}
+                            className={`button-mobile button-mobile-login button-mobile_borderRadius_500 ${isButtonEnabled ? "" : "button-mobile_disabled"}`}
                             disabled={!isButtonEnabled}
                         >
                             <span className="sign-in-mobile__button-text">Acceder</span>

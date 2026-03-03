@@ -3,7 +3,7 @@ import { useNavigate, useLocation, useOutletContext } from "react-router-dom";
 import { AppContext } from "../AppContext";
 import { LayoutContext } from "../components/LayoutContext";
 import { NavigationContext } from "../components/NavigationContext";
-import { callApi, callApiService } from "../utils/Utils";
+import { callApi } from "../utils/Utils";
 import GameCard from "/src/components/GameCard";
 import NavLinkIcon from "../components/NavLinkIcon";
 import CategoryButton from "../components/CategoryButton";
@@ -20,7 +20,6 @@ import ImgMegaway from "/src/assets/svg/megaway.svg";
 import ImgJoker from "/src/assets/svg/joker.svg";
 import ImgRuleta from "/src/assets/img/ruleta.png";
 import ImgSlotsBanner from "/src/assets/img/casino_seccion_desktop.jpg";
-import ImgMobileSlotsBanner from "/src/assets/img/mobile-slots-banner.png";
 
 let selectedGameId = null;
 let selectedGameType = null;
@@ -216,9 +215,9 @@ const Casino = () => {
     let groupCode;
 
     if (pageData.page_group_type === "games") {
-      groupCode = casinoPageGroupCode || pageDataRef.current.page_group_code;
+      groupCode = casinoPageGroupCode || pageDataRef.current.page_group_code || "default_pages_home";
     } else {
-      groupCode = pageData.page_group_code || pageDataRef.current.page_group_code;
+      groupCode = pageData.page_group_code || pageDataRef.current.page_group_code || "default_pages_home";
     }
 
     let apiUrl =
@@ -410,7 +409,7 @@ const Casino = () => {
         <div className="slots-layout-content-desktop">
           <img
             className="slots-main-desktop__banner"
-            src={isMobile ? ImgMobileSlotsBanner : ImgSlotsBanner}
+            src={ImgSlotsBanner}
             alt="banner"
           />
           <div className="slots-main-desktop__filter-container">

@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import ImgDog from "/src/assets/img/ganamosDogIcon.webp";
+import ImgDog from "/src/assets/img/favicon.webp";
 import ImgBackground from "/src/assets/img/background.webp";
 import ImgActive from "/src/assets/img/active.webp";
 import IconMegaway from "/src/assets/svg/megaway.svg";

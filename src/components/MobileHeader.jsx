@@ -4,7 +4,7 @@ import ImgLogo from "/src/assets/svg/logo.svg";
 import ImgEn from "/src/assets/img/en.png";
 import ImgEs from "/src/assets/img/es.png";
 import ImgBet from "/src/assets/img/bet-responsibility.png";
-import IconHamburger from "/src/assets/svg/hamburger.svg";
+import IconLogin from "/src/assets/img/login.png";
 import IconProfile from "/src/assets/svg/profile.svg";
 import IconCasino from "/src/assets/svg/casino.svg";
 import IconLiveCasino from "/src/assets/svg/live-casino.svg";
@@ -54,7 +54,7 @@ const MobileHeader = ({ isLogin, userBalance, isOpen, handleLoginClick, onToggle
                     ) : (
                         <a className="header-mobile__button">
                             <div className="button-mobile button-mobile_color_default" onClick={() => {isOpen && onToggle(), handleLoginClick()}}>
-                                <span className="header-mobile__button-text">Acceder</span>
+                                <img src={IconLogin} title="login" onClick={handleLoginClick} />
                             </div>
                         </a>
                     )

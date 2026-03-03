@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import ImgLogo from "/src/assets/img/logo.webp";
 
 const FullDivLoading = (props) => {
   useEffect(() => {
@@ -14,8 +13,10 @@ const FullDivLoading = (props) => {
 
   return (
     <div id="full-div-loading" className="d-none">
-      <div className="d-flex justify-content-center align-items-center h-100">
-        <img src={ImgLogo} alt="logo" />
+       <div className="App">
+        <div className="flex items-center justify-center h-screen">
+          <div className="w-10 h-10 border-4 border-gray-300 border-t-primary rounded-full animate-spin"></div>
+        </div>
       </div>
     </div>
   );
