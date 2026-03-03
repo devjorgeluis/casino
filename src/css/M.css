@@ -3695,7 +3695,7 @@ hr.big {
     -ms-flex-direction: column;
     flex-direction: column;
     border-radius: 0rem 0rem 1.25rem 1.25rem;
-    background: linear-gradient(8deg, #9209CF 0.78%, #130227 78.71%);
+    background: linear-gradient(8deg, #9209CF 0.78%, #191919 78.71%);
     position: relative
 }
 
@@ -4062,7 +4062,7 @@ hr.big {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    background: #130227;
+    background: #191919;
     border: 1px solid #76657e;
     border-radius: .625rem;
     padding: .625rem .938rem
@@ -6036,7 +6036,7 @@ hr.big {
     -ms-flex-direction: column;
     flex-direction: column;
     border-radius: 0rem 0rem 1.25rem 1.25rem;
-    background: linear-gradient(8deg, #9209CF 0.78%, #130227 78.71%);
+    background: linear-gradient(8deg, #9209CF 0.78%, #191919 78.71%);
     position: relative
 }
 
@@ -6285,7 +6285,7 @@ hr.big {
 .app {
     width: 100%;
     height: 100%;
-    background: #130227;
+    background: #191919;
     overflow: hidden
 }
 
@@ -6302,7 +6302,7 @@ hr.big {
     -webkit-overflow-scrolling: touch;
     overflow-y: auto;
     overflow-x: hidden;
-    background: #130227
+    background: #191919
 }
 
 .app__scroll-block::-webkit-scrollbar {
