@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../AppContext";
+import { NavigationContext } from "../components/NavigationContext";
 import { callApi } from "../utils/Utils";
 import CustomAlert from "../components/CustomAlert";
 import IconChevronLeft from "/src/assets/svg/chevron-left.svg";
@@ -9,6 +10,7 @@ import IconEyeSlash from "/src/assets/svg/eye-slash.svg";
 
 const Login = () => {
     const { contextData } = useContext(AppContext);
+    const { setShowFullDivLoading } = useContext(NavigationContext);
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -21,10 +23,11 @@ const Login = () => {
         event.preventDefault();
         event.stopPropagation();
         if (form.checkValidity()) {
+            setShowFullDivLoading(true);
             let body = {
                 username: username,
                 password: password,
-                site_label: "v2_zeus"
+                site_label: "v2_konab3t"
             };
             callApi(
                 contextData,
@@ -46,6 +49,7 @@ const Login = () => {
         } else {
             setMessageCustomAlert(["error", "¡Error! Nombre de usuario o contraseña no válidos"]);
         }
+        setShowFullDivLoading(false);
     };
 
     useEffect(() => {

@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useNavigate, useLocation, useOutletContext } from "react-router-dom";
 import { AppContext } from "../../AppContext";
+import { NavigationContext } from "../../components/NavigationContext";
 import { callApi } from "../../utils/Utils";
 import UserInfo from "./UserInfo";
 import PayHistory from "./PayHistory";
@@ -13,16 +14,19 @@ import IconTransaction from "/src/assets/svg/transaction.svg";
 const Profile = () => {
     const navigate = useNavigate();
     const { contextData } = useContext(AppContext);
+    const { setShowFullDivLoading } = useContext(NavigationContext);
     const { supportParent, openSupportModal, isMobile } = useOutletContext();
     const location = useLocation();
 
     const hash = location.hash; // e.g. "#transaction" or "#history"
 
     const logout = () => {
+        setShowFullDivLoading(true);
         callApi(contextData, "POST", "/logout", callbackLogout, null);
     };
 
     const callbackLogout = () => {
+        setShowFullDivLoading(false);
         localStorage.removeItem("session");
         window.location.href = "/";
     };

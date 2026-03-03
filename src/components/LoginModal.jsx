@@ -25,7 +25,7 @@ const LoginModal = ({ isOpen, onClose }) => {
             let body = {
                 username: username,
                 password: password,
-                site_label: "v2_zeus"
+                site_label: "v2_konab3t"
             };
             callApi(
                 contextData,
