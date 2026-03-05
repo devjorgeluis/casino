@@ -11,7 +11,25 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     margin: 0 auto;
-    background: url("../assets/img/login.webp") no-repeat bottom -0.3125rem center/95%,url("../assets/img/startsBG.png") no-repeat bottom/100%,#130227
+    position: relative;
+    background: url(/src/assets/img/startsBG.png) no-repeat bottom / 100%, 
+                rgba(25, 25, 25, 0.5);
+    background-size: auto;
+    z-index: 1;
+}
+
+.sign-in-mobile::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(/src/assets/img/favicon.webp) no-repeat bottom -0.3125rem center / 95%;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: -1;
+    background-size: auto;
 }
 
 .sign-in-mobile__back {
@@ -22,7 +40,7 @@
     -ms-flex-align: center;
     align-items: center;
     gap: .625rem;
-    width: 100%;
+    width: fit-content;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     height: 2.8125rem;
@@ -270,6 +288,6 @@
 
 @media (max-width: 576px) {
     .sign-in-mobile {
-        height: calc(100vh - 110px);
+        height: calc(100vh - 115px);
     }
 }

@@ -14,7 +14,7 @@ const PayHistory = () => {
     const [loading, setLoading] = useState(false);
     const [pagination, setPagination] = useState({
         start: 0,
-        length: 5,
+        length: 15,
         totalRecords: 0,
         currentPage: 1,
     });
@@ -125,6 +125,12 @@ const PayHistory = () => {
                                             <div className="pay-history-item-desktop__title">Fecha</div>
                                             <div className="pay-history-item-desktop__description pay-history-item-desktop__description_date">
                                                 {txn.created_at_formatted}
+                                            </div>
+                                        </div>
+                                        <div className="pay-history-item-desktop__item">
+                                            <div className="pay-history-item-desktop__title">Id</div>
+                                            <div className="pay-history-item-desktop__description pay-history-item-desktop__description_date">
+                                                {txn.txn_id}
                                             </div>
                                         </div>
                                         <div className="pay-history-item-desktop__item">

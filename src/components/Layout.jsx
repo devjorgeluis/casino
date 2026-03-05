@@ -179,13 +179,16 @@ const Layout = () => {
     };
 
     const handleLogoutConfirm = () => {
+        setShowFullDivLoading(true);
         callApi(contextData, "POST", "/logout", (result) => {
             if (result.status === "success") {
                 setTimeout(() => {
+                    setShowFullDivLoading(false);
                     localStorage.removeItem("session");
                     window.location.href = "/";
                 }, 200);
             } else {
+                setShowFullDivLoading(false);
                 setShowLogoutModal(false);
             }
         }, null);

@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { AppContext } from "../AppContext";
+import { NavigationContext } from "./NavigationContext";
 import { callApi } from "../utils/Utils";
 import CustomAlert from "../components/CustomAlert";
 import ImgBackground from "/src/assets/img/auth-background.png";
@@ -9,6 +10,7 @@ import IconEyeSlash from "/src/assets/svg/eye-slash.svg";
 
 const LoginModal = ({ isOpen, onClose }) => {
     const { contextData } = useContext(AppContext);
+    const { setShowFullDivLoading } = useContext(NavigationContext);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
@@ -19,6 +21,7 @@ const LoginModal = ({ isOpen, onClose }) => {
         event.preventDefault();
         event.stopPropagation();
         if (form.checkValidity()) {
+            setShowFullDivLoading(true);
             let body = {
                 username: username,
                 password: password,
@@ -36,7 +39,6 @@ const LoginModal = ({ isOpen, onClose }) => {
 
     const callbackSubmitLogin = (result) => {
         if (result.status === "success") {
-            setMessageCustomAlert(["success", "¡Éxito! La sesión ha sido iniciada"]);
             localStorage.setItem("session", JSON.stringify(result));
             window.location.href = "/";
         } else if (result.status === "country") {
@@ -44,6 +46,7 @@ const LoginModal = ({ isOpen, onClose }) => {
         } else {
             setMessageCustomAlert(["error", "¡Error! Nombre de usuario o contraseña no válidos"]);
         }
+        setShowFullDivLoading(false);
     };
 
     useEffect(() => {

@@ -29,39 +29,52 @@ const Home = () => {
   const { isLogin } = useContext(LayoutContext);
   const { setShowFullDivLoading } = useContext(NavigationContext);
   const [selectedPage, setSelectedPage] = useState("lobby");
-  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
   const [games, setGames] = useState([]);
   const [gameUrl, setGameUrl] = useState("");
   const [pageData, setPageData] = useState({});
   const [isLoadingGames, setIsLoadingGames] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const { isSlotsOnly } = useOutletContext();
+  const { isMobile, isSlotsOnly } = useOutletContext();
   const [messageCustomAlert, setMessageCustomAlert] = useState(["", ""]);
   const [shouldShowGameModal, setShouldShowGameModal] = useState(false);
   const refGameModal = useRef();
+  const pendingPageRef = useRef(new Set());
+  const lastProcessedPageRef = useRef({ page: null, ts: 0 });
   const navigate = useNavigate();
   const location = useLocation();
 
   const imageSlideshow = [ImgBanner1, ImgBanner2, ImgBanner3];
 
   useEffect(() => {
-    const checkIsMobile = () => {
-      return window.innerWidth <= 767;
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        const currentPath = window.location.pathname;
+        if (currentPath === '/' || currentPath === '/home' || currentPath === '') {
+          setShowFullDivLoading(true);
+          pendingPageRef.current.clear();
+          lastProcessedPageRef.current = { page: null, ts: 0 };
+
+          selectedGameId = null;
+          selectedGameType = null;
+          selectedGameLauncher = null;
+          setGameUrl("");
+          setShouldShowGameModal(false);
+          
+          setSelectedPage("hot");
+          getPage("hot");
+
+          if (contextData.session != null) {
+            getStatus();
+          }
+        }
+      }
     };
 
-    setIsMobile(checkIsMobile());
-
-    const handleResize = () => {
-      setIsMobile(checkIsMobile());
-    };
-
-    window.addEventListener("resize", handleResize);
-
+    document.addEventListener('visibilitychange', handleVisibilityChange);
     return () => {
-      window.removeEventListener("resize", handleResize);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, []);
+  }, [contextData.session]);
 
   useEffect(() => {
     selectedGameId = null;
@@ -93,21 +106,36 @@ const Home = () => {
   };
 
   const getPage = (page) => {
-    setSelectedPage(page);
-    callApi(contextData, "GET", "/get-page?page=" + page, callbackGetPage, null);
+    if (pendingPageRef.current.has(page)) return;
+    pendingPageRef.current.add(page);
+
     setIsLoadingGames(true);
+    callApi(contextData, "GET", "/get-page?page=" + page, (result) => callbackGetPage(result, page), null);
   };
 
-  const callbackGetPage = (result) => {
+  const callbackGetPage = (result, page) => {
+    pendingPageRef.current.delete(page);
+
     if (result.status === 500 || result.status === 422) {
       setMessageCustomAlert(["error", result.message]);
-    } else {
-      setGames(result.data.categories);
-      setPageData(result.data);
-      pageCurrent = 1;
+      setIsLoadingGames(false);
+      setShowFullDivLoading(false);
+      return;
     }
 
+    const now = Date.now();
+    if (lastProcessedPageRef.current.page === page && now - lastProcessedPageRef.current.ts < 3000) {
+      setIsLoadingGames(false);
+      setShowFullDivLoading(false);
+      return;
+    }
+    lastProcessedPageRef.current = { page, ts: now };
+
+    setGames(result.data.categories);
+    setPageData(result.data);
+    pageCurrent = 1;
     setIsLoadingGames(false);
+    setShowFullDivLoading(false);
   };
 
   const launchGame = (id, type, launcher) => {
@@ -171,6 +199,7 @@ const Home = () => {
           launchInNewTab={() => launchGame(null, null, "tab")}
           ref={refGameModal}
           onClose={closeGameModal}
+          setMessageCustomAlert={setMessageCustomAlert}
         />
       ) : (
         <>

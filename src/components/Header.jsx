@@ -18,7 +18,7 @@ const Header = ({ isLogin, userBalance, handleLoginClick, handleLogoutClick, fra
         <header className="header-desktop">
             <div className="header-desktop__content">
                 <div className="header-desktop__header-menu">
-                    <a className="header-desktop__logo-container" onClick={() => navigate("/")}>
+                    <a className="header-desktop__logo-container" href="/">
                         <div className="header-desktop__logo">
                             <img
                                 title="Casino"
