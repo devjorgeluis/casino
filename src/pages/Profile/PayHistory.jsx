@@ -128,6 +128,12 @@ const PayHistory = () => {
                                             </div>
                                         </div>
                                         <div className="pay-history-item-desktop__item">
+                                            <div className="pay-history-item-desktop__title">Id</div>
+                                            <div className="pay-history-item-desktop__description pay-history-item-desktop__description_date">
+                                                {txn.txn_id}
+                                            </div>
+                                        </div>
+                                        <div className="pay-history-item-desktop__item">
                                             <div className="pay-history-item-desktop__title">Monto</div>
                                             <div className={`pay-history-item-desktop__description pay-history-item-desktop__date-number_status_${txn.value_after > txn.value_before ? 2 : 1}`}>
                                                 {formatBalance(txn.value || txn.amount || 0)}
