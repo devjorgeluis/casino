@@ -579,7 +579,6 @@ a {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    background: no-repeat 50% 2.74rem/79.25% url(/img/src/modules/Promotions/desktop/pages/PromotionsLayout/img/promotions-bg.webp);
     position: relative
 }
 
@@ -789,18 +788,6 @@ a {
     min-width: 21.875rem;
     height: 2.5rem;
     margin-bottom: 1.25rem
-}
-
-@font-face {
-    font-family: "Akrobat";
-    src: url(/assets/fonts/Akrobat-ExtraBold.otf) format("opentype");
-    font-weight: 800
-}
-
-@font-face {
-    font-family: "Akrobat";
-    src: url(/assets/fonts/Akrobat-Black.otf) format("opentype");
-    font-weight: 900
 }
 
 #root,html,body {
@@ -2833,13 +2820,6 @@ a {
     }
 }
 
-@font-face {
-    font-family: "password";
-    font-style: normal;
-    font-weight: 400;
-    src: url(/assets/fonts/password.ttf)
-}
-
 .input-desktop {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -3088,8 +3068,6 @@ a {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     border-radius: .625rem;
-    background: url(/img/src/components/RecoveryForms/img/auth-bg.png),-webkit-gradient(linear, left bottom, left top, from(rgba(20, 20, 20, 0.5)), to(rgba(20, 20, 20, 0.5))),#282828;
-    background: url(/img/src/components/RecoveryForms/img/auth-bg.png),linear-gradient(0deg, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)),#282828;
     background-size: cover;
     background-repeat: no-repeat
 }
@@ -3220,8 +3198,6 @@ a {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     border-radius: .625rem;
-    background: url(/img/src/components/RecoveryForms/img/auth-bg.png),-webkit-gradient(linear, left bottom, left top, from(rgba(20, 20, 20, 0.5)), to(rgba(20, 20, 20, 0.5))),#282828;
-    background: url(/img/src/components/RecoveryForms/img/auth-bg.png),linear-gradient(0deg, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)),#282828;
     background-size: cover;
     background-repeat: no-repeat
 }
@@ -4992,8 +4968,6 @@ a {
     box-sizing: border-box;
     border-radius: .625rem;
     padding: 4.125rem 8.9375rem 3.375rem;
-    background: url(/img/src/features/auth/img/auth-bg.png),-webkit-gradient(linear, left bottom, left top, from(rgba(20, 20, 20, 0.5)), to(rgba(20, 20, 20, 0.5))),#282828;
-    background: url(/img/src/features/auth/img/auth-bg.png),linear-gradient(0deg, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)),#282828;
     background-size: cover;
     background-repeat: no-repeat
 }
@@ -6192,7 +6166,6 @@ a {
 }
 
 .game-menu {
-    background: no-repeat top left/cover url(/img/src/components/SideMenu/GameMenu/img/sideMenuCrashBGMobile.png),rgba(0,0,0,0);
     background-size: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -6269,24 +6242,6 @@ a {
     border-radius: .3125rem;
     background: -webkit-gradient(linear, left top, left bottom, color-stop(52.27%, #320548), color-stop(96.54%, #1f073a));
     background: linear-gradient(180deg, #320548 52.27%, #1f073a 96.54%)
-}
-
-.game-menu__item:nth-child(1) {
-    background: no-repeat top left/cover url(/img/src/components/SideMenu/GameMenu/img/jetxBGMobile.png),-webkit-gradient(linear, left top, left bottom, color-stop(52.27%, #320548), color-stop(96.54%, #1f073a));
-    background: no-repeat top left/cover url(/img/src/components/SideMenu/GameMenu/img/jetxBGMobile.png),linear-gradient(180deg, #320548 52.27%, #1f073a 96.54%);
-    background-size: 100%
-}
-
-.game-menu__item:nth-child(3) {
-    background: no-repeat top left/cover url(/img/src/components/SideMenu/GameMenu/img/spacemanBGMobile.png),-webkit-gradient(linear, left top, left bottom, color-stop(52.27%, #320548), color-stop(96.54%, #1f073a));
-    background: no-repeat top left/cover url(/img/src/components/SideMenu/GameMenu/img/spacemanBGMobile.png),linear-gradient(180deg, #320548 52.27%, #1f073a 96.54%);
-    background-size: 100%
-}
-
-.game-menu__item:nth-child(4) {
-    background: no-repeat top left/cover url(/img/src/components/SideMenu/GameMenu/img/chickenBGMobile.webp),-webkit-gradient(linear, left top, left bottom, color-stop(52.27%, #320548), color-stop(96.54%, #1f073a));
-    background: no-repeat top left/cover url(/img/src/components/SideMenu/GameMenu/img/chickenBGMobile.webp),linear-gradient(180deg, #320548 52.27%, #1f073a 96.54%);
-    background-size: 100%
 }
 
 .game-menu__item-img-container {
@@ -7400,13 +7355,6 @@ a {
     overflow: hidden
 }
 
-@font-face {
-    font-family: "password";
-    font-style: normal;
-    font-weight: 400;
-    src: url(/assets/fonts/password.ttf)
-}
-
 .input-mobile {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -7613,8 +7561,6 @@ a {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     border-radius: .625rem;
-    background: url(/img/src/components/RecoveryForms/img/auth-bg.png),-webkit-gradient(linear, left bottom, left top, from(rgba(20, 20, 20, 0.5)), to(rgba(20, 20, 20, 0.5))),#111;
-    background: url(/img/src/components/RecoveryForms/img/auth-bg.png),linear-gradient(0deg, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)),#111;
     background-size: cover;
     background-repeat: no-repeat
 }
@@ -7795,8 +7741,6 @@ a {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     border-radius: .625rem;
-    background: url(/img/src/components/RecoveryForms/img/auth-bg.png),-webkit-gradient(linear, left bottom, left top, from(rgba(20, 20, 20, 0.5)), to(rgba(20, 20, 20, 0.5))),#111;
-    background: url(/img/src/components/RecoveryForms/img/auth-bg.png),linear-gradient(0deg, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)),#111;
     background-size: cover;
     background-repeat: no-repeat
 }
@@ -8387,7 +8331,6 @@ a {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    background-image: url(/img/src/components/LoadableImage/view/img/loaded-img.png);
     background-size: 100% 100%;
     background-position: center;
     background-color: #111522;
