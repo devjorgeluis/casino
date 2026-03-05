@@ -38,7 +38,6 @@ const Login = () => {
 
     const callbackSubmitLogin = (result) => {
         if (result.status === "success") {
-            setMessageCustomAlert(["success", "¡Éxito! La sesión ha sido iniciada"]);
             localStorage.setItem("session", JSON.stringify(result));
             window.location.href = "/";
         } else if (result.status === "country") {

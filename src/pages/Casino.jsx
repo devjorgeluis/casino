@@ -46,7 +46,6 @@ const Casino = () => {
   const [searchDelayTimer, setSearchDelayTimer] = useState();
   const [fragmentNavLinksBody, setFragmentNavLinksBody] = useState(<></>);
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [shouldShowGameModal, setShouldShowGameModal] = useState(false);
   const [messageCustomAlert, setMessageCustomAlert] = useState(["", ""]);
   const [casinoPageGroupCode, setCasinoPageGroupCode] = useState("");
@@ -55,16 +54,10 @@ const Casino = () => {
   const pageGroupTypeRef = useRef("");
   const navigate = useNavigate();
   const location = useLocation();
-  const { isSlotsOnly } = useOutletContext();
+  const { isMobile, isSlotsOnly } = useOutletContext();
   const pageDataRef = useRef({});
-
-  useEffect(() => {
-    const checkIsMobile = () => window.innerWidth <= 767;
-    setIsMobile(checkIsMobile());
-    const handleResize = () => setIsMobile(checkIsMobile());
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const pendingPageRef = useRef(new Set());
+  const lastProcessedPageRef = useRef({ page: null, ts: 0 });
 
   useEffect(() => {
     if (categories.length > 0 && pageGroupTypeRef.current === "categories") {
@@ -73,6 +66,45 @@ const Casino = () => {
       fetchContent(item, item.id, item.table_name, 0, true);
     }
   }, [categories]);
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        const currentPath = window.location.pathname;
+        if (currentPath === '/casino') {
+          setShowFullDivLoading(true);
+          pendingPageRef.current.clear();
+          lastProcessedPageRef.current = { page: null, ts: 0 };
+
+          selectedGameId = null;
+          selectedGameType = null;
+          selectedGameLauncher = null;
+          setGameUrl("");
+          setShouldShowGameModal(false);
+
+          const hash = location.hash.replace("#", "");
+
+          if (hash) {
+            callApi(contextData, "GET", "/get-page?page=casino", (result) => {
+              if (result && result.data && result.data.categories) {
+                const casinoCategories = result.data.categories || [];
+                setMainCategories(casinoCategories);
+                mainCategoriesRef.current = casinoCategories;
+              }
+              getPage(hash);
+            }, null);
+          } else {
+            getPage("casino");
+          }
+        }
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [location.hash]);
 
   useEffect(() => {
     selectedGameId = null;
@@ -84,11 +116,9 @@ const Casino = () => {
     const hash = location.hash.replace("#", "");
 
     if (hash) {
-      // Always preload casino first to populate mainCategories ref, then load hash page
       callApi(contextData, "GET", "/get-page?page=casino", (result) => {
         if (result && result.data && result.data.categories) {
           const casinoCategories = result.data.categories || [];
-          // Set both state AND ref so it's immediately available
           setMainCategories(casinoCategories);
           mainCategoriesRef.current = casinoCategories;
         }
@@ -98,6 +128,7 @@ const Casino = () => {
       getPage("casino");
     }
   }, [location.pathname, location.hash]);
+
 
   useEffect(() => {
     updateNavLinks();
@@ -158,6 +189,9 @@ const Casino = () => {
   };
 
   const getPage = (page) => {
+    if (pendingPageRef.current.has(page)) return;
+    pendingPageRef.current.add(page);
+
     setIsLoadingGames(true);
     setCategories([]);
     setGames([]);
@@ -166,21 +200,37 @@ const Casino = () => {
   };
 
   const callbackGetPage = (result, page) => {
+    pendingPageRef.current.delete(page);
+
     if (!result || !result.data) {
       setMessageCustomAlert(["error", "Error al cargar la página"]);
+      setIsLoadingGames(false);
+      setShowFullDivLoading(false);
       return;
     }
 
     if (result.status === 500 || result.status === 422) {
       setMessageCustomAlert(["error", result.message]);
+      setIsLoadingGames(false);
+      setShowFullDivLoading(false);
       return;
     }
+
+    const now = Date.now();
+    if (lastProcessedPageRef.current.page === page && now - lastProcessedPageRef.current.ts < 3000) {
+      setIsLoadingGames(false);
+      setShowFullDivLoading(false);
+      return;
+    }
+    lastProcessedPageRef.current = { page, ts: now };
 
     const data = result.data;
     pageGroupTypeRef.current = data.page_group_type;
     setPageData(data);
 
     if (data.url && data.url != null) {
+      setIsLoadingGames(false);
+      setShowFullDivLoading(false);
       return;
     }
 
@@ -213,6 +263,7 @@ const Casino = () => {
     }
 
     setIsLoadingGames(false);
+    setShowFullDivLoading(false);
   };
 
   const loadMoreContent = () => {
@@ -285,7 +336,7 @@ const Casino = () => {
         setGames((prev) => [...prev, ...items]);
       }
       pageCurrent += 1;
-  
+
       setIsLoadingGames(false);
       setShowFullDivLoading(false);
     }

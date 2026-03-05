@@ -45,7 +45,10 @@ const GameModal = (props) => {
 
   const closeModal = () => {
     resetModal();
-    document.getElementsByClassName("game-window")[0].classList.add("d-none");
+    const gameWindow = document.getElementsByClassName("game-window")[0];
+    if (gameWindow) {
+      gameWindow.classList.add("d-none");
+    }
     if (props.onClose) {
       props.onClose();
     }
@@ -59,7 +62,10 @@ const GameModal = (props) => {
   const resetModal = () => {
     setUrl(null);
     setIframeLoaded(false);
-    document.getElementById("game-window-iframe").classList.add("d-none");
+    const iframe = document.getElementById("game-window-iframe");
+    if (iframe) {
+      iframe.classList.add("d-none");
+    }
   };
 
   const toggleFullScreen = () => {
@@ -100,21 +106,20 @@ const GameModal = (props) => {
       !document.msFullscreenElement
     ) {
       setIsFullscreen(false);
-      document
-        .getElementsByClassName("game-window")[0]
-        .classList.remove("fullscreen");
+      const gameWindow = document.getElementsByClassName("game-window")[0];
+      if (gameWindow) {
+        gameWindow.classList.remove("fullscreen");
+      }
     }
   };
 
   useEffect(() => {
-    // Add event listeners for fullscreen change
     document.addEventListener("fullscreenchange", exitHandler);
     document.addEventListener("webkitfullscreenchange", exitHandler);
     document.addEventListener("mozfullscreenchange", exitHandler);
     document.addEventListener("MSFullscreenChange", exitHandler);
 
     return () => {
-      // Clean up event listeners
       document.removeEventListener("fullscreenchange", exitHandler);
       document.removeEventListener("webkitfullscreenchange", exitHandler);
       document.removeEventListener("mozfullscreenchange", exitHandler);
@@ -128,14 +133,15 @@ const GameModal = (props) => {
   };
 
   const handleIframeLoad = () => {
-    if (url != null) {
-      document.getElementById("game-window-iframe").classList.remove("d-none");
+    const iframe = document.getElementById("game-window-iframe");
+    if (iframe && url != null) {
+      iframe.classList.remove("d-none");
       setIframeLoaded(true);
     }
   };
 
   const handleIframeError = () => {
-    props.setMessageCustomAlert([
+    props.setMessageCustomAlert?.([
       "error",
       "Se produjo un error al cargar el juego, contacte al administrador.",
     ]);
@@ -146,21 +152,15 @@ const GameModal = (props) => {
       d = document,
       documentElement = d.documentElement,
       body = d.getElementsByTagName("body")[0],
-      width = w.innerWidth || documentElement.clientWidth || body.clientWidth,
-      height =
-        w.innerHeight || documentElement.clientHeight || body.clientHeight;
+      width = w.innerWidth || documentElement.clientWidth || body.clientWidth;
 
-    // mobile
-    if (width <= 767) {
-      document
-        .getElementsByClassName("game-window")[0]
-        .classList.add("portrait");
-    }
-    // desktop
-    else {
-      document
-        .getElementsByClassName("game-window")[0]
-        .classList.add("landscape");
+    const gameWindow = document.getElementsByClassName("game-window")[0];
+    if (gameWindow) {
+      if (width <= 767) {
+        gameWindow.classList.add("portrait");
+      } else {
+        gameWindow.classList.add("landscape");
+      }
     }
   }, []);
 
@@ -212,7 +212,7 @@ const GameModal = (props) => {
           </div>
         </div>
 
-        {iframeLoaded == false && (
+        {!iframeLoaded && (
           <div
             id="game-window-loading"
             className="game-window-iframe-wrapper"
@@ -230,6 +230,7 @@ const GameModal = (props) => {
             src={url}
             onLoad={handleIframeLoad}
             onError={handleIframeError}
+            title="Game Window"
           ></iframe>
         </div>
       </div>
