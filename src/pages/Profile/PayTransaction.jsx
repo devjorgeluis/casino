@@ -14,7 +14,7 @@ const PayTransaction = () => {
     const [loading, setLoading] = useState(false);
     const [pagination, setPagination] = useState({
         start: 0,
-        length: 5,
+        length: 15,
         totalRecords: 0,
         currentPage: 1,
     });
