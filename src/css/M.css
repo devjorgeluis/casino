@@ -5358,7 +5358,6 @@ hr.big {
     -ms-flex-direction: column;
     flex-direction: column;
     width: 100%;
-    background: no-repeat bottom/100% url(/img/src/features/profile/view/mobile/ChangePassword/img/purpleGradientBG.png)
 }
 
 .change-password-mobile__form {
@@ -5659,11 +5658,6 @@ hr.big {
     flex-direction: column;
     width: 100%;
     padding-bottom: 10rem;
-    background: no-repeat bottom/100% url(/img/src/features/payHistory/view/mobile/img/payHistoryPurpleResultsBG.png)
-}
-
-.pay-history-mobile_isNoOperations {
-    background: no-repeat top 1.875rem center/17.5rem 26.3125rem url(/img/src/features/payHistory/view/mobile/img/ganamosDogBackBG.png), no-repeat bottom/100% url(/img/src/features/payHistory/view/mobile/img/payHistoryPurpleBG.png)
 }
 
 .pay-history-mobile__content {
@@ -6965,7 +6959,6 @@ hr.big {
     -ms-flex-positive: 2;
     flex-grow: 2;
     padding: 13.5rem .625rem 4.76rem .625rem;
-    background: no-repeat top/100% url(/img/src/modules/Promotions/mobile/pages/PromotionsLayout/img/promotions-bg.webp);
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -6990,18 +6983,6 @@ hr.big {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex
-}
-
-@font-face {
-    font-family: "Akrobat";
-    src: url(/assets/fonts/Akrobat-ExtraBold.otf) format("opentype");
-    font-weight: 800
-}
-
-@font-face {
-    font-family: "Akrobat";
-    src: url(/assets/fonts/Akrobat-Black.otf) format("opentype");
-    font-weight: 900
 }
 
 #root,
